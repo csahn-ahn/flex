@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="navFragment">
+	<div class="navbar-header">
+	</div>
+	<ul class="nav navbar-top-links navbar-right">
+		<li>
+			<span class="m-r-sm text-muted welcome-message" th:utext="${welcomeText}"></span>
+		</li>
+		<li>
+			<a href="/admin/logout">
+				<i class="fa fa-sign-out"></i>
+				<th:block th:text="${logoutText}">Log out</th:block>
+			</a>
+		</li>
+	</ul>
+</th:block>
+</html>

@@ -2,8 +2,8 @@ package me.univ.flex.common.config;
 
 import lombok.RequiredArgsConstructor;
 import me.univ.flex.admin.manager.ManagerService;
-import me.univ.flex.admin.manager.handler.AuthFailureHandler;
-import me.univ.flex.admin.manager.handler.AuthSuccessHandler;
+import me.univ.flex.common.handler.AuthFailureHandler;
+import me.univ.flex.common.handler.AuthSuccessHandler;
 import me.univ.flex.common.constants.BaseConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder encryptPassword() {
+
         return new BCryptPasswordEncoder();
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package me.univ.flex.admin.manager.handler;
+package me.univ.flex.common.handler;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

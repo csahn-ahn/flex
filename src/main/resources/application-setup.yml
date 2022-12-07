@@ -1,0 +1,13 @@
+spring:
+  config:
+    activate:
+      on-profile: setup-local
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+security:
+  key:
+    aes256: cRBEboDiI6BWJElDVzswipbBJNJBivSD

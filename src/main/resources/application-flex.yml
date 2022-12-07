@@ -1,9 +1,0 @@
-spring:
-  config:
-    activate:
-      on-profile: flex-local
-  devtools:
-    restart:
-      enabled: true
-    livereload:
-      enabled: false

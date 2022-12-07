@@ -2,7 +2,7 @@ var app = new Vue({
   el: '#app',
   data: {
     manager: {
-      username: 'manager',
+      username: 'admin',
       password: '1234',
     }
   },

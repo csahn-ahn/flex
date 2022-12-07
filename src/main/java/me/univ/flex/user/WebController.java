@@ -1,4 +1,4 @@
-package me.univ.flex.user.web;
+package me.univ.flex.user;
 
 import me.univ.flex.common.constants.BaseConstants;
 import org.springframework.stereotype.Controller;
