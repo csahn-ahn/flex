@@ -5,11 +5,9 @@
 		<ul class="nav metismenu" id="side-menu">
 			<li class="nav-header">
 				<div class="dropdown profile-element">
-					<img alt="image" class="rounded-circle"
-						 src="/static/admin/images/logo.png"/>
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<span class="block m-t-xs font-bold">대학내일</span>
-					</a>
+					<a href="/admin/main"><img alt="image" class="rounded-circle"
+						 src="/static/admin/images/logo.png"/></a>
+					<span class="block m-t-xs font-bold">대학내일</span>
 				</div>
 				<div class="logo-element">
 					IN+
@@ -19,8 +17,8 @@
 				<a href="index.html"><i class="fa fa-th-large"></i> <span
 					class="nav-label">회원</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li class="active"><a href="#">회원 관리</a></li>
-					<li><a href="#">휴면회원 관리</a></li>
+					<li class="active"><a href="/admin/user/users/main">회원 관리</a></li>
+					<!--<li><a href="#">휴면회원 관리</a></li>-->
 				</ul>
 			</li>
 			<li>
@@ -37,7 +35,7 @@
 				<a href="index.html"><i class="fa fa-th-large"></i> <span
 					class="nav-label">코드</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li><a href="#">공통코드 관리</a></li>
+					<li><a href="/admin/code/common/main">공통코드 관리</a></li>
 				</ul>
 			</li>
 			<li>
@@ -45,17 +43,24 @@
 					class="nav-label">시스템</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li><a href="/admin/system/managers/main">운영자 관리</a></li>
-					<li><a href="/admin/system/menus/main">메뉴 관리</a></li>
-					<li><a href="/admin/system/groups/main">그룹 관리</a></li>
+					<li><a href="/admin/system/adminMenus/main">메뉴 관리</a></li>
+					<li><a href="/admin/system/adminGroups/main">그룹 관리</a></li>
 				</ul>
 			</li>
 			<li>
 				<a href="index.html"><i class="fa fa-th-large"></i> <span
 					class="nav-label">이력</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li><a href="#">로그인 이력</a></li>
-					<li><a href="#">접근 이력</a></li>
-					<li><a href="#">다운로드 이력</a></li>
+					<li><a href="/admin/log/login/main">로그인 이력</a></li>
+					<li><a href="/admin/log/access/main">접근 이력</a></li>
+					<li><a href="/admin/log/download/main">다운로드 이력</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="index.html"><i class="fa fa-th-large"></i> <span
+					class="nav-label">통계</span> <span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li><a href="/admin/stats/users/main">회원 통계</a></li>
 				</ul>
 			</li>
 		</ul>

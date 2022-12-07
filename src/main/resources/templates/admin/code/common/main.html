@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/admin/fragments/layout}" xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Main page</title>
+</head>
+<th:block layout:fragment="content">
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-lg-10">
+			<h2>공통 코드 관리</h2>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a>Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a>코드</a>
+				</li>
+				<li class="breadcrumb-item active">
+					<strong>공통 코드 관리</strong>
+				</li>
+			</ol>
+		</div>
+		<div class="col-lg-2">
+
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight" id="app">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>상위코드</h5>
+					</div>
+					<div class="ibox-content">
+
+						<table class="table">
+							<thead>
+							<tr>
+								<th>No.</th>
+								<th>상위코드</th>
+								<th>상위코드명</th>
+								<th>관리</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>1</td>
+								<td>CODE_01</td>
+								<td>프로그램 유형</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>CODE_02</td>
+								<td>프로그램 형태</td>
+								<td></td>
+							</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>하위 코드</h5>
+					</div>
+					<div class="ibox-content">
+
+						<table class="table">
+							<thead>
+							<tr>
+								<th>No.</th>
+								<th>하위코드</th>
+								<th>하위코드명</th>
+								<th>관리</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>1</td>
+								<td>CODE_01</td>
+								<td>프로그램 유형</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>CODE_02</td>
+								<td>프로그램 형태</td>
+								<td></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/static/admin/js/system/code/common/main.js"></script>
+</th:block>
+</html>
