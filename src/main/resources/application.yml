@@ -1,0 +1,16 @@
+spring:
+  config:
+    import:
+      - classpath:application-common.yml
+      - classpath:application-db.yml
+      - classpath:application-file.yml
+      - classpath:application-logger.yml
+      - classpath:application-flex.yml
+  profiles:
+    include: common
+    group:
+      local:
+        - db-local
+        - file-local
+        - logger-local
+        - flex-local

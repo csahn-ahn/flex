@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin | Login</title>
+
+  <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+  <link href="/static/admin/css/animate.css" rel="stylesheet">
+  <link href="/static/admin/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="middle-box text-center loginscreen animated fadeInDown" id="app">
+  <div>
+    <div>
+      <h1 class="logo-name">Flex</h1>
+    </div>
+    <h3>관리자 시스템에 오신것을 환영합니다.</h3>
+    <form class="m-t" role="form" method="post" action="/admin/login/action">
+      <div class="form-group">
+        <input type="text" name="username" class="form-control" placeholder="아이디" required="" v-model="manager.username">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="비밀번호" required="" v-model="manager.password">
+      </div>
+      <button type="submit" class="btn btn-primary block full-width m-b">로그인</button>
+    </form>
+  </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/static/admin/js/jquery-3.1.1.min.js"></script>
+<script src="/static/admin/js/popper.min.js"></script>
+<script src="/static/admin/js/bootstrap.js"></script>
+<script src="/static/admin/js/vue.min.js"></script>
+
+<script src="/static/admin/js/auth/login.js"></script>
+
+</body>
+
+</html>
+

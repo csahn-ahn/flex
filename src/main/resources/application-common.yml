@@ -1,0 +1,94 @@
+# 서버 설정
+server:
+  shutdown: graceful
+  port: ${PORT:8080}
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+  error:
+    whitelabel:
+      enabled: true
+
+spring:
+  config:
+    activate:
+      on-profile: common
+
+  # DataSource 설정
+  datasource:
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+
+  #JPA 설정.
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate: # Hibernate - Optimizing
+        format_sql: false
+        show_sql: false
+        default_batch_fetch_size: 1000
+        jdbc:
+          batch_size: 1000
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+
+  #security
+  security:
+    user:
+      name: {{username}}
+      password: {{password}}
+  boot:
+    admin:
+      ui:
+        brand: <img src="assets/img/icon-spring-boot-admin.svg"><span>Spring Boot Admin</span>
+        title: Spring Boot Admin
+      client:
+        url: http://localhost:8081 # Spring Boot Admin Server URL
+        instance:
+          metadata:
+            # Spring Boot Admin Server에서 Client의 Actuator endpoint에 접근 인증시 사용
+            user:
+              name: {{username}}
+              password: {{password}}
+        # Client가 Spring Boot Admin에 접근 인증시 사용
+        username: {{username}}
+        password: {{password}}
+
+  # 정적리소스
+  mvc:
+    static-path-pattern: /static/**
+  web:
+    resources:
+      static-location: classpath:/static
+      add-mappings: true
+
+  # Jackson - json pretty
+  jackson:
+    serialization:
+      indent_output: true
+
+# 중요 정보 암호화
+jasypt:
+  encryptor:
+    bean: encryptorBean
+
+# actuator 설정
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,info,beans,conditions
+        exclude: threaddump, heapdump
+  endpoint:
+    info:
+      show-details: always
+    health:
+      show-details: always

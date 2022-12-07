@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: file-local
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+univ:
+  storage-props:
+    nas:
+      location: /NAS
+      download-url-prefix: http://localhost:8081/files/nas
+    cdn:
+      location: /PUB
+      download-url-prefix: http://localhost:8081/files/public

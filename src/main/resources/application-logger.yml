@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: logger-local
+
+logging:
+  file:
+    name: D:/logs/flex.log
+    max-size: 500MB
+    max-history: 30
+  pattern:
+    #console: "[%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+    rolling-file-name: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: INFO
+        data: INFO
+        http: INFO
+    me:
+      univ: DEBUG
+    p6spy: INFO

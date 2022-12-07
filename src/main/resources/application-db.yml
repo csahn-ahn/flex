@@ -1,0 +1,34 @@
+spring:
+  config:
+    activate:
+      on-profile: db-local
+  h2:
+    console:
+      enabled: true  # H2 Console을 사용할지 여부 (H2 Console은 H2 Database를 UI로 제공해주는 기능)
+      path: /h2-console  # H2 Console의 Path
+  datasource:
+    driver-class-name: org.h2.Driver  # Database를 H2로 사용하겠다.
+    url: jdbc:h2:~/test  # H2 접속 정보
+    username: sa  # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
+    password: sa1234 # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
+
+#  datasource:
+#    url: jdbc:sqlserver://dev03-sqlserver-develop.c3wvobfbdns0.ap-northeast-2.rds.amazonaws.com:1433;databaseName=KTNG_SSUNIV
+#    username: suniv
+#    password: MMH{7p>2x
+#    hikari:
+#      minimum-idle: 2
+#      maximum-pool-size: 5
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    show-sql: false
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
