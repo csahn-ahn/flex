@@ -70,15 +70,15 @@
 								</tr>
 								</thead>
 								<tbody>
-								<template v-if="managers.length == 0">
+								<template v-if="list.length == 0">
 									<tr class="gradeX">
 										<td colspan="100">데이터가 없습니다.</td>
 									</tr>
 								</template>
 								<template v-else>
-									<template v-for="(obj, idx) in managers">
+									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
-											<td>1</td>
+											<td>{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</td>
 											<td>{{obj.username}}</td>
 											<td>{{obj.groupName}} 그룹</td>
 											<td>{{obj.name}}</td>
@@ -87,10 +87,10 @@
 											<td class="center">{{convertDateFormat(obj.registerTime)}}</td>
 											<td class="center">{{convertDateFormat(obj.lastLoginTime)}}</td>
 											<td class="center">{{obj.active == true ? '정상' : '잠김'}}</td>
-											<td>
+											<td class="center">
 												<div class="btn-group">
 													<button class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
-													<button class="btn btn-warning" type="button" @click="fnActive(obj, false)">비활성화</button>
+													<!--<button class="btn btn-warning" type="button" @click="fnActive(obj, false)">비활성화</button>-->
 													<button class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
 												</div>
 											</td>

@@ -1,7 +1,8 @@
 var app = new Vue({
 	el: '#app',
 	data: {
-		managers: [],
+		totalCount: 0,
+		list: [],
 		search: {
 			page: 1,
 			pageSize: 10,
@@ -32,9 +33,10 @@ var app = new Vue({
 				params: me.search
 			})
 			.then(function(response) {
-				me.managers = response.data;
+				me.totalCount = response.data.numberOfElements;
+				me.list = response.data.content;
 
-                 $('#pagination').twbsPagination({
+                $('#pagination').twbsPagination({
 					totalPages: 35,
 					visiblePages: 10,
 					startPage: 1,

@@ -15,7 +15,7 @@ var app = new Vue({
 
 			axios.get('/admin/api/v1/adminMenus')
 			.then(function(response) {
-				console.log(response);
+				me.list = response.data;
 			})
 			.catch(function(error) {
 				console.log(error)

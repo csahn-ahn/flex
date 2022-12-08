@@ -15,11 +15,12 @@
 							<table class="table table-striped table-bordered table-hover dataTables-example" >
 								<thead>
 								<tr>
-									<th>No.</th>
-									<th>1차 메뉴명</th>
-									<th>2차 메뉴명</th>
+									<th>Depth1</th>
+									<th>Depth2</th>
+									<th>링크유형</th>
+									<th>링크URL</th>
 									<th>등록일시</th>
-									<th>노출여부</th>
+									<th>관리</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -29,13 +30,19 @@
 									</tr>
 								</template>
 								<template v-else>
-									<template v-for="(obj, idx) in managers">
+									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
-											<td>1</td>
-											<td><a href="#"></a></td>
-											<td><a href="#"></a></td>
-											<td></td>
-											<td class="center"></td>
+											<td class="center">{{obj.upperMenuId == 0 ? obj.menuName : ''}}</td>
+											<td class="center">{{obj.upperMenuId > 0 ? obj.menuName : ''}}</td>
+											<td class="center">{{obj.linkType == 1 ? '이동' : '새창'}}</td>
+											<td>{{obj.linkUrl}}</td>
+											<td class="center">{{convertDateFormat(obj.registerTime)}}</td>
+											<td class="center">
+												<div class="btn-group">
+													<button class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
+													<button class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
+												</div>
+											</td>
 										</tr>
 									</template>
 								</template>
