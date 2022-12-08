@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="positionFragment">
-	<div class="col-lg-10">
-		<h2>Title</h2>
+	<div class="col-lg-10" id="position">
+		<h2 v-text="upperMenu != null ? lowerMenu.menuName : ''"></h2>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a>Home</a>
 			</li>
 			<li class="breadcrumb-item">
-				<a>2Depth</a>
+				<a v-text="upperMenu != null ? upperMenu.menuName : ''"></a>
 			</li>
 			<li class="breadcrumb-item active">
-				<strong>3Depth</strong>
+				<strong v-text="upperMenu != null ? lowerMenu.menuName : ''"></strong>
 			</li>
 		</ol>
 	</div>
 	<div class="col-lg-2">
 	</div>
+	<script src="/static/admin/js/fragments/position.js"></script>
 </th:block>
 </html>

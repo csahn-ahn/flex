@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.entity.manager.ManagerEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,9 +25,15 @@ public class ManagerService {
     private final ManagerRepository managerRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public List<ManagerEntity> findAll() {
-        List<ManagerEntity> list = managerRepository.findCustomAll();
-        return list;
+    public Page<ManagerEntity> findAll(ManagerEntity.PageRequest request) {
+        PageRequest pageRequest = PageRequest.of(
+            request.getPage() -1,
+            request.getPageSize(),
+            Sort.by(Sort.Direction.DESC, "registerTime")
+        );
+
+        Page<ManagerEntity> page = managerRepository.findCustomAll(pageRequest);
+        return page;
     }
 
     public ManagerEntity detail(UserDetailsImpl admin, String username) {

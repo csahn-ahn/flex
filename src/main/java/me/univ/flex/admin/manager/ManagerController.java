@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.entity.manager.ManagerEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,8 +26,8 @@ public class ManagerController {
     private final ManagerService managerService;
 
     @GetMapping(name = "운영자 목록 조회")
-    public ResponseEntity<List<ManagerEntity>> findAll(@AuthenticationPrincipal UserDetailsImpl admin){
-        return ResponseEntity.ok(managerService.findAll());
+    public ResponseEntity<Page<ManagerEntity>> findAll(@AuthenticationPrincipal UserDetailsImpl admin, ManagerEntity.PageRequest request){
+        return ResponseEntity.ok(managerService.findAll(request));
     }
 
     @GetMapping(name = "운영자 조회", value = "/{username}")

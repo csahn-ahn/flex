@@ -39,7 +39,11 @@ var app = new Vue({
 			let me = this;
 
 			if(me.username) {
-				axios.get('/admin/api/v1/managers/' + me.username)
+				axios({
+					method:'get',
+					url: '/admin/api/v1/managers/' + me.username,
+					params: {}
+				})
 				.then(function(response) {
 					me.manager = response.data;
 

@@ -1,8 +1,9 @@
 package me.univ.flex.admin.manager;
 
-import java.util.List;
 import me.univ.flex.entity.manager.ManagerEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ManagerCustomRepository {
-	List<ManagerEntity> findCustomAll();
+	Page<ManagerEntity> findCustomAll(Pageable pageable);
 }

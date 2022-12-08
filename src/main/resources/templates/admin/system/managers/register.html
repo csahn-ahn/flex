@@ -20,9 +20,12 @@
 							</div>
 							<div class="form-group row"><label class="col-lg-2 col-form-label">아이디</label>
 								<div class="col-lg-3">
-									<input type="username" placeholder="아이디" required="" class="form-control" v-model="manager.username">
-									<!--<span class="form-text m-b-none">(8자 이상의 문자/숫자/특수문자 조합)</span>-->
-									<button class="btn btn-sm" type="button" @click="fnCheckId()">아이디 확인</button>
+									<div class="input-group">
+										<input type="username" placeholder="아이디" required="" class="form-control" v-model="manager.username">
+										<span class="input-group-append">
+											<button class="btn btn-sm btn-outline btn-success" type="button" @click="fnCheckId()">아이디 확인</button>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div v-if="username == null || username == ''" class="form-group row"><label class="col-lg-2 col-form-label">비밀번호</label>
@@ -48,8 +51,8 @@
 
 							<div class="form-group row">
 								<div class="col-lg-offset-2 col-lg-4">
-									<button class="btn btn-sm btn-success" type="submit">등록</button>
-									<button class="btn btn-sm btn-white" type="button" @click="fnCancel()">취소</button>
+									<button class="btn btn-success" type="submit">등록</button>
+									<button class="btn btn-white" type="button" @click="fnCancel()">취소</button>
 								</div>
 							</div>
 						</form>

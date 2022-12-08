@@ -56,6 +56,15 @@ public class ManagerEntity {
     private String groupName;
 
     @Data
+    public static class PageRequest {
+        private int page;
+        private int pageSize;
+        private String username;
+        private String name;
+        private int groupId;
+    }
+
+    @Data
     public static class SaveRequest {
         private String username;
         private String password;

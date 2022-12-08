@@ -3,12 +3,14 @@ package me.univ.flex.entity.adminMenu;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,11 +32,13 @@ public class AdminMenuEntity {
     @Column(nullable = false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int menuId;
+    private int upperMenuId;
     @Column(nullable = false)
     private String menuName;
     @Column(nullable = false)
     private int linkType;
     private String linkUrl;
+    private int sort;
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)
@@ -44,4 +48,7 @@ public class AdminMenuEntity {
     private String registerId;
     private String lastUpdateId;
     private String deleteId;
+
+    @Transient
+    private List<AdminMenuEntity> lowerMenus;
 }

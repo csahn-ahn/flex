@@ -9,11 +9,40 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>검색</h5>
+					</div>
+					<div class="ibox-content">
+						<form role="form" class="form-inline">
+							<div class="form-group">
+								<select class="form-control">
+									<option value="0">선택</option>
+									<option value="5">운영자</option>
+									<option value="10">슈퍼관리자</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="s_username" class="sr-only">아이디</label>
+								<input type="text" placeholder="아이디" id="s_username" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="s_name" class="sr-only">이름</label>
+								<input type="text" placeholder="이름" id="s_name" class="form-control">
+							</div>
+							<button class="btn btn-success" type="button">검색</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox ">
 					<div class="ibox-content">
 						<div class="form-group row">
 							<!--<p class="dataTables_info">Total {{managers.length}}</p>-->
 							<div class="col-lg-3 m-2-n">
-								<select class="form-control">
+								<select class="form-control" v-model="search.pageSize">
 									<option value="10">10개씩 보기</option>
 									<option value="30">30개씩 보기</option>
 									<option value="50">50개씩 보기</option>
@@ -30,9 +59,12 @@
 								<tr>
 									<th>No.</th>
 									<th>아이디</th>
-									<th>이름</th>
 									<th>그룹명</th>
+									<th>이름</th>
+									<th>연락처</th>
+									<th>이메일</th>
 									<th>등록일시</th>
+									<th>최근 로그인</th>
 									<th>활동상태</th>
 									<th>관리</th>
 								</tr>
@@ -47,10 +79,13 @@
 									<template v-for="(obj, idx) in managers">
 										<tr class="gradeX">
 											<td>1</td>
-											<td><a href="#" @click="fnDetail(obj)">{{obj.username}}</a></td>
-											<td><a href="#" @click="fnDetail(obj)">{{obj.name}}</a></td>
+											<td>{{obj.username}}</td>
 											<td>{{obj.groupName}} 그룹</td>
+											<td>{{obj.name}}</td>
+											<td>{{obj.hp}}</td>
+											<td>{{obj.email}}</td>
 											<td class="center">{{convertDateFormat(obj.registerTime)}}</td>
+											<td class="center">{{convertDateFormat(obj.lastLoginTime)}}</td>
 											<td class="center">{{obj.active == true ? '정상' : '잠김'}}</td>
 											<td>
 												<div class="btn-group">
@@ -64,8 +99,8 @@
 								</template>
 								</tfoot>
 							</table>
+							<div id="pagination" ></div>
 						</div>
-
 					</div>
 				</div>
 			</div>

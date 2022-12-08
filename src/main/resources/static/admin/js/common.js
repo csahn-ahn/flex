@@ -1,6 +1,9 @@
 // 일자 포맷
 // format : YYYY.MM.DD HH:mm
 function convertDateFormat(date, format) {
+	if(date == null || date == '') {
+		return '-';
+	}
 	return (moment(date)).format(format);
 }
 
@@ -15,4 +18,9 @@ function chkFormatPhone(phoneNo) {
 function chkFormatEmail(email) {
 	var regex = /^[0-9a-zA-Z]([_]?([\w\.\%\+\-])*[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	return regex.test(email);
+}
+
+// 페이징 마크업 새엇ㅇ
+function makePagination() {
+
 }

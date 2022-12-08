@@ -2,6 +2,13 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		managers: [],
+		search: {
+			page: 1,
+			pageSize: 10,
+			groupId: 0,
+			username: '',
+			name: ''
+		}
 	},
 	created() {
 	},
@@ -10,34 +17,47 @@ var app = new Vue({
 		me.fnGetManagers();
 	},
 	methods: {
-		fnGetManagers() {
-			console.log('fnGetManagers : ');
-			let me = this;
 
-			axios.get('/admin/api/v1/managers')
+		fnSearch() {
+			let me = this;
+			me.page = 1;
+			me.fnGetManagers();
+		},
+
+		fnGetManagers() {
+			let me = this;
+			axios({
+				method:'get',
+				url: '/admin/api/v1/managers',
+				params: me.search
+			})
 			.then(function(response) {
-				console.log(response);
 				me.managers = response.data;
+
+                 $('#pagination').twbsPagination({
+					totalPages: 35,
+					visiblePages: 10,
+					startPage: 1,
+					//first : "첫 페이지",	// 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
+					//prev : "이전 페이지",	// 이전 페이지 버튼에 쓰여있는 텍스트
+					//next : "다음 페이지",	// 다음 페이지 버튼에 쓰여있는 텍스트
+					//last : "마지막 페이지",	// 페이지네이션 버튼중 마지막으로 가는 버튼에 쓰여있는 텍스트
+					nextClass : "page-item next",	// 이전 페이지 CSS class
+					prevClass : "page-item prev",	// 다음 페이지 CSS class
+					lastClass : "page-item last",	// 마지막 페이지 CSS calss
+					firstClass : "page-item first",	// 첫 페이지 CSS class
+					pageClass : "page-item",	// 페이지 버튼의 CSS class
+					activeClass : "active",	// 클릭된 페이지 버튼의 CSS class
+					disabledClass : "disabled",	// 클릭 안된 페이지 버튼의 CSS class
+					anchorClass : "page-link",	//버튼 안의 앵커에 대한 CSS class
+					onPageClick: function (event, page) {
+						me.search.page = page;
+					}
+				});
 			})
 			.catch(function(error) {
-				console.log(error)
+				modalView.openAlert(error.message);
 			})
-
-			/*
-			me.managers = [
-				{username: 'admin', name: '슈퍼관리자', groupName: '슈퍼관리자 그룹', registerDate: '2022-01-01 23:59:59', active: true},
-				{username: 'manager01', name: '운영자01', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager02', name: '운영자02', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager03', name: '운영자03', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager04', name: '운영자04', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager05', name: '운영자05', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager06', name: '운영자06', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager07', name: '운영자07', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager08', name: '운영자08', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager09', name: '운영자09', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-				{username: 'manager10', name: '운영자10', groupName: '운영자 그룹', registerDate: '2022-11-11 12:59:59', active: true},
-			]
-			*/
 		},
 
 		fnDetail(obj) {
@@ -55,7 +75,6 @@ var app = new Vue({
 					axios.delete('/admin/api/v1/managers/' + obj.username)
 					.then(function(response) {
 						modalView.openAlert(
-							'Notice',
 							'삭제 되었습니다.'
 							,function() {
 								document.location.href = '/admin/system/managers/main';
@@ -63,7 +82,7 @@ var app = new Vue({
 						);
 					})
 					.catch(function(error) {
-						console.log(error)
+						modalView.openAlert(error.message);
 					})
 				},
 				function() {
