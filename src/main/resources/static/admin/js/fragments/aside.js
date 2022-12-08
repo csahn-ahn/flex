@@ -36,14 +36,18 @@ var asideMenu = new Vue({
 			lowerMenuPath = upperMenuPath + '/' + urlArray[5];
 
 			me.current.upperMenu = me.menus.filter(menu => menu.upperMenuId == 0 && menu.linkUrl != null && menu.linkUrl != '' && menu.linkUrl.indexOf(upperMenuPath) > -1)[0];
-			me.current.upperMenu.active = true;
-			me.current.lowerMenu = me.current.upperMenu.lowerMenus.filter(menu => menu.upperMenuId > 0 && menu.linkUrl != null && menu.linkUrl != '' && menu.linkUrl.indexOf(lowerMenuPath) > -1)[0];
-			me.current.lowerMenu.active = true;
+			if(me.current.upperMenu){
+				me.current.upperMenu.active = true;
+				me.current.lowerMenu = me.current.upperMenu.lowerMenus.filter(menu => menu.upperMenuId > 0 && menu.linkUrl != null && menu.linkUrl != '' && menu.linkUrl.indexOf(lowerMenuPath) > -1)[0];
 
-			position.fnSetMenu(me.current.upperMenu, me.current.lowerMenu);
+				if(me.current.lowerMenu){
+					me.current.lowerMenu.active = true;
+					position.fnSetMenu(me.current.upperMenu, me.current.lowerMenu);
+				}
+			}
 		})
 		.catch(function(error) {
-			modalView.openAlert(error.message);
+			modalView.openAlert(error.message + '1');
 		})
   	}
   }

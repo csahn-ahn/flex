@@ -38,6 +38,7 @@ public class AdminMenuEntity {
     @Column(nullable = false)
     private int linkType;
     private String linkUrl;
+    private String icon;
     private int sort;
     @Column(nullable = false)
     private boolean del;

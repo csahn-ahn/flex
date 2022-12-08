@@ -1,6 +1,7 @@
 var position = new Vue({
   el: '#position',
   data: {
+  	isDisplay: false,
   	upperMenu: null,
 	lowerMenu: null,
   },
@@ -16,6 +17,8 @@ var position = new Vue({
   		let me = this;
   		me.upperMenu = upperMenu;
   		me.lowerMenu = lowerMenu;
+
+  		me.isDisplay = true;
   	}
   },
 });

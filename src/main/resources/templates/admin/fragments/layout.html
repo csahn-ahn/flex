@@ -19,10 +19,9 @@
                 <th:block th:replace="/admin/fragments/nav::navFragment"></th:block>
             </nav>
         </div>
-        <div class="row wrapper border-bottom white-bg page-heading">
-            <!-- 상단 메뉴 위치 -->
-            <th:block th:replace="/admin/fragments/position::positionFragment"></th:block>
-        </div>
+        <!-- 상단 메뉴 위치 -->
+        <th:block th:replace="/admin/fragments/position::positionFragment"></th:block>
+
         <!-- 콘텐츠 영역 -->
         <th:block layout:fragment="content"></th:block>
         <div class="footer">
