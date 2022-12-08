@@ -38,22 +38,42 @@ public class BootStrapService {
 
 	public void initSuperAdminUser() {
 
-		String username = messageSourceAccessor.getMessage("admin.super-admin.username");
-		String password = messageSourceAccessor.getMessage("admin.super-admin.password");
-		String name = messageSourceAccessor.getMessage("admin.super-admin.name");
-		log.info("SUPER ADMIN CREATED: [id: {}, pass: {}]", username, password);
+		String adminUsername = messageSourceAccessor.getMessage("admin.super-admin.username");
+		String adminPpassword = messageSourceAccessor.getMessage("admin.super-admin.password");
+		String adminName = messageSourceAccessor.getMessage("admin.super-admin.name");
+
+		String operationUsername = messageSourceAccessor.getMessage("admin.operation.username");
+		String operationPpassword = messageSourceAccessor.getMessage("admin.operation.password");
+		String operationName = messageSourceAccessor.getMessage("admin.operation.name");
+
+
+		log.info("SUPER ADMIN CREATED: [id: {}, pass: {}]", adminUsername, adminPpassword);
 
 		ManagerEntity managerEntity = ManagerEntity.builder()
-			.username(username)
-			.password(passwordEncoder.encode(password))
-			.name(name)
+			.username(adminUsername)
+			.password(passwordEncoder.encode(adminPpassword))
+			.name(adminName)
 			.groupId(1)
+			.tempPassword(false)
 			.active(true)
 			.del(false)
 			.registerTime(Timestamp.from(Instant.now()))
 			.build();
 
 		managerRepository.save(managerEntity);
+
+		ManagerEntity manager2Entity = ManagerEntity.builder()
+			.username(operationUsername)
+			.password(passwordEncoder.encode(operationPpassword))
+			.name(operationName)
+			.groupId(2)
+			.tempPassword(false)
+			.active(true)
+			.del(false)
+			.registerTime(Timestamp.from(Instant.now()))
+			.build();
+
+		managerRepository.save(manager2Entity);
 	}
 
 	@Transactional

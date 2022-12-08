@@ -5,10 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.crypto.AES256Crypto;
 import me.univ.flex.common.properties.ApplicationProperties;
+import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.entity.manager.ManagerEntity;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,14 +41,14 @@ public class AdminController {
     }
 
     @GetMapping(name = "관리자 메인 페이지", value = BaseConstants.ADMIN_PREFIX + "/main")
-    public String main(@AuthenticationPrincipal ManagerEntity managerEntity, Model model){
-        model.addAttribute("manager", managerEntity);
+    public String main(@AuthenticationPrincipal UserDetailsImpl admin, Model model){
+        model.addAttribute("admin", admin);
 
         Object[] messageParams = new Object[]{
-            managerEntity.getName()
+            admin.getName()
         };
         try {
-            model.addAttribute("welcomeText", messageSourceAccessor.getMessage("admin.main.welcome.text",new Object[]{managerEntity.getName()}));
+            model.addAttribute("welcomeText", messageSourceAccessor.getMessage("admin.main.welcome.text",new Object[]{admin.getName()}));
         }catch(NoSuchMessageException e){
             e.printStackTrace();
         }

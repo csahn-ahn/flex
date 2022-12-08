@@ -40,6 +40,37 @@ var app = new Vue({
 			*/
 		},
 
+		fnDetail(obj) {
+			document.location.href = '/admin/system/managers/' + obj.username;
+		},
+
+		fnUpdate(obj) {
+			document.location.href = '/admin/system/managers/register?username=' + obj.username;
+		},
+
+		fnDelete(obj) {
+			modalView.openConfirm(
+				'삭제 하시겠습니까?',
+				function(){
+					axios.delete('/admin/api/v1/managers/' + obj.username)
+					.then(function(response) {
+						modalView.openAlert(
+							'Notice',
+							'삭제 되었습니다.'
+							,function() {
+								document.location.href = '/admin/system/managers/main';
+							}
+						);
+					})
+					.catch(function(error) {
+						console.log(error)
+					})
+				},
+				function() {
+				}
+			);
+		},
+
 		// 일자 포맷 변경.
 		convertDateFormat(date) {
 			return convertDateFormat(date, 'YYYY.MM.DD HH:mm');

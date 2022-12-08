@@ -24,24 +24,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @Builder
 @Table(name = "managers")
-public class ManagerEntity implements UserDetails {
+public class ManagerEntity {
     @Id
     @Column(nullable = false)
     private String username;
-    @Column(nullable = false)
+    @Column()
     private String password;
     @Column(nullable = false)
     private String name;
+    private String hp;
+    private String email;
     @Column(nullable = false)
     private int groupId;
     @Column(nullable = false)
     private boolean active;
+    @Column(nullable = false)
+    private boolean tempPassword;
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)
     private Timestamp registerTime;
     private Timestamp lastLoginTime;
     private Timestamp lastUpdateTime;
+    private Timestamp lastUpdatePasswordTime;
     private Timestamp deleteTime;
     private String registerId;
     private String lastUpdateId;
@@ -50,34 +55,25 @@ public class ManagerEntity implements UserDetails {
     @Transient
     private String groupName;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collectors = new ArrayList<>();
-        collectors.add(new SimpleGrantedAuthority("ADMIN"));
-        return collectors;
+    @Data
+    public static class SaveRequest {
+        private String username;
+        private String password;
+        private String name;
+        private String hp;
+        private String email;
+        private int groupId;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        // 계정 만료여부 (true-정상, false-만료)
-        return true;
+    @Data
+    public static class DeleteRequest {
+        private String username;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        // 계정 잠김여부 (true-정상, false-잠김)
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        // 비밀번호 만료여부 (true-정상, false-만료)
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        // 활성화 여부 (true-정상, false-비활성화)
-        return true;
+    @Data
+    @Builder
+    public static class DeleteResponse {
+        private boolean success;
+        private String message;
     }
 }

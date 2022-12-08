@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="modalFragment">
+	<div id="modalWindow">
+		<div class="modal inmodal fade" id="confirmModel" tabindex="-1" role="dialog"  aria-hidden="false">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" @click="fnCancel()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">Confirm</h4>
+					</div>
+					<div class="modal-body">
+						<p>
+							<strong>{{text}}</strong>
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-white" id="btnModalCancel" data-dismiss="modal" @click="fnCancel()">취소</button>
+						<button type="submit" class="btn btn-primary" id="btnModalConfirm" @click="fnConfirm()">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal inmodal fade" id="alertModel" tabindex="-1" role="dialog"  aria-hidden="false">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" @click="fnCancel()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">Alert</h4>
+					</div>
+					<div class="modal-body">
+						<p>
+							<strong>{{text}}</strong>
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-white" data-dismiss="modal" @click="fnCancel()">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="display:none;">
+		<button type="button" id="btnConfirmModal" class="btn btn-primary" data-toggle="modal" data-target="#confirmModel">Confirm Modal</button>
+		<button type="button" id="btnAlertModal" class="btn btn-primary" data-toggle="modal" data-target="#alertModel">Alert Modal</button>
+	</div>
+	<script src="/static/admin/js/common/modal.js"></script>
+</th:block>
+</html>
