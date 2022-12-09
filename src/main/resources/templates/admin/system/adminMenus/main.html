@@ -10,17 +10,27 @@
 			<div class="col-lg-12">
 				<div class="ibox ">
 					<div class="ibox-content">
-
+						<div class="form-group row">
+							<p>
+								<a type="button" href="/admin/system/adminMenus/register?upperMenuId=0" class="btn btn-outline btn-success">상위메뉴 등록</a>
+							</p>
+						</div>
 						<div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover dataTables-example" >
 								<thead>
 								<tr>
-									<th>Depth1</th>
-									<th>Depth2</th>
-									<th>링크유형</th>
-									<th>링크URL</th>
-									<th>등록일시</th>
-									<th>관리</th>
+									<th colspan="2">상위메뉴</th>
+									<th colspan="2">하위메뉴</th>
+									<th rowspan="2">링크유형</th>
+									<th rowspan="2">링크URL</th>
+									<th rowspan="2">등록일시</th>
+									<th rowspan="2">관리</th>
+								</tr>
+								<tr>
+									<th>순서</th>
+									<th>메뉴명</th>
+									<th>순서</th>
+									<th>메뉴명</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -32,7 +42,9 @@
 								<template v-else>
 									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
+											<td class="center">{{obj.upperMenuId == 0 ? obj.sort : ''}}</td>
 											<td class="center">{{obj.upperMenuId == 0 ? obj.menuName : ''}}</td>
+											<td class="center">{{obj.upperMenuId > 0 ? obj.sort : ''}}</td>
 											<td class="center">{{obj.upperMenuId > 0 ? obj.menuName : ''}}</td>
 											<td class="center">{{obj.linkType == 1 ? '이동' : '새창'}}</td>
 											<td>{{obj.linkUrl}}</td>
@@ -41,6 +53,7 @@
 												<div class="btn-group">
 													<button class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
 													<button class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
+													<button v-if="obj.upperMenuId == 0" class="btn btn-warning" type="button" @click="fnMakeLowerMenu(obj)">하위메뉴 등록</button>
 												</div>
 											</td>
 										</tr>

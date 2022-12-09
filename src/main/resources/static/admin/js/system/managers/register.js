@@ -52,7 +52,7 @@ var app = new Vue({
 					}
 				})
 				.catch(function(error) {
-					console.log(error)
+					modalView.openAlert(error);
 				})
 			}
 
@@ -118,7 +118,7 @@ var app = new Vue({
 						);
 					})
 					.catch(function(error) {
-						console.log(error)
+						modalView.openAlert(error);
 					})
 				},
 				function() {

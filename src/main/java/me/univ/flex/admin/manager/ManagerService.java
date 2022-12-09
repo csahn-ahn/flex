@@ -82,37 +82,35 @@ public class ManagerService {
     public ManagerEntity.DeleteResponse delete(UserDetailsImpl admin, String username) {
 
         Optional<ManagerEntity> optionalManager = managerRepository.findById(username);
-        if(optionalManager.isPresent()) {
-            ManagerEntity managerEntity = optionalManager.get();
-
-            if(managerEntity.isDel()) {
-                return ManagerEntity.DeleteResponse.builder()
-                    .success(false)
-                    .message("이미 삭제된 대상입니다.")
-                    .build();
-            }
-
-            managerEntity.setName("삭제됨");
-            managerEntity.setHp(null);
-            managerEntity.setEmail(null);
-            managerEntity.setActive(false);
-            managerEntity.setDel(true);
-            managerEntity.setDeleteTime(Timestamp.from(Instant.now()));
-            managerEntity.setDeleteId(admin.getUsername());
-
-            managerRepository.save(managerEntity);
-
+        if(!optionalManager.isPresent()) {
             return ManagerEntity.DeleteResponse.builder()
-                .success(true)
+                .success(false)
+                .message("삭제할 대상이 없습니다.")
                 .build();
-
         }
 
-        return ManagerEntity.DeleteResponse.builder()
-            .success(false)
-            .message("삭제할 대상이 없습니다.")
-            .build();
+        ManagerEntity managerEntity = optionalManager.get();
 
+        if(managerEntity.isDel()) {
+            return ManagerEntity.DeleteResponse.builder()
+                .success(false)
+                .message("이미 삭제된 대상입니다.")
+                .build();
+        }
+
+        managerEntity.setName("삭제됨");
+        managerEntity.setHp(null);
+        managerEntity.setEmail(null);
+        managerEntity.setActive(false);
+        managerEntity.setDel(true);
+        managerEntity.setDeleteTime(Timestamp.from(Instant.now()));
+        managerEntity.setDeleteId(admin.getUsername());
+
+        managerRepository.save(managerEntity);
+
+        return ManagerEntity.DeleteResponse.builder()
+            .success(true)
+            .build();
     }
 }
 

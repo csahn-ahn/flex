@@ -19,7 +19,7 @@
 									<th>그룹명</th>
 									<th>그룹설명</th>
 									<th>등록일시</th>
-									<th>노출여부</th>
+									<th>관리</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -29,13 +29,19 @@
 									</tr>
 								</template>
 								<template v-else>
-									<template v-for="(obj, idx) in managers">
+									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
-											<td>1</td>
-											<td><a href="#"></a></td>
-											<td><a href="#"></a></td>
+											<td>{{obj.groupId}}</td>
+											<td>{{obj.groupName}}</td>
 											<td></td>
-											<td class="center"></td>
+											<td>{{convertDateFormat(obj.registerTime)}}</td>
+											<td>
+												<div class="btn-group">
+													<button class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
+													<button class="btn btn-warning" type="button" @click="fnSetupMenu(obj)">메뉴설정</button>
+													<button class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
+												</div>
+											</td>
 										</tr>
 									</template>
 								</template>

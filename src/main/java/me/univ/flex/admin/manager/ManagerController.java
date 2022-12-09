@@ -31,7 +31,7 @@ public class ManagerController {
     }
 
     @GetMapping(name = "운영자 조회", value = "/{username}")
-    public ResponseEntity<ManagerEntity> findAll(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable String username){
+    public ResponseEntity<ManagerEntity> detail(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable String username){
         return ResponseEntity.ok(managerService.detail(admin, username));
     }
 

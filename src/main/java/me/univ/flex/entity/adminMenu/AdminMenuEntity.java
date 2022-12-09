@@ -51,5 +51,24 @@ public class AdminMenuEntity {
     private String deleteId;
 
     @Transient
-    private List<AdminMenuEntity> lowerMenus;
+    private String upperMenuName;
+
+    @Data
+    @Builder
+    public static class SaveRequest {
+        private int menuId;
+        private int upperMenuId;
+        private String menuName;
+        private int linkType;
+        private String linkUrl;
+        private String icon;
+        private int sort;
+    }
+
+    @Data
+    @Builder
+    public static class DeleteResponse {
+        private boolean success;
+        private String message;
+    }
 }

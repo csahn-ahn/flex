@@ -1,6 +1,7 @@
 package me.univ.flex.entity.adminGroup;
 
 import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
 
 @Slf4j
 @Entity

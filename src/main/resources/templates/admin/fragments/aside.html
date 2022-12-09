@@ -14,12 +14,12 @@
 				</div>
 			</li>
 			<template v-for="(menu, idx) in menus">
-				<li :class="menu.active == true ? 'active' : ''">
+				<li v-if="menu.hasRead == true" :class="menu.active == true ? 'active' : ''">
 					<a href="javascript:void(0);"><i :class="'fa ' + menu.icon"></i> <span class="nav-label">{{menu.menuName}}</span> <span class="fa arrow"></span></a>
 					<template v-if="menu.lowerMenus.length > 0">
 						<ul class="nav nav-second-level">
 							<template v-for="(lowerMenu, lowerIdx) in menu.lowerMenus">
-								<li :class="lowerMenu.active == true ? 'active' : ''"><a :href="lowerMenu.linkUrl">{{lowerMenu.menuName}}</a></li>
+								<li v-if="lowerMenu.hasRead == true" :class="lowerMenu.active == true ? 'active' : ''"><a :href="lowerMenu.linkUrl">{{lowerMenu.menuName}}</a></li>
 							</template>
 						</ul>
 					</template>

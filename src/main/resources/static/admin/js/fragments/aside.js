@@ -23,7 +23,7 @@ var asideMenu = new Vue({
   		let me = this;
   		axios({
 			method:'get',
-			url: '/admin/api/v1/adminMenus/my',
+			url: '/admin/api/v1/adminGroupMenus/myMenu',
 			params: me.search
 		})
 		.then(function(response) {

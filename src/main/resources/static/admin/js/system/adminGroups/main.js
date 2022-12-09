@@ -15,7 +15,7 @@ var app = new Vue({
 
 			axios.get('/admin/api/v1/adminGroups')
 			.then(function(response) {
-				console.log(response);
+				me.list = response.data;
 			})
 			.catch(function(error) {
 				console.log(error)
@@ -25,6 +25,11 @@ var app = new Vue({
 		// 일자 포맷 변경.
 		convertDateFormat(date) {
 			return convertDateFormat(date, 'YYYY.MM.DD HH:mm');
+		},
+
+		// 메뉴설정 이동.
+		fnSetupMenu(obj) {
+			document.location.href = '/admin/system/adminGroups/setupMenu?groupId=' + obj.groupId;
 		}
 	},
 	computed: {
