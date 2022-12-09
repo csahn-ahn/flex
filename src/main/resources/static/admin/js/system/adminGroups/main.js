@@ -7,10 +7,10 @@ var app = new Vue({
 	},
 	mounted() {
 		let me = this;
-		me.fnGetMenus();
+		me.fnGetGroups();
 	},
 	methods: {
-		fnGetMenus() {
+		fnGetGroups() {
 			let me = this;
 
 			axios.get('/admin/api/v1/adminGroups')
@@ -30,7 +30,39 @@ var app = new Vue({
 		// 메뉴설정 이동.
 		fnSetupMenu(obj) {
 			document.location.href = '/admin/system/adminGroups/setupMenu?groupId=' + obj.groupId;
-		}
+		},
+
+		// 메뉴 수정.
+		fnUpdate(obj) {
+			document.location.href = '/admin/system/adminGroups/register?groupId=' + obj.groupId;
+		},
+
+		// 그룹 삭제
+		fnDelete(obj) {
+			modalView.openConfirm(
+				'삭제 하시겠습니까?',
+				function(){
+					axios.delete('/admin/api/v1/adminGroups/' + obj.groupId)
+					.then(function(response) {
+						if(response.data.success == true){
+							modalView.openAlert(
+								'삭제 되었습니다.'
+								,function() {
+									document.location.href = document.location.href;
+								}
+							);
+						} else {
+							modalView.openAlert(response.data.message);
+						}
+					})
+					.catch(function(error) {
+						modalView.openAlert(error.message);
+					})
+				},
+				function() {
+				}
+			);
+		},
 	},
 	computed: {
 	}

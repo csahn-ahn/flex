@@ -10,14 +10,19 @@
 			<div class="col-lg-12">
 				<div class="ibox ">
 					<div class="ibox-content">
-
+						<div class="form-group row">
+							<p>
+								<a type="button" href="/admin/system/adminGroups/register" class="btn btn-outline btn-success">등록</a>
+							</p>
+						</div>
 						<div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover dataTables-example" >
 								<thead>
 								<tr>
 									<th>No.</th>
 									<th>그룹명</th>
-									<th>그룹설명</th>
+									<th>그룹소속인원</th>
+									<th>등록자</th>
 									<th>등록일시</th>
 									<th>관리</th>
 								</tr>
@@ -33,7 +38,8 @@
 										<tr class="gradeX">
 											<td>{{obj.groupId}}</td>
 											<td>{{obj.groupName}}</td>
-											<td></td>
+											<td>{{obj.managerCount}}</td>
+											<td>{{obj.registerId}}</td>
 											<td>{{convertDateFormat(obj.registerTime)}}</td>
 											<td>
 												<div class="btn-group">

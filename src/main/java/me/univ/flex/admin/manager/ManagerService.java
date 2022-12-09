@@ -32,7 +32,7 @@ public class ManagerService {
             Sort.by(Sort.Direction.DESC, "registerTime")
         );
 
-        Page<ManagerEntity> page = managerRepository.findCustomAll(pageRequest);
+        Page<ManagerEntity> page = managerRepository.findCustomAll(pageRequest, request);
         return page;
     }
 
@@ -111,6 +111,14 @@ public class ManagerService {
         return ManagerEntity.DeleteResponse.builder()
             .success(true)
             .build();
+    }
+
+    public boolean existManagerInGroup(int groupId) {
+        return managerRepository.existsByGroupIdAndDelIsNotNull(groupId);
+    }
+
+    public long countManagerInGroup(int groupId) {
+        return managerRepository.countByGroupIdAndDelIsNotNull(groupId);
     }
 }
 

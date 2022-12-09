@@ -23,6 +23,7 @@
 									<th colspan="2">하위메뉴</th>
 									<th rowspan="2">링크유형</th>
 									<th rowspan="2">링크URL</th>
+									<th rowspan="2">등록자</th>
 									<th rowspan="2">등록일시</th>
 									<th rowspan="2">관리</th>
 								</tr>
@@ -48,6 +49,7 @@
 											<td class="center">{{obj.upperMenuId > 0 ? obj.menuName : ''}}</td>
 											<td class="center">{{obj.linkType == 1 ? '이동' : '새창'}}</td>
 											<td>{{obj.linkUrl}}</td>
+											<td class="center">{{obj.registerId}}</td>
 											<td class="center">{{convertDateFormat(obj.registerTime)}}</td>
 											<td class="center">
 												<div class="btn-group">

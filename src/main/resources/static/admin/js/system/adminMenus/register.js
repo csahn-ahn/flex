@@ -7,6 +7,7 @@ var app = new Vue({
 		menu: {
 			upperMenuId: 0,
 			linkType: 1,
+			linkUrl: '',
 		},
 	},
 	created() {
@@ -44,6 +45,11 @@ var app = new Vue({
 			})
 			.then(function(response) {
 				me.upperMenus = response.data;
+
+				if(me.upperMenuId > 0) {
+					var upperMenu = me.upperMenus.filter(obj => obj.menuId == me.upperMenuId)[0];
+					me.menu.linkUrl = upperMenu.linkUrl + '/';
+				}
 			})
 			.catch(function(error) {
 				modalView.openAlert(error + '1');

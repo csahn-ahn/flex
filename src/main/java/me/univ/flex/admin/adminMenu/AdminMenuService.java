@@ -33,7 +33,7 @@ public class AdminMenuService {
 			sortedList.add(upperMenu);
 
 			List<AdminMenuEntity> lowerMenus = list.stream()
-				.filter(obj -> obj.getUpperMenuId() == upperMenu.getMenuId())
+				.filter(obj -> obj.getUpperMenuId() == upperMenu.getMenuId() && obj.isDel() == false)
 				.sorted(Comparator.comparing(AdminMenuEntity::getSort))
 				.collect(Collectors.toList());
 

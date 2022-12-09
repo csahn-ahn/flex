@@ -37,18 +37,23 @@ var app = new Vue({
 			document.location.href = '/admin/system/adminMenus/register?upperMenuId=' + obj.menuId;
 		},
 
+		// 메뉴 삭제
 		fnDelete(obj) {
 			modalView.openConfirm(
 				'삭제 하시겠습니까?',
 				function(){
 					axios.delete('/admin/api/v1/adminMenus/' + obj.menuId)
 					.then(function(response) {
-						modalView.openAlert(
-							'삭제 되었습니다.'
-							,function() {
-								document.location.href = document.location.href;
-							}
-						);
+						if(response.data.success) {
+							modalView.openAlert(
+								'삭제 되었습니다.'
+								,function() {
+									document.location.href = document.location.href;
+								}
+							);
+						} else {
+							modalView.openAlert(response.data.message);
+						}
 					})
 					.catch(function(error) {
 						modalView.openAlert(error.message);

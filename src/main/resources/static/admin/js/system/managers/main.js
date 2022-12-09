@@ -9,22 +9,45 @@ var app = new Vue({
 			groupId: 0,
 			username: '',
 			name: ''
-		}
+		},
+		adminGroups: [],
 	},
 	created() {
 	},
 	mounted() {
 		let me = this;
+		me.fnGetAdminGroups();
 		me.fnGetManagers();
 	},
 	methods: {
 
+		// 검색
 		fnSearch() {
 			let me = this;
 			me.page = 1;
 			me.fnGetManagers();
 		},
 
+		// 검색할 관리자 그룹 조회
+		fnGetAdminGroups() {
+			let me = this;
+			axios({
+				method:'get',
+				url: '/admin/api/v1/adminGroups',
+				params: {}
+			})
+			.then(function(response) {
+				me.adminGroups = response.data;
+				if(me.adminGroups.length > 0){
+					//me.search.groupId = me.adminGroups[0].groupId;
+				}
+			})
+			.catch(function(error) {
+				modalView.openAlert(error.message);
+			})
+		},
+
+		// 운영자 목록 조회
 		fnGetManagers() {
 			let me = this;
 			axios({
@@ -37,8 +60,8 @@ var app = new Vue({
 				me.list = response.data.content;
 
                 $('#pagination').twbsPagination({
-					totalPages: 35,
-					visiblePages: 10,
+					totalPages: response.data.totalPages,
+					visiblePages: response.data.size,
 					startPage: 1,
 					//first : "첫 페이지",	// 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
 					//prev : "이전 페이지",	// 이전 페이지 버튼에 쓰여있는 텍스트
@@ -76,12 +99,16 @@ var app = new Vue({
 				function(){
 					axios.delete('/admin/api/v1/managers/' + obj.username)
 					.then(function(response) {
-						modalView.openAlert(
-							'삭제 되었습니다.'
-							,function() {
-								document.location.href = '/admin/system/managers/main';
-							}
-						);
+						if(response.data.success == true){
+							modalView.openAlert(
+								'삭제 되었습니다.'
+								,function() {
+									document.location.href = '/admin/system/managers/main';
+								}
+							);
+						} else {
+							modalView.openAlert(response.data.message);
+						}
 					})
 					.catch(function(error) {
 						modalView.openAlert(error.message);
@@ -100,3 +127,10 @@ var app = new Vue({
 	computed: {
 	}
 });
+
+$(function() {
+	$("form").on("submit", function(){
+		app.fnSearch();
+		return false;
+	})
+})

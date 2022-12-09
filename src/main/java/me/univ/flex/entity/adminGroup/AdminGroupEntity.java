@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,4 +39,21 @@ public class AdminGroupEntity {
     private String registerId;
     private String lastUpdateId;
     private String deleteId;
+
+    @Transient
+    private long managerCount;
+
+    @Data
+    @Builder
+    public static class SaveRequest {
+        private int groupId;
+        private String groupName;
+    }
+
+    @Data
+    @Builder
+    public static class DeleteResponse {
+        private boolean success;
+        private String message;
+    }
 }
