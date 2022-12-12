@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.admin.stats.UserStatsService;
 import me.univ.flex.common.constants.BaseConstants;
+import me.univ.flex.common.crypto.AES256Crypto;
 import me.univ.flex.common.security.UserDetailsImpl;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +25,7 @@ public class AdminController {
     private final RedisTemplate redisTemplate;
     private final UserStatsService userStatsService;
 
+
     @GetMapping(name = "관리자 로그인 페이지", value = BaseConstants.ADMIN_PREFIX + "/login")
     public String login(Model model, @RequestParam(value="error", required=false) String error, @RequestParam(value="exception", required = false) String exception){
         model.addAttribute("error", error);
@@ -38,6 +40,12 @@ public class AdminController {
 
     @GetMapping(name = "관리자 메인 페이지", value = BaseConstants.ADMIN_PREFIX + "/main")
     public String main(@AuthenticationPrincipal UserDetailsImpl admin, Model model){
+
+        String originText = "암호화 대상 문자열";
+        String encryptedText = AES256Crypto.encrypt(originText);
+        String decryptedText = AES256Crypto.decrypt(encryptedText);
+
+
         return "admin/main";
     }
 

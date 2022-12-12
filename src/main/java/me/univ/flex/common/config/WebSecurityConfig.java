@@ -3,12 +3,10 @@ package me.univ.flex.common.config;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import me.univ.flex.admin.manager.ManagerService;
+import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.handler.AuthFailureHandler;
 import me.univ.flex.common.handler.AuthSuccessHandler;
-import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.properties.FlexProperties;
-import me.univ.flex.common.properties.SecurityProperties;
 import me.univ.flex.common.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +16,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.crypto.password.*;
 
 @Configuration
 @EnableWebSecurity
