@@ -54,6 +54,9 @@ public class AdminGroupMenuEntity {
     private int sort;
 
     @Transient
+    private boolean active;
+
+    @Transient
     private List<AdminGroupMenuEntity> lowerMenus;
 
     @Data

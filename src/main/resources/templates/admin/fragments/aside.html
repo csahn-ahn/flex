@@ -13,6 +13,7 @@
 					IN+
 				</div>
 			</li>
+			<!--
 			<template v-for="(menu, idx) in menus">
 				<li v-if="menu.hasRead == true" :class="menu.active == true ? 'active' : ''">
 					<a href="javascript:void(0);"><i :class="'fa ' + menu.icon"></i> <span class="nav-label">{{menu.menuName}}</span> <span class="fa arrow"></span></a>
@@ -25,6 +26,20 @@
 					</template>
 				</li>
 			</template>
+			-->
+
+			<th:block th:each="menu : ${adminGroupMenus}">
+				<li th:if="${menu.hasRead == true}" th:class="${menu.active == true} ? 'active' : ''">
+					<a href="javascript:void(0);"><i th:class="'fa ' + menu.icon"></i> <span class="nav-label" th:text="${menu.menuName}"></span> <span class="fa arrow"></span></a>
+					<th:block th:if="${menu.lowerMenus.size > 0}">
+						<ul class="nav nav-second-level">
+							<th:block th:each="lowerMenu : ${menu.lowerMenus}">
+								<li th:if="${lowerMenu.hasRead == true}" th:class="${lowerMenu.active == true} ? 'active' : ''"><a th:href="${lowerMenu.linkUrl}" th:text="${lowerMenu.menuName}"></a></li>
+							</th:block>
+						</ul>
+					</th:block>
+				</li>
+			</th:block>
 			<!--
 			<li class="active">
 				<a href="index.html"><i class="fa fa-th-large"></i> <span
