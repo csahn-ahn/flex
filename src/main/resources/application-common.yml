@@ -9,6 +9,9 @@ server:
   error:
     whitelabel:
       enabled: true
+  servlet:
+    session:
+      timeout: 30m
 
 spring:
   config:
@@ -39,27 +42,7 @@ spring:
     hibernate:
       ddl-auto: validate
 
-  #security
-  security:
-    user:
-      name: {{username}}
-      password: {{password}}
-  boot:
-    admin:
-      ui:
-        brand: <img src="assets/img/icon-spring-boot-admin.svg"><span>Spring Boot Admin</span>
-        title: Spring Boot Admin
-      client:
-        url: http://localhost:8081 # Spring Boot Admin Server URL
-        instance:
-          metadata:
-            # Spring Boot Admin Server에서 Client의 Actuator endpoint에 접근 인증시 사용
-            user:
-              name: {{username}}
-              password: {{password}}
-        # Client가 Spring Boot Admin에 접근 인증시 사용
-        username: {{username}}
-        password: {{password}}
+
 
   # 정적리소스
   mvc:
@@ -73,6 +56,17 @@ spring:
   jackson:
     serialization:
       indent_output: true
+
+  session:
+    redis:
+      flush-mode: ON_SAVE
+      namespace: spring:session:flex
+    store-type: redis
+  redis:
+    host: localhost
+    port: 6379
+    password: ''
+
 
 # 중요 정보 암호화
 jasypt:

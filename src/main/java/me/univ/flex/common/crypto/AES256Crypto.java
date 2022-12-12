@@ -13,6 +13,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.config.ApplicationContextServe;
+import me.univ.flex.common.properties.FlexProperties;
 import org.springframework.context.ApplicationContext;
 
 @Slf4j
@@ -34,7 +35,7 @@ public class AES256Crypto {
     // 정상인 경우
     else {
       SECRET_KEY = applicationContext.getEnvironment()
-          .getProperty("security.key.aes256");
+          .getProperty("flex.security.key.aes-256");
     }
   }
 

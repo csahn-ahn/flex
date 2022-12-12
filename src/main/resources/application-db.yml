@@ -29,12 +29,6 @@ spring:
     open-in-view: false
     show-sql: false
 
-  redis:
-    host: localhost
-    port: 6379
-  session:
-    store-type: redis
-
 decorator:
   datasource:
     p6spy:

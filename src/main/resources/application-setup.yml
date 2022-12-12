@@ -8,6 +8,9 @@ spring:
     livereload:
       enabled: true
 
-security:
-  key:
-    aes256: cRBEboDiI6BWJElDVzswipbBJNJBivSD
+flex:
+  applicationName: 'Flex'
+  security-props:
+    password-encoder: 'SHA-256'
+    key:
+      aes-256: cRBEboDiI6BWJElDVzswipbBJNJBivSD

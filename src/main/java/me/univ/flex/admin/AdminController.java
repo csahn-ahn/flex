@@ -1,5 +1,7 @@
 package me.univ.flex.admin;
 
+import java.time.LocalDateTime;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class AdminController {
 
+    private final HttpSession session;
     private final String templatePrefix = "admin/";
     private final MessageSourceAccessor messageSourceAccessor;
 
@@ -43,6 +46,18 @@ public class AdminController {
     @GetMapping(name = "관리자 메인 페이지", value = BaseConstants.ADMIN_PREFIX + "/main")
     public String main(@AuthenticationPrincipal UserDetailsImpl admin, Model model){
         model.addAttribute("admin", admin);
+
+        String key = "test111";
+        String value = "안치성112";
+
+        session.setAttribute(key, value);
+        String result = (String) session.getAttribute(key);
+
+        String returnValue = LocalDateTime.now().toString() + " \nsession get id : " + session.getId() + " \nsession get value " + result;
+
+        log.debug("key : " + key);
+        log.debug("value : " + result);
+        log.debug("returnValue : " + returnValue);
 
         Object[] messageParams = new Object[]{
             admin.getName()
