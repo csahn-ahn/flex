@@ -14,4 +14,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/static/**");
 	}
 
+
+
 }

@@ -5,18 +5,18 @@
 	</div>
 	<ul class="nav navbar-top-links navbar-right">
 		<li>
-			<span class="m-r-sm text-muted welcome-message" th:utext="${welcomeText}"></span>
+			<span class="m-r-sm text-muted welcome-message" th:utext="${#messages.msg('admin.top.welcome.text')}"></span>
 		</li>
 		<li>
 			<a href="/admin/logout">
 				<i class="fa fa-sign-out"></i>
-				로그아웃
+				<th:block th:text="${#messages.msg('admin.top.logout.text')}"></th:block>
 			</a>
 		</li>
 		<li>
 			<a href="/admin/system/adminGroups/main">
 				<i class="fa fa-sign-out"></i>
-				그룹 관리 바로가기
+				<th:block th:text="${#messages.msg('admin.top.goto.adminGroupMenu')}"></th:block>
 			</a>
 		</li>
 	</ul>
