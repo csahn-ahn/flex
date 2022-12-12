@@ -43,8 +43,8 @@ public class AdminGroupMenuService {
         return sortedList;
     }
 
-    public List<AdminGroupMenuEntity> findMyGroupMenu(UserDetailsImpl admin) {
-        List<AdminGroupMenuEntity> list = adminGroupMenuRepository.findMyGroupMenu(admin.getGroupId());
+    public List<AdminGroupMenuEntity> findMyGroupMenu(int groupId) {
+        List<AdminGroupMenuEntity> list = adminGroupMenuRepository.findMyGroupMenu(groupId);
 
         List<AdminGroupMenuEntity> menus = list.stream()
             .filter(obj -> obj.getUpperMenuId() == 0)

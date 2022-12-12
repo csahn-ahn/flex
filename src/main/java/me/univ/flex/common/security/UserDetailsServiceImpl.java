@@ -1,9 +1,12 @@
 package me.univ.flex.common.security;
 
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.admin.adminGroupMenu.AdminGroupMenuService;
 import me.univ.flex.admin.manager.ManagerRepository;
+import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
 import me.univ.flex.entity.manager.ManagerEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final ManagerRepository managerRepository;
+    private final AdminGroupMenuService adminGroupMenuService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -34,6 +38,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Inactive account");
         }
 
+        List<AdminGroupMenuEntity> adminGroupMenus = adminGroupMenuService.findMyGroupMenu(managerEntity.getGroupId());
+
         return UserDetailsImpl.builder()
             .username(optionalManager.get().getUsername())
             .password(optionalManager.get().getPassword())
@@ -44,6 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             .active(optionalManager.get().isActive())
             .tempPassword(optionalManager.get().isTempPassword())
             .lastUpdatePasswordTime(optionalManager.get().getLastUpdatePasswordTime())
+            .adminGroupMenus(adminGroupMenus)
             .build();
     }
 }

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +28,7 @@ public class UserDetailsImpl implements UserDetails {
 	private boolean active;
 	private boolean tempPassword;
 	private Timestamp lastUpdatePasswordTime;
+	private List<AdminGroupMenuEntity> adminGroupMenus;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

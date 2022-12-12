@@ -36,6 +36,6 @@ public class AdminGroupMenuController {
 
     @GetMapping(name = "관리자 메뉴 조회", value = "/myMenu")
     public ResponseEntity<List<AdminGroupMenuEntity>> findMyGroupMenu(@AuthenticationPrincipal UserDetailsImpl admin){
-        return ResponseEntity.ok(adminGroupMenuService.findMyGroupMenu(admin));
+        return ResponseEntity.ok(adminGroupMenuService.findMyGroupMenu(admin.getGroupId()));
     }
 }
