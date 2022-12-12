@@ -5,7 +5,7 @@ spring:
       - classpath:application-db.yml
       - classpath:application-file.yml
       - classpath:application-logger.yml
-      - classpath:application-setup.yml
+      - classpath:application-flex.yml
   profiles:
     include: common
     group:
