@@ -39,3 +39,16 @@ insert into admin_group_menu (has_create, has_delete, has_download, has_read, ha
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 14);
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 15);
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 16);
+
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-01', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-02', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-03', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-04', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-05', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-06', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-07', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-08', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-09', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-10', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-11', 10, 10, 0, 0);
+insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-12', 10, 10, 0, 0);

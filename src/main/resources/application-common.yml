@@ -86,3 +86,8 @@ management:
       show-details: always
     health:
       show-details: always
+
+#
+mybatis:
+  type-aliases-package:  me.univ.flex
+  mapper-locations: mapper/*.xml

@@ -1,21 +1,13 @@
 package me.univ.flex.admin;
 
-import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
-import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.admin.stats.UserStatsService;
 import me.univ.flex.common.constants.BaseConstants;
-import me.univ.flex.common.crypto.AES256Crypto;
-import me.univ.flex.common.properties.ApplicationProperties;
 import me.univ.flex.common.security.UserDetailsImpl;
-import me.univ.flex.common.service.RedisService;
-import me.univ.flex.entity.manager.ManagerEntity;
-import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +22,7 @@ public class AdminController {
     private final String templatePrefix = "admin/";
     private final MessageSourceAccessor messageSourceAccessor;
     private final RedisTemplate redisTemplate;
-
+    private final UserStatsService userStatsService;
 
     @GetMapping(name = "관리자 로그인 페이지", value = BaseConstants.ADMIN_PREFIX + "/login")
     public String login(Model model, @RequestParam(value="error", required=false) String error, @RequestParam(value="exception", required = false) String exception){
