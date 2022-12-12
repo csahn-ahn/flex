@@ -1,6 +1,7 @@
 package me.univ.flex.common.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Builder
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +29,6 @@ public class UserDetailsImpl implements UserDetails {
 	private boolean active;
 	private boolean tempPassword;
 	private Timestamp lastUpdatePasswordTime;
-	private List<AdminGroupMenuEntity> adminGroupMenus;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

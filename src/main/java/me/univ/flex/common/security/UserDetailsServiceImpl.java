@@ -38,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Inactive account");
         }
 
-        List<AdminGroupMenuEntity> adminGroupMenus = adminGroupMenuService.findMyGroupMenu(managerEntity.getGroupId());
+        //List<AdminGroupMenuEntity> adminGroupMenus = adminGroupMenuService.findMyGroupMenu(managerEntity.getGroupId());
 
         return UserDetailsImpl.builder()
             .username(optionalManager.get().getUsername())
@@ -50,7 +50,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             .active(optionalManager.get().isActive())
             .tempPassword(optionalManager.get().isTempPassword())
             .lastUpdatePasswordTime(optionalManager.get().getLastUpdatePasswordTime())
-            .adminGroupMenus(adminGroupMenus)
             .build();
     }
 }
