@@ -9,6 +9,7 @@ import me.univ.flex.common.security.UserDetailsImpl;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class AdminController {
     private final MessageSourceAccessor messageSourceAccessor;
     private final RedisTemplate redisTemplate;
     private final UserStatsService userStatsService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping(name = "관리자 로그인 페이지", value = BaseConstants.ADMIN_PREFIX + "/login")
@@ -44,6 +46,9 @@ public class AdminController {
         String originText = "암호화 대상 문자열";
         String encryptedText = AES256Crypto.encrypt(originText);
         String decryptedText = AES256Crypto.decrypt(encryptedText);
+
+        String password = "faith83!";
+        String encryptedPassword = passwordEncoder.encode(password);
 
 
         return "admin/main";

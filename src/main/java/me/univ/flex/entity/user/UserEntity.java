@@ -26,4 +26,5 @@ public class UserEntity {
     private int userId;
     private String name;
     private String hp;
+    private String password;
 }

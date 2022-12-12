@@ -27,30 +27,24 @@ public class AdminInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String requestURI = request.getRequestURI();
-		if(
-			requestURI.toLowerCase().indexOf(BaseConstants.ADMIN_PREFIX.toLowerCase()) > -1
-			&&
-			requestURI.toLowerCase().indexOf(BaseConstants.ADMIN_API_PREFIX.toLowerCase()) == -1
-		) {
-			// 관리자 시스템 접근일 경우.
-			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			if(principal == null) {
-				return true;
-			}
+		// 관리자 시스템 접근일 경우.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(principal == null) {
+			return true;
+		}
 
-			if(principal instanceof String){
-				return true;
-			}
+		if(principal instanceof String){
+			return true;
+		}
 
-			if(principal instanceof UserDetailsImpl) {
-				UserDetailsImpl userDetails = (UserDetailsImpl) principal;
-				
-				// 관리자 권한에 따른 메뉴 조회
-				List<AdminGroupMenuEntity> adminGroupMenus = adminGroupMenuService.findMyGroupMenu(
-					userDetails.getGroupId());
-				request.setAttribute("adminGroupMenus", adminGroupMenus);
-				setCurrentMenuInit(requestURI, adminGroupMenus);
-			}
+		if(principal instanceof UserDetailsImpl) {
+			UserDetailsImpl userDetails = (UserDetailsImpl) principal;
+
+			// 관리자 권한에 따른 메뉴 조회
+			List<AdminGroupMenuEntity> adminGroupMenus = adminGroupMenuService.findMyGroupMenu(
+				userDetails.getGroupId());
+			request.setAttribute("adminGroupMenus", adminGroupMenus);
+			setCurrentMenuInit(requestURI, adminGroupMenus);
 		}
 
 		return true;
@@ -93,11 +87,11 @@ public class AdminInterceptor implements HandlerInterceptor {
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-		log.debug("CommonInterceptor - postHandle");
+		log.debug("AdminInterceptor - postHandle");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-		log.debug("CommonInterceptor - afterCompletion");
+		log.debug("AdminInterceptor - afterCompletion");
 	}
 }
