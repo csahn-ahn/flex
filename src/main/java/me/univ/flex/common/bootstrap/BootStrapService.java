@@ -41,10 +41,14 @@ public class BootStrapService {
 		String adminUsername = messageSourceAccessor.getMessage("admin.super-admin.username");
 		String adminPpassword = messageSourceAccessor.getMessage("admin.super-admin.password");
 		String adminName = messageSourceAccessor.getMessage("admin.super-admin.name");
+		String adminEmail = messageSourceAccessor.getMessage("admin.super-admin.email");
+		String adminHp = messageSourceAccessor.getMessage("admin.super-admin.hp");
 
 		String operationUsername = messageSourceAccessor.getMessage("admin.operation.username");
 		String operationPpassword = messageSourceAccessor.getMessage("admin.operation.password");
 		String operationName = messageSourceAccessor.getMessage("admin.operation.name");
+		String operationEmail = messageSourceAccessor.getMessage("admin.operation.email");
+		String operationHp = messageSourceAccessor.getMessage("admin.operation.hp");
 
 
 		log.info("SUPER ADMIN CREATED: [id: {}, pass: {}]", adminUsername, adminPpassword);
@@ -53,8 +57,10 @@ public class BootStrapService {
 			.username(adminUsername)
 			.password(passwordEncoder.encode(adminPpassword))
 			.name(adminName)
+			.email(adminEmail)
+			.hp(adminHp)
 			.groupId(1)
-			.tempPassword(false)
+			.tempPassword(null)
 			.active(true)
 			.del(false)
 			.registerTime(Timestamp.from(Instant.now()))
@@ -66,8 +72,10 @@ public class BootStrapService {
 			.username(operationUsername)
 			.password(passwordEncoder.encode(operationPpassword))
 			.name(operationName)
+			.email(operationEmail)
+			.hp(operationHp)
 			.groupId(2)
-			.tempPassword(false)
+			.tempPassword(null)
 			.active(true)
 			.del(false)
 			.registerTime(Timestamp.from(Instant.now()))

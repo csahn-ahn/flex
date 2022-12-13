@@ -30,7 +30,6 @@ public class ManagerEntity {
     @Id
     @Column(nullable = false)
     private String username;
-    @Column()
     private String password;
     @Column(nullable = false)
     private String name;
@@ -40,8 +39,7 @@ public class ManagerEntity {
     private int groupId;
     @Column(nullable = false)
     private boolean active;
-    @Column(nullable = false)
-    private boolean tempPassword;
+    private String tempPassword;
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)

@@ -53,5 +53,14 @@
 		<script src="/static/admin/js/moment-with-locales.js"></script>
 		<!-- Common -->
 		<script src="/static/admin/js/common.js"></script>
+
+		<script  th:inline="javascript">
+			var hasRead = '[[${menuAuthority.hasRead}]]';
+			var hasCreate = '[[${menuAuthority.hasCreate}]]';
+			var hasUpdate = '[[${menuAuthority.hasUpdate}]]';
+			var hasDelete = '[[${menuAuthority.hasDelete}]]';
+			var hasDownload = '[[${menuAuthority.hasDownload}]]';
+
+		</script>
 	</th:block>
 </html>

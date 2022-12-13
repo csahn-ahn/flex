@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin | Login</title>
+	<link href="/static/admin/template/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/admin/template/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="/static/admin/template/css/animate.css" rel="stylesheet">
+	<link href="/static/admin/template/css/style.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="middle-box text-center loginscreen animated fadeInDown" id="app">
+	<div>
+		<div>
+			<h1 class="logo-name" th:text="${#messages.msg('admin.login.title')}">Application</h1>
+		</div>
+		<h3 th:text="${#messages.msg('admin.login.welcome')}">welcome</h3>
+		<form class="m-t" role="form" method="post" action="/admin/login/action">
+			<div class="form-group">
+				<input type="text" name="username" class="form-control" placeholder="아이디"
+					   required=""
+					   v-model="manager.username">
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" class="form-control" placeholder="비밀번호"
+					   required=""
+					   v-model="manager.password">
+			</div>
+			<button type="submit" class="btn btn-primary block full-width m-b">로그인</button>
+			<a href="/admin/auth/findPassword"><small>비밀번호가 기억이 나지 않으시나요?</small></a>
+		</form>
+	</div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/static/admin/template/js/jquery-3.1.1.min.js"></script>
+<script src="/static/admin/template/js/popper.min.js"></script>
+<script src="/static/admin/template/js/bootstrap.js"></script>
+<script src="/static/admin/js/vue.min.js"></script>
+<script src="/static/admin/js/auth/login.js"></script>
+
+</body>
+
+</html>
+

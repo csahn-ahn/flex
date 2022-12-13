@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
 import me.univ.flex.entity.adminMenu.AdminMenuEntity;
@@ -60,6 +61,53 @@ public class AdminGroupMenuService {
             upperMenu.setLowerMenus(lowerMenus);
         }
         return menus;
+    }
+
+    public AdminGroupMenuEntity getMenuAuthority(String uri, int groupId) {
+        if(uri.indexOf(BaseConstants.ADMIN_PREFIX + "/main") > -1) {
+            return AdminGroupMenuEntity.builder()
+                .hasCreate(true)
+                .hasRead(true)
+                .hasUpdate(true)
+                .hasDelete(true)
+                .hasDownload(true)
+                .build();
+        }
+
+        List<AdminGroupMenuEntity> upperList = findMyGroupMenu(groupId)
+            .stream()
+            .filter(obj -> obj.getUpperMenuId() == 0 && uri.indexOf(obj.getLinkUrl()) > -1 && obj.isHasRead())
+            .collect(Collectors.toList());
+
+        if(upperList == null || upperList.isEmpty()) {
+            return null;
+        }
+
+        String[] uriArray = menuDepth(uri);
+
+        AdminGroupMenuEntity upperMenu = upperList.get(0);
+        List<AdminGroupMenuEntity> lowerList = upperMenu.getLowerMenus()
+            .stream()
+            .filter(obj -> obj.isHasRead())
+            .collect(Collectors.toList());
+
+        AdminGroupMenuEntity groupMenu = null;
+        for(AdminGroupMenuEntity lowerMenu : lowerList) {
+            String[] menuUriArray = menuDepth(lowerMenu.getLinkUrl());
+            if(menuUriArray[0].equals(uriArray[0]) && menuUriArray[1].equals(uriArray[1])){
+                groupMenu = lowerMenu;
+            }
+        }
+
+        return groupMenu;
+    }
+
+    private String[] menuDepth(String uri) {
+        String[] uriArray = uri.split("/");
+        String[] array = new String[]{
+            uriArray[2], uriArray[3]
+        };
+        return array;
     }
 
     @Transactional

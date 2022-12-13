@@ -5,5 +5,7 @@ import lombok.Data;
 @Data
 public class SecurityProperties {
 	private String passwordEncoder;
-	private KeysProperties keysProperties;
+	private String keyAes256;
+	private boolean useOtp;
+	private int otpAuthSkipMin;
 }

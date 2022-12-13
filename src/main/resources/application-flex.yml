@@ -10,7 +10,21 @@ spring:
 
 flex:
   applicationName: 'Flex'
+
+  service:
+
   security-props:
     password-encoder: 'SHA-256'
-    key:
-      aes-256: cRBEboDiI6BWJElDVzswipbBJNJBivSD
+    key-aes-256: cRBEboDiI6BWJElDVzswipbBJNJBivSD
+    use-otp: false   # OTP 인증 사용여부
+    otp-auth-skip-min: 10   # 인증 후 유지기간(분)
+
+  email-props:
+    api-url: https://ems.univ.me/tm6/app/api/automail/send
+    api-key: 2c2e3dff59817bc00d4d0fcdc989571c
+    admin-url: http://localhost:8080/admin  # 마지막 슬래시 넣으면 안됨.
+    admin-sender-name: 대학내일
+    admin-sender-email: csahn@univ.me
+    user-url: http://localhost
+    user-sender-name: 대학내일
+    user-sender-email: csahn@univ.me

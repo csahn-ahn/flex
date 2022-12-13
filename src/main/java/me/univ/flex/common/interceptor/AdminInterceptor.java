@@ -40,6 +40,21 @@ public class AdminInterceptor implements HandlerInterceptor {
 		if(principal instanceof UserDetailsImpl) {
 			UserDetailsImpl userDetails = (UserDetailsImpl) principal;
 
+			log.debug("admin : " , userDetails);
+			request.setAttribute("admin", userDetails);
+
+			// 해당 페이지에 접근권한(isRead)이 있는지 확인
+			AdminGroupMenuEntity menuAuthority = adminGroupMenuService.getMenuAuthority(requestURI, userDetails.getGroupId());
+			if(menuAuthority == null) {
+				response.sendRedirect(BaseConstants.ADMIN_PREFIX + "/main");
+			}
+			// 해당 페이지에 Read 권한이 없을경우.
+			if(menuAuthority.isHasRead() != true){
+				response.sendRedirect(BaseConstants.ADMIN_PREFIX + "/main");
+			}
+			// 페이지 권한(Read, Create, Update, Delete, Download)
+			request.setAttribute("menuAuthority", menuAuthority);
+
 			// 관리자 권한에 따른 메뉴 조회
 			List<AdminGroupMenuEntity> adminGroupMenus = adminGroupMenuService.findMyGroupMenu(
 				userDetails.getGroupId());

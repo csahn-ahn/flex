@@ -122,7 +122,20 @@ var app = new Vue({
 		// 일자 포맷 변경.
 		convertDateFormat(date) {
 			return convertDateFormat(date, 'YYYY.MM.DD HH:mm');
-		}
+		},
+
+		isCreate() {
+			return hasCreate == 'true' ? true : false;
+		},
+		isUpdate() {
+			return hasUpdate == 'true' ? true : false;
+		},
+		isDelete() {
+			return hasDelete == 'true' ? true : false;
+		},
+		isDownload() {
+			return hasDownload == 'true' ? true : false;
+		},
 	},
 	computed: {
 	}

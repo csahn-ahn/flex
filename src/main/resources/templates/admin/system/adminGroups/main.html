@@ -12,7 +12,7 @@
 					<div class="ibox-content">
 						<div class="form-group row">
 							<p>
-								<a type="button" href="/admin/system/adminGroups/register" class="btn btn-outline btn-success">등록</a>
+								<a v-if="isCreate()" type="button" href="/admin/system/adminGroups/register" class="btn btn-outline btn-success">등록</a>
 							</p>
 						</div>
 						<div class="table-responsive">
@@ -43,9 +43,9 @@
 											<td>{{convertDateFormat(obj.registerTime)}}</td>
 											<td>
 												<div class="btn-group">
-													<button class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
-													<button class="btn btn-warning" type="button" @click="fnSetupMenu(obj)">메뉴설정</button>
-													<button class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
+													<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
+													<button v-if="isCreate()" class="btn btn-warning" type="button" @click="fnSetupMenu(obj)">메뉴설정</button>
+													<button v-if="isDelete()" class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
 												</div>
 											</td>
 										</tr>

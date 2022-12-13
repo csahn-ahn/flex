@@ -3,22 +3,22 @@ var app = new Vue({
 	data: {
 		username: new URLSearchParams(window.location.search).get('username'),
 		manager: {
-			username: '',
-			name: '',
-			password: '',
-			passwordConfirm: '',
-			hp: '',
-			email: '',
-			groupId: 0
+			username: 'chris83',
+			name: '안치성',
+			hp: '01022820317',
+			email: 'csahn@univ.me',
+			groupId: 1
 		},
 		confirmUsername: '',
 		checkId: false,
+		groups: [],
 	},
 	created() {
 	},
 	mounted() {
 		let me = this;
 		me.init();
+		me.fnGetGroups();
 	},
 	watch: {
 		manager: {
@@ -55,13 +55,28 @@ var app = new Vue({
 					modalView.openAlert(error);
 				})
 			}
+		},
 
+		fnGetGroups() {
+			let me = this;
+			axios
+			.get('/admin/api/v1/adminGroups')
+			.then(function(response) {
+				me.groups = response.data;
+				me.groups.reverse();
+
+				if(me.username == null) {
+					me.manager.groupId = me.groups[0].groupId;
+				}
+			})
+			.catch(function(error) {
+				modalView.openAlert('오류가 발생했습니다. 관리자에 문의하여 주시기 바랍니다.<br>[' + error.message + ']');
+			})
 		},
 
 		fnCheckId() {
 			let me = this;
 
-			console.log('username : ' + me.manager.username);
 			if(me.manager.username == '') {
 				modalView.openAlert('아이디를 입력해주세요.');
 				return false;
@@ -75,7 +90,7 @@ var app = new Vue({
 					me.checkId = false;
 
 				}else{
-					modalView.openAlert('확인되었습니다. (사용가능)');
+					modalView.openAlert('사용할 수 있는 아이디입니다.');
 					me.confirmUsername = me.manager.username;
 					me.checkId = true;
 				}
@@ -87,7 +102,7 @@ var app = new Vue({
 
 		fnSubmit() {
 			let me = this;
-			let title = '등록';
+			let title = '초대';
 
 			if(me.username == null || me.username == ''){
 				if(!me.checkId) {
@@ -103,7 +118,7 @@ var app = new Vue({
 			}
 
 			modalView.openConfirm(
-				title + '하시겠습니까?',
+				title + ' 하시겠습니까?',
 				function(){
 					axios.post(
 						'/admin/api/v1/managers',
@@ -111,7 +126,7 @@ var app = new Vue({
 					)
 					.then(function(response) {
 						modalView.openAlert(
-							title + '되었습니다.'
+							title + ' 되었습니다.'
 							,function() {
 								document.location.href = '/admin/system/managers/register?username=' + response.data.username;
 							}
@@ -129,11 +144,6 @@ var app = new Vue({
 
 		validate() {
 			let me = this;
-
-			if(me.manager.password !== me.manager.passwordConfirm) {
-				modalView.openAlert('비밀번호가 일치하지 않습니다.');
-				return false;
-			}
 
 			// 휴대폰 형식 체크
 			if(!chkFormatPhone(me.manager.hp)){

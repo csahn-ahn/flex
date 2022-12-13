@@ -48,7 +48,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             .email(optionalManager.get().getEmail())
             .groupId(optionalManager.get().getGroupId())
             .active(optionalManager.get().isActive())
-            .tempPassword(optionalManager.get().isTempPassword())
             .lastUpdatePasswordTime(optionalManager.get().getLastUpdatePasswordTime())
             .build();
     }

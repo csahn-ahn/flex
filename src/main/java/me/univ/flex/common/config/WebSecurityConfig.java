@@ -65,6 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers(
 				BaseConstants.ADMIN_PREFIX + "/login",
+				BaseConstants.ADMIN_PREFIX + "/otp",
+				BaseConstants.ADMIN_PREFIX + "/auth/**",
+				BaseConstants.ADMIN_API_PREFIX + "/auth/**",
 				"/h2-console/**"
 			)
 			.permitAll()
@@ -80,7 +83,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginProcessingUrl(BaseConstants.ADMIN_PREFIX + "/login/action")
 			.successHandler(authSuccessHandler)
 			.failureHandler(authFailureHandler)
-			.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/main")
+			//.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/main")
+			.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/otp")
 
 			.and()
 			.logout()

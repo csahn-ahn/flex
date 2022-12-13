@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:replace="/admin/fragments/header::headerFragment"></th:block>
+</head>
+<body class="gray-bg">
+<!-- 모달 창 -->
+<th:block th:replace="/admin/fragments/modal::modalFragment"></th:block>
+
+<!-- 콘텐츠 영역 -->
+<th:block layout:fragment="content"></th:block>
+
+<!-- 기타 영역 -->
+<th:block th:replace="/admin/fragments/etc::etcFragment"></th:block>
+</body>
+</html>
+

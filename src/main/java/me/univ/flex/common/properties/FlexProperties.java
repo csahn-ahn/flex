@@ -10,4 +10,5 @@ import org.springframework.stereotype.Component;
 public class FlexProperties {
 	private String applicationName;
 	private SecurityProperties securityProps;
+	private EmailProperties emailProps;
 }

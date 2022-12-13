@@ -2,11 +2,19 @@ package me.univ.flex.admin.manager;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.common.crypto.AES256Crypto;
+import me.univ.flex.common.properties.FlexProperties;
 import me.univ.flex.common.security.UserDetailsImpl;
+import me.univ.flex.common.service.email.EmailParameterKey;
+import me.univ.flex.common.service.email.EmailTemplateEnum;
+import me.univ.flex.common.service.email.MailService;
+import me.univ.flex.common.utils.FlexGenerator;
 import me.univ.flex.entity.manager.ManagerEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +32,8 @@ public class ManagerService {
 
     private final ManagerRepository managerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final FlexProperties flexProperties;
+    private final MailService mailService;
 
     public Page<ManagerEntity> findAll(ManagerEntity.PageRequest request) {
         PageRequest pageRequest = PageRequest.of(
@@ -60,20 +70,33 @@ public class ManagerService {
             managerEntity = managerRepository.save(managerEntity);
 
         } else {
+
+            String tempPassword = FlexGenerator.generate(12);
+
             // 등록
             managerEntity = ManagerEntity.builder()
                 .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .password(null)
                 .name(request.getName())
                 .hp(request.getHp())
                 .email(request.getEmail())
+                .tempPassword(tempPassword)
                 .groupId(1)
-                .active(true)
+                .active(false)
                 .del(false)
                 .registerTime(Timestamp.from(Instant.now()))
                 .registerId(admin.getUsername())
                 .build();
             managerEntity = managerRepository.save(managerEntity);
+
+            // 메일로 임시 비밀번호 발송.
+            Map<String, Object> params = new HashMap<>();
+            params.put(EmailParameterKey.URL_PREFIX, flexProperties.getEmailProps().getAdminUrl());
+            params.put(EmailParameterKey.NAME, request.getName());
+            params.put(EmailParameterKey.USERNAME, request.getUsername());
+            params.put(EmailParameterKey.PASSWORD, tempPassword);
+            params.put(EmailParameterKey.BTN_LINK_URL, flexProperties.getEmailProps().getAdminUrl() + "/auth/changeTempPassword");
+            mailService.send(request.getEmail(), EmailTemplateEnum.MANAGER_REGISTER, params, request.getName());
         }
 
         return managerEntity;
@@ -120,6 +143,7 @@ public class ManagerService {
     public long countManagerInGroup(int groupId) {
         return managerRepository.countByGroupIdAndDelIsNotNull(groupId);
     }
+
 }
 
 

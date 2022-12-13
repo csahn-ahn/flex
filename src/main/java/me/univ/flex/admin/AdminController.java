@@ -1,11 +1,17 @@
 package me.univ.flex.admin;
 
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.admin.stats.UserStatsService;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.crypto.AES256Crypto;
+import me.univ.flex.common.properties.FlexProperties;
 import me.univ.flex.common.security.UserDetailsImpl;
+import me.univ.flex.common.service.email.EmailParameterKey;
+import me.univ.flex.common.service.email.EmailTemplateEnum;
+import me.univ.flex.common.service.email.MailService;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,13 +32,30 @@ public class AdminController {
     private final RedisTemplate redisTemplate;
     private final UserStatsService userStatsService;
     private final PasswordEncoder passwordEncoder;
+    private final FlexProperties flexProperties;
+    private final MailService mailService;
 
 
     @GetMapping(name = "관리자 로그인 페이지", value = BaseConstants.ADMIN_PREFIX + "/login")
     public String login(Model model, @RequestParam(value="error", required=false) String error, @RequestParam(value="exception", required = false) String exception){
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-        return "admin/login";
+        return "admin/auth/login";
+    }
+
+    @GetMapping(name = "비밀번호 찾기", value = BaseConstants.ADMIN_PREFIX + "/findPassword")
+    public String forgotPassword(Model model){
+        return "admin/auth/findPassword";
+    }
+
+    @GetMapping(name = "관리자 OTP 인증페이지", value = BaseConstants.ADMIN_PREFIX + "/otp")
+    public String otp(@AuthenticationPrincipal UserDetailsImpl admin, Model model, @RequestParam(value="error", required=false) String error, @RequestParam(value="exception", required = false) String exception){
+
+        // OTP 인증을 사용할 경우.
+        if(flexProperties.getSecurityProps().isUseOtp()) {
+            return "admin/auth/otp";
+        }
+        return "redirect:/admin/main";
     }
 
     @GetMapping(name = "관리자 메인 페이지로 이동", value = BaseConstants.ADMIN_PREFIX)
@@ -42,15 +65,6 @@ public class AdminController {
 
     @GetMapping(name = "관리자 메인 페이지", value = BaseConstants.ADMIN_PREFIX + "/main")
     public String main(@AuthenticationPrincipal UserDetailsImpl admin, Model model){
-
-        String originText = "암호화 대상 문자열";
-        String encryptedText = AES256Crypto.encrypt(originText);
-        String decryptedText = AES256Crypto.decrypt(encryptedText);
-
-        String password = "faith83!";
-        String encryptedPassword = passwordEncoder.encode(password);
-
-
         return "admin/main";
     }
 
