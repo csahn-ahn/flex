@@ -2,6 +2,21 @@
 
 ## 설치 및 실행
 
+### Redis 설치
+```yaml
+spring:
+    session:
+        redis:
+            flush-mode: ON_SAVE
+            namespace: spring:session:flex
+    store-type: redis
+        redis:
+            host: localhost
+            port: 6379
+            password: ''
+```
+
+### Source download
 Repository
 ```shell
 git clone https://github.com/csahn-ahn/flex

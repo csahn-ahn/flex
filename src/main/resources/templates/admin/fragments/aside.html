@@ -30,7 +30,7 @@
 
 			<th:block th:each="menu : ${adminGroupMenus}">
 				<li th:if="${menu.hasRead == true}" th:class="${menu.active == true} ? 'active' : ''">
-					<a href="javascript:void(0);"><i th:class="'fa ' + menu.icon"></i> <span class="nav-label" th:text="${menu.menuName}"></span> <span class="fa arrow"></span></a>
+					<a href="javascript:void(0);"><i th:class="'fa ' + ${menu.icon}"></i> <span class="nav-label" th:text="${menu.menuName}"></span> <span class="fa arrow"></span></a>
 					<th:block th:if="${menu.lowerMenus.size > 0}">
 						<ul class="nav nav-second-level">
 							<th:block th:each="lowerMenu : ${menu.lowerMenus}">

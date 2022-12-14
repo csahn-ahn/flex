@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.admin.adminGroupMenu.AdminGroupMenuService;
-import me.univ.flex.admin.logs.access.AdminLogAccessService;
+import me.univ.flex.admin.log.access.AdminLogAccessService;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
@@ -49,11 +49,15 @@ public class AdminInterceptor implements HandlerInterceptor {
 			AdminGroupMenuEntity menuAuthority = adminGroupMenuService.getMenuAuthority(requestURI, userDetails.getGroupId());
 			if(menuAuthority == null) {
 				response.sendRedirect(BaseConstants.ADMIN_PREFIX + "/main");
+				return false;
 			}
 			// 해당 페이지에 Read 권한이 없을경우.
-			if(menuAuthority.isHasRead() != true){
+
+			if (menuAuthority.isHasRead() != true) {
 				response.sendRedirect(BaseConstants.ADMIN_PREFIX + "/main");
+				return false;
 			}
+
 			// 페이지 권한(Read, Create, Update, Delete, Download)
 			request.setAttribute("menuAuthority", menuAuthority);
 
@@ -64,7 +68,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 			setCurrentMenuInit(requestURI, adminGroupMenus);
 
 			// 관리자 접속 로그 등록
-			adminLogAccessService.save(userDetails.getUsername(), menuAuthority.getMenuId(), requestURI);
+			adminLogAccessService.save(userDetails.getUsername(), (menuAuthority == null ? 0 : menuAuthority.getMenuId()), (menuAuthority == null || menuAuthority.getMenuId() == 0 ? "메인" : menuAuthority.getMenuName()), requestURI);
 
 		}
 

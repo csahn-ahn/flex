@@ -2,7 +2,7 @@ package me.univ.flex.common.config;
 
 import lombok.RequiredArgsConstructor;
 import me.univ.flex.admin.adminGroupMenu.AdminGroupMenuService;
-import me.univ.flex.admin.logs.access.AdminLogAccessService;
+import me.univ.flex.admin.log.access.AdminLogAccessService;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.interceptor.AdminInterceptor;
 import me.univ.flex.common.interceptor.UserInterceptor;
