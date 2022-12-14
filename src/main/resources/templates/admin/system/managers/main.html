@@ -51,7 +51,7 @@
 								</select>
 							</div>
 							<p>
-								<a type="button" href="/admin/system/managers/register" class="btn btn-outline btn-success">운영자 초대</a>
+								<a v-if="isCreate()" type="button" href="/admin/system/managers/register" class="btn btn-outline btn-success">운영자 초대</a>
 							</p>
 						</div>
 						<div class="table-responsive">
@@ -90,9 +90,9 @@
 											<td class="center">{{obj.active == true ? '정상' : '잠김'}}</td>
 											<td class="center">
 												<div class="btn-group">
-													<button class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
+													<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>
 													<!--<button class="btn btn-warning" type="button" @click="fnActive(obj, false)">비활성화</button>-->
-													<button class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
+													<button v-if="isDelete()" class="btn btn-danger" type="button" @click="fnDelete(obj)">삭제</button>
 												</div>
 											</td>
 										</tr>

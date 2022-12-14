@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.admin.adminGroupMenu.AdminGroupMenuService;
+import me.univ.flex.admin.logs.access.AdminLogAccessService;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminInterceptor implements HandlerInterceptor {
 
 	private final AdminGroupMenuService adminGroupMenuService;
+	private final AdminLogAccessService adminLogAccessService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -60,6 +62,10 @@ public class AdminInterceptor implements HandlerInterceptor {
 				userDetails.getGroupId());
 			request.setAttribute("adminGroupMenus", adminGroupMenus);
 			setCurrentMenuInit(requestURI, adminGroupMenus);
+
+			// 관리자 접속 로그 등록
+			adminLogAccessService.save(userDetails.getUsername(), menuAuthority.getMenuId(), requestURI);
+
 		}
 
 		return true;
