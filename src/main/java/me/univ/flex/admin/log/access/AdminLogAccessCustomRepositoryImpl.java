@@ -32,7 +32,7 @@ public class AdminLogAccessCustomRepositoryImpl implements AdminLogAccessCustomR
 					qAdminLogAccessEntity.menuName,
 					qAdminLogAccessEntity.accessUrl,
 					qAdminLogAccessEntity.accessTime,
-					qManagerEntity.username.as("adminName")
+					qManagerEntity.name.as("adminName")
 				))
 			.from(qAdminLogAccessEntity)
 			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qAdminLogAccessEntity.adminId))

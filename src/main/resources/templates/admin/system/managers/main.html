@@ -59,8 +59,8 @@
 								<thead>
 								<tr>
 									<th>No.</th>
-									<th>아이디</th>
 									<th>그룹명</th>
+									<th>아이디</th>
 									<th>이름</th>
 									<th>연락처</th>
 									<th>이메일</th>
@@ -80,8 +80,8 @@
 									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
 											<td>{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</td>
-											<td>{{obj.maskedUsername}}</td>
 											<td>{{obj.groupName}} 그룹</td>
+											<td>{{obj.maskedUsername}}</td>
 											<td>{{obj.maskedName}}</td>
 											<td>{{obj.maskedHp}}</td>
 											<td>{{obj.maskedEmail}}</td>

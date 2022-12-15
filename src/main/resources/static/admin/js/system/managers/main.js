@@ -17,7 +17,7 @@ var app = new Vue({
 	mounted() {
 		let me = this;
 		me.fnGetAdminGroups();
-		me.fnGetManagers();
+		me.fnSearch();
 	},
 	methods: {
 
@@ -25,6 +25,12 @@ var app = new Vue({
 		fnSearch() {
 			let me = this;
 			me.page = 1;
+			me.fnGetManagers();
+		},
+
+		fnSetPage(page) {
+			let me = this;
+			me.search.page = page;
 			me.fnGetManagers();
 		},
 
@@ -56,7 +62,7 @@ var app = new Vue({
 				params: me.search
 			})
 			.then(function(response) {
-				me.totalCount = response.data.numberOfElements;
+				me.totalCount = response.data.totalElements;
 				me.list = response.data.content;
 
                 $('#pagination').twbsPagination({
@@ -76,7 +82,7 @@ var app = new Vue({
 					disabledClass : "disabled",	// 클릭 안된 페이지 버튼의 CSS class
 					anchorClass : "page-link",	//버튼 안의 앵커에 대한 CSS class
 					onPageClick: function (event, page) {
-						me.search.page = page;
+						me.fnSetPage(page);
 					}
 				});
 			})

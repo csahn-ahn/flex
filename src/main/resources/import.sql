@@ -21,7 +21,6 @@ INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sor
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '이력', 1, '/admin/log', 'fa-file-text', 6, 0, '2022-12-05 00:00:00')
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (13, '로그인 이력', 1, '/admin/log/login/main', null, 1, 0, '2022-12-05 00:00:00')
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (13, '접근 이력', 1, '/admin/log/access/main', null, 2, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (13, '다운로드 이력', 1, '/admin/log/download/main', null, 3, 0, '2022-12-05 00:00:00')
 
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '콘텐츠', 1, '/admin/content', 'fa-folder-open', 3, 0, '2022-12-05 00:00:00')
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (17, '콘텐츠 관리', 1, '/admin/content/contents/main', null, 1, 0, '2022-12-05 00:00:00')

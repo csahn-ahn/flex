@@ -31,7 +31,7 @@ public class AdminLogLoginCustomRepositoryImpl implements AdminLogLoginCustomRep
 					qAdminLogLoginEntity.adminId,
 					qAdminLogLoginEntity.ip,
 					qAdminLogLoginEntity.loginTime,
-					qManagerEntity.username.as("adminName")
+					qManagerEntity.name.as("adminName")
 				))
 			.from(qAdminLogLoginEntity)
 			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qAdminLogLoginEntity.adminId))
