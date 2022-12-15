@@ -7,8 +7,11 @@ server:
     mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
     min-response-size: 1024
   error:
+    path: /error
+    include-exception: true
+    include-stacktrace: always
     whitelabel:
-      enabled: true
+      enabled: false
   servlet:
     session:
       timeout: 30m
@@ -66,6 +69,9 @@ spring:
     host: localhost
     port: 6379
     password: ''
+
+  error:
+    path: /error/404
 
 
 # 중요 정보 암호화
