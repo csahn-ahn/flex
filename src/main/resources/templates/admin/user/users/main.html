@@ -23,13 +23,13 @@
 								</tr>
 								</thead>
 								<tbody>
-								<template v-if="managers.length == 0">
+								<template v-if="list.length == 0">
 									<tr class="gradeX">
 										<td colspan="100">데이터가 없습니다.</td>
 									</tr>
 								</template>
 								<template v-else>
-									<template v-for="(obj, idx) in managers">
+									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
 											<td>1</td>
 											<td></td>

@@ -1,7 +1,7 @@
 var app = new Vue({
 	el: '#app',
 	data: {
-		adminGroups: [],
+		list: [],
 	},
 	created() {
 	},
@@ -21,11 +21,6 @@ var app = new Vue({
 				console.log(error)
 			})
 		},
-
-		// 일자 포맷 변경.
-		convertDateFormat(date) {
-			return convertDateFormat(date, 'YYYY.MM.DD HH:mm');
-		}
 	},
 	computed: {
 	}
