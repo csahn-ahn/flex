@@ -55,8 +55,8 @@
 									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
 											<td>{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</td>
-											<td>{{obj.adminId}}</td>
-											<td>{{obj.name}}</td>
+											<td>{{obj.maskedAdminId}}</td>
+											<td>{{obj.maskedName}}</td>
 											<td>{{obj.menuName}}</td>
 											<td>{{obj.accessUrl}}</td>
 											<td>{{obj.accessTime}}</td>

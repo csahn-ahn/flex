@@ -96,7 +96,7 @@ public class ManagerService {
             params.put(EmailParameterKey.USERNAME, request.getUsername());
             params.put(EmailParameterKey.PASSWORD, tempPassword);
             params.put(EmailParameterKey.BTN_LINK_URL, flexProperties.getEmailProps().getAdminUrl() + "/auth/changeTempPassword");
-            mailService.send(request.getEmail(), EmailTemplateEnum.MANAGER_REGISTER, params, request.getName());
+            //mailService.send(request.getEmail(), EmailTemplateEnum.MANAGER_REGISTER, params, request.getName());
         }
 
         return managerEntity;

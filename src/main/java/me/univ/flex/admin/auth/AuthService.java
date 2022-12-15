@@ -70,7 +70,7 @@ public class AuthService {
         params.put(EmailParameterKey.USERNAME, manager.getUsername());
         params.put(EmailParameterKey.PASSWORD, tempPassword);
         params.put(EmailParameterKey.BTN_LINK_URL, flexProperties.getEmailProps().getAdminUrl() + "/auth/changeTempPassword");
-        mailService.send(manager.getEmail(), EmailTemplateEnum.PASSWORD_TEMP, params, manager.getName());
+        //mailService.send(manager.getEmail(), EmailTemplateEnum.PASSWORD_TEMP, params, manager.getName());
 
         return AuthDTO.Response.builder()
             .success(true)

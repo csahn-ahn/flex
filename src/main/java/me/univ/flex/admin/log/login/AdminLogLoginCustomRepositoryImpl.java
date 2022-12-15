@@ -1,4 +1,4 @@
-package me.univ.flex.admin.log.access;
+package me.univ.flex.admin.log.login;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -7,7 +7,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.univ.flex.common.utils.PageSortUtil;
 import me.univ.flex.entity.logs.AdminLogAccessEntity;
-import me.univ.flex.entity.logs.QAdminLogAccessEntity;
+import me.univ.flex.entity.logs.AdminLogLoginEntity;
+import me.univ.flex.entity.logs.QAdminLogLoginEntity;
 import me.univ.flex.entity.manager.QManagerEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -15,41 +16,39 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 @RequiredArgsConstructor
-public class AdminLogAccessCustomRepositoryImpl implements AdminLogAccessCustomRepository {
+public class AdminLogLoginCustomRepositoryImpl implements AdminLogLoginCustomRepository {
 
 	private final JPAQueryFactory queryFactory;
-	private final QAdminLogAccessEntity qAdminLogAccessEntity = QAdminLogAccessEntity.adminLogAccessEntity;
+	private final QAdminLogLoginEntity qAdminLogLoginEntity = QAdminLogLoginEntity.adminLogLoginEntity;
 	private final QManagerEntity qManagerEntity = QManagerEntity.managerEntity;
 
 	@Override
-	public Page<AdminLogAccessEntity> findCustomAll(Pageable pageable, AdminLogAccessEntity.PageRequest request) {
-		List<AdminLogAccessEntity> list = queryFactory.select(
+	public Page<AdminLogLoginEntity> findCustomAll(Pageable pageable, AdminLogLoginEntity.PageRequest request) {
+		List<AdminLogLoginEntity> list = queryFactory.select(
 				Projections.fields(
-					AdminLogAccessEntity.class,
-					qAdminLogAccessEntity.logId,
-					qAdminLogAccessEntity.adminId,
-					qAdminLogAccessEntity.menuId,
-					qAdminLogAccessEntity.menuName,
-					qAdminLogAccessEntity.accessUrl,
-					qAdminLogAccessEntity.accessTime,
+					AdminLogLoginEntity.class,
+					qAdminLogLoginEntity.logId,
+					qAdminLogLoginEntity.adminId,
+					qAdminLogLoginEntity.ip,
+					qAdminLogLoginEntity.loginTime,
 					qManagerEntity.username.as("adminName")
 				))
-			.from(qAdminLogAccessEntity)
-			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qAdminLogAccessEntity.adminId))
+			.from(qAdminLogLoginEntity)
+			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qAdminLogLoginEntity.adminId))
 			.where(
 				conditionUsername(request.getUsername()),
 				conditionName(request.getName())
 			)
 			.offset(pageable.getOffset())
 			.limit(pageable.getPageSize())
-			.orderBy(PageSortUtil.buildOrderSpecifiers(pageable.getSort(), qAdminLogAccessEntity.accessTime))
+			.orderBy(PageSortUtil.buildOrderSpecifiers(pageable.getSort(), qAdminLogLoginEntity.loginTime))
 			.fetch();
 
 		Long total = queryFactory.select(
 				qManagerEntity.username.count()
 			)
-			.from(qAdminLogAccessEntity)
-			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qAdminLogAccessEntity.adminId))
+			.from(qAdminLogLoginEntity)
+			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qAdminLogLoginEntity.adminId))
 			.where(
 				conditionUsername(request.getUsername()),
 				conditionName(request.getName())
@@ -64,7 +63,7 @@ public class AdminLogAccessCustomRepositoryImpl implements AdminLogAccessCustomR
 	}
 
 	private BooleanExpression conditionUsername(String username){
-		return StringUtils.isNotEmpty(username) ? qAdminLogAccessEntity.adminId.contains(username) : null;
+		return StringUtils.isNotEmpty(username) ? qAdminLogLoginEntity.adminId.contains(username) : null;
 	}
 
 	private BooleanExpression conditionName(String name){

@@ -14,10 +14,10 @@ var app = new Vue({
 	},
 	mounted() {
 		let me = this;
-		me.fnGetManagers();
+		me.fnGetLogs();
 	},
 	methods: {
-		fnGetManagers() {
+		fnGetLogs() {
 			let me = this;
 			axios({
 				method:'get',

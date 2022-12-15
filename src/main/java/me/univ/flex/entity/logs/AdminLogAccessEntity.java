@@ -1,5 +1,6 @@
 package me.univ.flex.entity.logs;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.common.utils.MaskingUtils;
 
 @Slf4j
 @Entity
@@ -30,10 +32,14 @@ public class AdminLogAccessEntity {
     private int menuId;
     private String menuName;
     private String accessUrl;
+
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp accessTime;
 
     @Transient
     private String adminName;
+    public String getMaskedName() { return MaskingUtils.getMaskedName(this.adminName); }
+    public String getMaskedAdminId() { return MaskingUtils.getMaskedId(this.adminId); }
 
     @Data
     @Builder

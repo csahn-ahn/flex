@@ -6,6 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import me.univ.flex.common.utils.PageSortUtil;
 import me.univ.flex.entity.adminGroup.QAdminGroupEntity;
 import me.univ.flex.entity.manager.ManagerEntity;
 import me.univ.flex.entity.manager.QManagerEntity;
@@ -46,6 +47,9 @@ public class ManagerCustomRepositoryImpl implements ManagerCustomRepository {
 				conditionUsername(request.getUsername()),
 				conditionName(request.getName())
 			)
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize())
+			.orderBy(PageSortUtil.buildOrderSpecifiers(pageable.getSort(), qManagerEntity.registerTime))
 			.fetch();
 
 		Long total = queryFactory.select(

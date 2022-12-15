@@ -80,13 +80,13 @@
 									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
 											<td>{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</td>
-											<td>{{obj.username}}</td>
+											<td>{{obj.maskedUsername}}</td>
 											<td>{{obj.groupName}} 그룹</td>
-											<td>{{obj.name}}</td>
-											<td>{{obj.hp}}</td>
-											<td>{{obj.email}}</td>
-											<td class="center">{{convertDateFormat(obj.registerTime)}}</td>
-											<td class="center">{{convertDateFormat(obj.lastLoginTime)}}</td>
+											<td>{{obj.maskedName}}</td>
+											<td>{{obj.maskedHp}}</td>
+											<td>{{obj.maskedEmail}}</td>
+											<td class="center">{{obj.registerTime}}</td>
+											<td class="center">{{obj.lastLoginTime}}</td>
 											<td class="center">{{obj.active == true ? '정상' : '잠김'}}</td>
 											<td class="center">
 												<div class="btn-group">

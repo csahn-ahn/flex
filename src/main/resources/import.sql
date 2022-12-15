@@ -1,6 +1,6 @@
-INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('슈퍼관리자', 0, '2022-12-05 00:00:00');
-INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('대학내일', 0, '2022-12-05 00:00:00');
-INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('운영자', 0, '2022-12-05 00:00:00');
+INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('슈퍼관리자', 0, '2022-12-01 00:00:00');
+INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('대학내일', 0, '2022-12-02 00:00:00');
+INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('운영자', 0, '2022-12-03 00:00:00');
 
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '회원', 1, '/admin/user', 'fa-user', 2, 0, '2022-12-05 00:00:00')
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (1, '회원 관리', 1, '/admin/user/users/main', null, 1, 0, '2022-12-05 00:00:00')

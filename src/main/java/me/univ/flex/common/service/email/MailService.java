@@ -1,17 +1,11 @@
 package me.univ.flex.common.service.email;
 
-import com.andwise.tm6.api.jars.automail.AutomailAPI;
-import java.util.Locale;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.properties.FlexProperties;
 import me.univ.flex.common.service.email.thunder.ThunderMailAPI;
-import me.univ.flex.common.service.email.thunder.ThunderMailRequest;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 
 @Slf4j
@@ -23,7 +17,7 @@ public class MailService {
   private final TemplateEngine htmlTemplateEngine;
   private final ThunderMailAPI thunderMailAPI;
 
-
+  /*
   @Async
   public void send(String recipient,
       EmailTemplateEnum emailTemplateEnum,
@@ -82,4 +76,6 @@ public class MailService {
             .build()
     );
   }
+
+   */
 }

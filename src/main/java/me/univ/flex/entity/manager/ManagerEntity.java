@@ -1,5 +1,6 @@
 package me.univ.flex.entity.manager;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.common.utils.MaskingUtils;
 import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,14 +45,32 @@ public class ManagerEntity {
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp registerTime;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp lastLoginTime;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp lastUpdateTime;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp lastUpdatePasswordTime;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp deleteTime;
     private String registerId;
     private String lastUpdateId;
     private String deleteId;
+
+    public String getMaskedUsername() {
+        return MaskingUtils.getMaskedId(this.username);
+    }
+    public String getMaskedName() {
+        return MaskingUtils.getMaskedName(this.name);
+    }
+    public String getMaskedEmail() {
+        return MaskingUtils.getMaskedEmail(this.email);
+    }
+    public String getMaskedHp() {
+        return MaskingUtils.getMaskedPhone(this.hp);
+    }
 
     @Transient
     private String groupName;

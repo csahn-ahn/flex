@@ -1,5 +1,6 @@
 package me.univ.flex.entity.manager;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,5 +25,6 @@ public class ManagerOtpEntity {
     @Column(nullable = false)
     private String username;
     private String secretKey;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp lastAuthTime;
 }

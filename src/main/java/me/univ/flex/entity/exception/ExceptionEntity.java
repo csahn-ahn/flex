@@ -1,5 +1,6 @@
 package me.univ.flex.entity.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,5 +30,6 @@ public class ExceptionEntity {
     private String exceptionType;
     private String message;
     private String stackTrace;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp errorTime;
 }

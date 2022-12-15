@@ -1,5 +1,6 @@
 package me.univ.flex.entity.code;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,8 +28,11 @@ public class CodeGroupEntity {
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp registerTime;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp lastUpdateTime;
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
     private Timestamp deleteTime;
     private String registerId;
     private String lastUpdateId;

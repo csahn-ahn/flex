@@ -195,7 +195,6 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
-		<!-- Email -->
 		<!--
 		<dependency>
 			<groupId>com.andwise.tm6.api.jars</groupId>
