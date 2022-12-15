@@ -25,9 +25,41 @@ public class CodeEntity {
     @Column(nullable = false)
     private String codeGroupId;
     @Column(nullable = false)
+    private String codeValue;
     private String codeName;
+    private String description;
+    private String etc1;
+    private String etc2;
+    private String etc3;
+    @Column(nullable = false)
+    private boolean display;
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)
     private Timestamp registerTime;
+    private Timestamp lastUpdateTime;
+    private Timestamp deleteTime;
+    private String registerId;
+    private String lastUpdateId;
+    private String deleteId;
+
+    @Data
+    @Builder
+    public static class SaveRequest {
+        private String codeId;
+        private String codeValue;
+        private String codeName;
+        private String description;
+        private String etc1;
+        private String etc2;
+        private String etc3;
+
+    }
+
+    @Data
+    @Builder
+    public static class Response {
+        private boolean success;
+        private String message;
+    }
 }

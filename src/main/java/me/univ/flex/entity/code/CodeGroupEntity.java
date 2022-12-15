@@ -28,4 +28,32 @@ public class CodeGroupEntity {
     private boolean del;
     @Column(nullable = false)
     private Timestamp registerTime;
+    private Timestamp lastUpdateTime;
+    private Timestamp deleteTime;
+    private String registerId;
+    private String lastUpdateId;
+    private String deleteId;
+
+    @Data
+    @Builder
+    public static class SearchRequest {
+        private int page;
+        private int pageSize;
+        private String codeGroupId;
+        private String codeGroupName;
+    }
+
+    @Data
+    @Builder
+    public static class SaveRequest {
+        private String codeGroupId;
+        private String codeGroupName;
+    }
+
+    @Data
+    @Builder
+    public static class Response {
+        private boolean success;
+        private String message;
+    }
 }

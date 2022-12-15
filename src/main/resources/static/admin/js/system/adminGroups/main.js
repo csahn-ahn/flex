@@ -18,7 +18,7 @@ var app = new Vue({
 				me.list = response.data;
 			})
 			.catch(function(error) {
-				console.log(error)
+				modalView.openAlert(error);
 			})
 		},
 

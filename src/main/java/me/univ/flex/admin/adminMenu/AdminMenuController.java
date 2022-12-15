@@ -40,7 +40,7 @@ public class AdminMenuController {
         return ResponseEntity.ok(adminMenuService.detail(admin, menuId));
     }
 
-    @PostMapping(name = "메뉴 등록/수정")
+    @PostMapping(name = "메뉴 저장")
     public ResponseEntity<AdminMenuEntity> save(@AuthenticationPrincipal UserDetailsImpl admin, @RequestBody AdminMenuEntity.SaveRequest request) {
         return ResponseEntity.ok(adminMenuService.save(admin, request));
     }

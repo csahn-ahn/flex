@@ -6,71 +6,181 @@
 </head>
 <th:block layout:fragment="content">
 	<div class="wrapper wrapper-content animated fadeInRight" id="app">
+
 		<div class="row">
-			<div class="col-lg-6">
-				<div class="ibox ">
-					<div class="ibox-title">
-						<h5>상위코드</h5>
+			<div class="col-lg-4">
+				<div v-if="isCreate()" class="row">
+					<div class="col-lg-12">
+						<div class="ibox ">
+							<div class="ibox-title">
+								<h5>상위코드 등록</h5>
+							</div>
+							<div class="ibox-content">
+								<form role="form" class="form-inline">
+									<div class="form-group">
+										<label for="codeGroupId" class="sr-only">상위코드</label>
+										<input type="text" placeholder="상위코드" id="codeGroupId" class="form-control" v-model="codeGroup.codeGroupId">
+									</div>
+									<div class="form-group">
+										<label for="codeGroupNm" class="sr-only">상위코드명</label>
+										<input type="text" placeholder="상위코드명" id="codeGroupNm" class="form-control" v-model="codeGroup.codeGroupName">
+									</div>
+									<button class="btn btn-success" type="button" @click="fnCreateCodeGroup();">등록</button>
+								</form>
+							</div>
+						</div>
 					</div>
-					<div class="ibox-content">
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="ibox ">
+							<div class="ibox-title">
+								<h5>상위코드 검색</h5>
+							</div>
+							<div class="ibox-content">
+								<form role="form" class="form-inline">
+									<div class="form-group">
+										<label for="s_codeGroupId" class="sr-only">상위코드</label>
+										<input type="text" placeholder="상위코드" id="s_codeGroupId" class="form-control" v-model="searchCodeGroup.codeGroupId">
+									</div>
+									<div class="form-group">
+										<label for="s_codeGroupNm" class="sr-only">상위코드명</label>
+										<input type="text" placeholder="상위코드명" id="s_codeGroupNm" class="form-control" v-model="searchCodeGroup.codeGroupName">
+									</div>
+									<button class="btn btn-success btn-outline" type="button" @click="fnSearchCodeGroup()">검색</button>
+								</form>
+							</div>
+							<div class="ibox-content">
+								<table class="table">
+									<thead>
+									<tr>
+										<th>상위코드</th>
+										<th>상위코드명</th>
+										<th>관리</th>
+									</tr>
+									</thead>
+									<tbody>
+										<template v-if="codeGroups.length == 0">
+											<tr>
+												<td colspan="3">데이터가 없습니다.</td>
+											</tr>
+										</template>
+										<template v-else v-for="(obj, idx) in codeGroups">
+											<tr v-if="obj.isUpdateMode == false">
+												<td><a href="javascript:void(0);" @click="fnSearchCode(obj.codeGroupId)">{{obj.codeGroupId}}</a></td>
+												<td>{{obj.codeGroupName}}</td>
+												<td>
+													<div v-if="isUpdateMode == false" class="btn-group">
+														<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnUpdateCodeGroup(obj)">수정</button>
+														<button v-if="isDelete()" class="btn btn-danger" type="button" @click="fnDeleteCodeGroup(obj)">삭제</button>
+													</div>
+												</td>
+											</tr>
+											<tr v-else>
+												<td>{{obj.codeGroupId}}</td>
+												<td>
+													<input type="text" placeholder="상위코드명" :id="'codeGroupNm_' + obj.codeGroupId" class="form-control" v-model="obj.codeGroupName">
 
-						<table class="table">
-							<thead>
-							<tr>
-								<th>No.</th>
-								<th>상위코드</th>
-								<th>상위코드명</th>
-								<th>관리</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>1</td>
-								<td>CODE_01</td>
-								<td>프로그램 유형</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>CODE_02</td>
-								<td>프로그램 형태</td>
-								<td></td>
-							</tr>
-							</tbody>
-						</table>
+												</td>
+												<td>
+													<div class="btn-group">
+														<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnSaveCodeGroup(obj)">저장</button>
+														<button class="btn btn-danger" type="button" @click="fnCancelUpdateCodeGroup(obj)">취소</button>
+													</div>
+												</td>
+											</tr>
+										</template>
+									</tbody>
+								</table>
 
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-8">
+				<div v-if="isCreate() && selectedCodeGroup.codeGroupId" class="row">
+					<div class="col-lg-12">
+						<div class="ibox ">
+							<div class="ibox-title">
+								<h5>하위코드 등록 | <span class="text-info">{{selectedCodeGroup.codeGroupName}} ({{selectedCodeGroup.codeGroupId}})</span></h5>
+							</div>
+							<div class="ibox-content">
+								<form role="form" class="form-inline">
+									<div class="form-group">
+										<label for="codeId" class="sr-only">하위코드</label>
+										<input type="text" placeholder="하위코드" id="codeId" class="form-control" v-model="code.codeId">
+									</div>
+									<div class="form-group">
+										<label for="codeValue" class="sr-only">하위코드값</label>
+										<input type="text" placeholder="하위코드값" id="codeValue" class="form-control" v-model="code.codeValue">
+									</div>
+									<div class="form-group">
+										<label for="codeName" class="sr-only">하위코드명</label>
+										<input type="text" placeholder="하위코드명" id="codeName" class="form-control" v-model="code.codeName">
+									</div>
+									<button class="btn btn-success" type="button" @click="fnCreateCode();">등록</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="ibox ">
 					<div class="ibox-title">
 						<h5>하위 코드</h5>
 					</div>
 					<div class="ibox-content">
-
+						<!--
+						<div class="form-group row">
+							<p>
+								<a v-if="isCreate()" type="button" href="/admin/system/managers/register" class="btn btn-outline btn-success">하위코드 등록</a>
+							</p>
+						</div>
+						-->
 						<table class="table">
 							<thead>
 							<tr>
-								<th>No.</th>
+								<th>상위코드</th>
 								<th>하위코드</th>
+								<th>하위코드값</th>
 								<th>하위코드명</th>
 								<th>관리</th>
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td>1</td>
-								<td>CODE_01</td>
-								<td>프로그램 유형</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>CODE_02</td>
-								<td>프로그램 형태</td>
-								<td></td>
-							</tr>
+								<template v-if="codes.length == 0">
+									<tr>
+										<td colspan="3">데이터가 없습니다.</td>
+									</tr>
+								</template>
+								<template v-else v-for="(obj, idx) in codes">
+									<tr v-if="obj.isUpdateMode == false">
+										<td>{{obj.codeGroupId}}</td>
+										<td><a href="javascript:void(0);" @click="fnGetCodes(obj)">{{obj.codeId}}</a></td>
+										<td>{{obj.codeValue}}</td>
+										<td>{{obj.codeName}}</td>
+										<td>
+											<div class="btn-group">
+												<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnUpdateCode(obj)">수정</button>
+												<button v-if="isDelete()" class="btn btn-danger" type="button" @click="fnDeleteCode(obj)">삭제</button>
+											</div>
+										</td>
+									</tr>
+									<tr v-else>
+										<td>{{obj.codeGroupId}}</td>
+										<td>{{obj.codeId}}</td>
+										<td>
+											<input type="text" placeholder="하위코드값" class="form-control" v-model="obj.codeValue">
+											<input type="text" placeholder="하위코드명" class="form-control" v-model="obj.codeName">
+										</td>
+										<td>
+											<div class="btn-group">
+												<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnSaveCode(obj)">저장</button>
+												<button class="btn btn-danger" type="button" @click="fnCancelUpdateCode(obj)">취소</button>
+											</div>
+										</td>
+									</tr>
+								</template>
 							</tbody>
 						</table>
 					</div>
