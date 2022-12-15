@@ -30,6 +30,6 @@ public class ExceptionEntity {
     private String exceptionType;
     private String message;
     private String stackTrace;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp errorTime;
 }

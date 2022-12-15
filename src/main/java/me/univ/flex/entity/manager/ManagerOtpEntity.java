@@ -25,6 +25,6 @@ public class ManagerOtpEntity {
     @Column(nullable = false)
     private String username;
     private String secretKey;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp lastAuthTime;
 }

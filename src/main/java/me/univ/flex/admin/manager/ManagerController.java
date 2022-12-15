@@ -1,6 +1,5 @@
 package me.univ.flex.admin.manager;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
@@ -42,7 +41,12 @@ public class ManagerController {
     }
 
     @DeleteMapping(name = "운영자 삭제", value = "/{username}")
-    public ResponseEntity<ManagerEntity.DeleteResponse> delete(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable String username) {
+    public ResponseEntity<ManagerEntity.Response> delete(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable String username) {
         return ResponseEntity.ok(managerService.delete(admin, username));
+    }
+
+    @PutMapping(name = "운영자 비밀번호 변경", value = "/password")
+    public ResponseEntity<ManagerEntity.Response> password(@AuthenticationPrincipal UserDetailsImpl admin, @RequestBody ManagerEntity.UpdatePasswordRequest request) {
+        return ResponseEntity.ok(managerService.updatePassword(admin, request));
     }
 }

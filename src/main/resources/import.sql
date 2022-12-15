@@ -23,10 +23,10 @@ INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sor
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (13, '접근 이력', 1, '/admin/log/access/main', null, 2, 0, '2022-12-05 00:00:00')
 
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '콘텐츠', 1, '/admin/content', 'fa-folder-open', 3, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (17, '콘텐츠 관리', 1, '/admin/content/contents/main', null, 1, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (16, '콘텐츠 관리', 1, '/admin/content/contents/main', null, 1, 0, '2022-12-05 00:00:00')
 
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '외부링크', 1, '/admin/external', 'fa-external-link', 7, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (19, 'inspinia', 2, 'http://webapplayers.com/inspinia_admin-v2.9.4/', null, 1, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (18, 'inspinia', 2, 'http://webapplayers.com/inspinia_admin-v2.9.4/', null, 1, 0, '2022-12-05 00:00:00')
 
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 1);
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 2);

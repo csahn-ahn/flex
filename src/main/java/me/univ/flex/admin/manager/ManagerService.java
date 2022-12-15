@@ -15,6 +15,7 @@ import me.univ.flex.common.service.email.EmailParameterKey;
 import me.univ.flex.common.service.email.EmailTemplateEnum;
 import me.univ.flex.common.service.email.MailService;
 import me.univ.flex.common.utils.FlexGenerator;
+import me.univ.flex.common.utils.TimestampUtil;
 import me.univ.flex.entity.manager.ManagerEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -102,11 +103,11 @@ public class ManagerService {
         return managerEntity;
     }
 
-    public ManagerEntity.DeleteResponse delete(UserDetailsImpl admin, String username) {
+    public ManagerEntity.Response delete(UserDetailsImpl admin, String username) {
 
         Optional<ManagerEntity> optionalManager = managerRepository.findById(username);
         if(!optionalManager.isPresent()) {
-            return ManagerEntity.DeleteResponse.builder()
+            return ManagerEntity.Response.builder()
                 .success(false)
                 .message("삭제할 대상이 없습니다.")
                 .build();
@@ -115,7 +116,7 @@ public class ManagerService {
         ManagerEntity managerEntity = optionalManager.get();
 
         if(managerEntity.isDel()) {
-            return ManagerEntity.DeleteResponse.builder()
+            return ManagerEntity.Response.builder()
                 .success(false)
                 .message("이미 삭제된 대상입니다.")
                 .build();
@@ -131,7 +132,27 @@ public class ManagerService {
 
         managerRepository.save(managerEntity);
 
-        return ManagerEntity.DeleteResponse.builder()
+        return ManagerEntity.Response.builder()
+            .success(true)
+            .build();
+    }
+
+    public ManagerEntity.Response updatePassword(UserDetailsImpl admin, ManagerEntity.UpdatePasswordRequest request) {
+        if (!passwordEncoder.matches(request.getPassword(), admin.getPassword())){
+            return ManagerEntity.Response.builder()
+                .success(false)
+                .message("현재 비밀번호와 일치하지 않습니다.")
+                .build();
+        }
+
+        ManagerEntity managerEntity = managerRepository.findById(admin.getUsername()).orElseThrow();
+        managerEntity.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        managerEntity.setLastUpdatePasswordTime(TimestampUtil.now());
+        managerEntity.setLastUpdateTime(TimestampUtil.now());
+        managerEntity.setLastUpdateId(admin.getUsername());
+        managerRepository.save(managerEntity);
+
+        return ManagerEntity.Response.builder()
             .success(true)
             .build();
     }

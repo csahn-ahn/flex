@@ -8,9 +8,18 @@
 			<span class="m-r-sm text-muted welcome-message" th:utext="${#messages.msg('admin.top.welcome.text', admin.name)}"></span>
 		</li>
 		<li>
+			<!--
+			<a href="javascript:void(0);" id="btnPasswordModal" data-toggle="modal" data-target="#passwordModel">
+				<i class="fa fa-lock"></i>
+				<span class="m-r-sm text-muted" th:utext="${#messages.msg('admin.top.update-password.text')}"></span>
+			</a>
+			-->
+			<button type="button" class="btn btn-primary" onClick="passwordModalView.open()">비밀번호 변경</button>
+		</li>
+		<li>
 			<a href="/admin/logout">
 				<i class="fa fa-sign-out"></i>
-				<th:block th:text="${#messages.msg('admin.top.logout.text')}"></th:block>
+				<span class="m-r-sm text-muted" th:utext="${#messages.msg('admin.top.logout.text')}"></span>
 			</a>
 		</li>
 	</ul>

@@ -45,15 +45,15 @@ public class ManagerEntity {
     @Column(nullable = false)
     private boolean del;
     @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp registerTime;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp lastLoginTime;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp lastUpdateTime;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp lastUpdatePasswordTime;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm")
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
     private Timestamp deleteTime;
     private String registerId;
     private String lastUpdateId;
@@ -101,8 +101,15 @@ public class ManagerEntity {
 
     @Data
     @Builder
-    public static class DeleteResponse {
+    public static class Response {
         private boolean success;
         private String message;
+    }
+
+    @Data
+    @Builder
+    public static class UpdatePasswordRequest {
+        private String password;
+        private String newPassword;
     }
 }
