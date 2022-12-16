@@ -77,3 +77,11 @@ insert into code(code_id, code_group_id, code_value, code_name, display, del, re
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_07', 'SAMPLE_CODE_03', 'A3', '샘플 하위코드 01', 1, 0, '2022-12-11 00:00:00');
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_08', 'SAMPLE_CODE_03', 'A3', '샘플 하위코드 02', 1, 0, '2022-12-12 00:00:00');
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_09', 'SAMPLE_CODE_03', 'A3', '샘플 하위코드 02', 1, 0, '2022-12-13 00:00:00');
+
+insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_01', 1, '테스트 콘텐츠-1', null, false, '2022-12-01 00:00:00');
+insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_02', 2, '테스트 콘텐츠-1', '/intro/main', false, '2022-12-02 00:00:00');
+insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_03', 1, '테스트 콘텐츠-1', null, false, '2022-12-03 00:00:00');
+
+insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('TEST_CONTENT_01', '2022-12-01 00:00:00', '2022-12-30 00:00:00', '아이템 1', '아이템 1의 내용입니다.', true, true, false, '2022-12-01 00:00:00');
+insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('TEST_CONTENT_01', '2022-12-02 00:00:00', '2023-12-30 00:00:00', '아이템 2', '아이템 2의 내용입니다.', true, true, false, '2022-12-02 00:00:00');
+insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('TEST_CONTENT_01', '2022-12-03 00:00:00', '2023-05-03 00:00:00', '아이템 3', '아이템 3의 내용입니다.', true, true, false, '2022-12-03 00:00:00');

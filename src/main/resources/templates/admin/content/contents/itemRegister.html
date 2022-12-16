@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/admin/fragments/layout_blank}" xmlns:th="http://thymeleaf.org">
+
+<th:block layout:fragment="content">
+	<div class="wrapper wrapper-content" id="app">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>아이템 등록</h5>
+					</div>
+					<div class="ibox-content">
+						<form>
+							<div class="form-group row">
+								<label class="col-lg-2 col-form-label">콘텐츠명</label>
+								<div class="col-lg-10"><input type="text" placeholder="콘텐츠명" required="" class="form-control" v-model="item.title"></div>
+							</div>
+							<div class="form-group row" id="data_1">
+								<label class="col-lg-2 col-form-label">서비스 기간</label>
+								<div class="col-lg-6">
+									<div class="input-group">
+										<input type="text" class="form-control" id="serviceStartTime" v-model="item.serviceStartTime" maxlength="19" placeholder="YYYY-MM-DD hh:mm:ss" required="" >
+										<span class="input-group-addon">~</span><input type="text" class="form-control" id="serviceEndTime" v-model="item.serviceEndTime" maxlength="19" required="" >
+										<button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><strong>저장</strong></button>
+									</div>
+								</div>
+							</div>
+							<div v-show="isShow" class="ibox-content no-padding">
+								<div class="summernote" v-html="item.body">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/static/admin/template/js/plugins/summernote/summernote-bs4.js"></script>
+	<script>
+        $(document).ready(function(){
+            var mem = $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "yyyy-mm-dd"
+            });
+
+            $("#serviceStartTime").mask("0000-00-00 00:00:00");
+            $("#serviceEndTime").mask("0000-00-00 00:00:00");
+
+       });
+	</script>
+	<script src="/static/admin/js/content/contents/itemRegister.js"></script>
+</th:block>
+</html>
+

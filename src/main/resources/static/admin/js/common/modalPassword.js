@@ -78,11 +78,3 @@ var passwordModalView = new Vue({
 	computed: {
 	}
 });
-
-
-$(function() {
-	$("form").on("submit", function(){
-		passwordModalView.fnSubmit();
-		return false;
-	})
-})
