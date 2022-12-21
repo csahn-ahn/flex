@@ -15,11 +15,11 @@
 <div class="middle-box text-center loginscreen animated fadeInDown" id="app">
 	<div>
 		<div>
-			<h1 class="logo-name" th:text="${#messages.msg('admin.login.title')}">Application</h1>
+			<h1 class="logo-name" th:text="${#messages.msg('user.login.title')}">Application</h1>
 		</div>
-		<h3 th:text="${#messages.msg('admin.login.welcome')}">welcome</h3>
-		<form class="m-t" role="form" method="post" action="/admin/login/action">
-			<input type="hidden" id="admin" name="admin" value="true" />
+		<h3 th:text="${#messages.msg('user.login.welcome')}">welcome</h3>
+		<form class="m-t" role="form" method="post" action="/flex/auth/login/action">
+			<input type="hidden" id="admin" name="admin" value="false" />
 			<div class="form-group">
 				<input type="text" name="username" class="form-control" placeholder="아이디"
 					   required=""
@@ -41,7 +41,7 @@
 <script src="/static/admin/template/js/popper.min.js"></script>
 <script src="/static/admin/template/js/bootstrap.js"></script>
 <script src="/static/admin/js/vue.min.js"></script>
-<script src="/static/admin/js/auth/login.js"></script>
+<script src="/static/user/js/auth/login.js"></script>
 
 </body>
 

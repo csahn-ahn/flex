@@ -19,9 +19,9 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(name = "사용자 상세조회 API", value = "/users/{userId}")
-    public ResponseEntity<UserEntity> userDetail(@PathVariable int userId) {
-        Optional<UserEntity> userEntityOptional = this.userService.findById(userId);
+    @GetMapping(name = "사용자 상세조회 API", value = "/users/{username}")
+    public ResponseEntity<UserEntity> userDetail(@PathVariable String username) {
+        Optional<UserEntity> userEntityOptional = this.userService.findById(username);
         UserEntity userEntity = userEntityOptional.isPresent() ? userEntityOptional.get() : UserEntity.builder().build();
         return ResponseEntity.ok(userEntity);
     }

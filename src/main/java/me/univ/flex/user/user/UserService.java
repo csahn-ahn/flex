@@ -13,19 +13,19 @@ public class UserService {
 
     @Autowired private UserRepository userRepository;
 
-    public Optional<UserEntity> findById(int userId) {
-        return this.userRepository.findById(userId);
+    public Optional<UserEntity> findById(String username) {
+        return this.userRepository.findById(username);
     }
 
     public UserEntity save(UserEntity userEntity) {
         return this.userRepository.save(userEntity);
     }
 
-    public boolean delete(int userId) {
-        if(!this.userRepository.existsById(userId))
+    public boolean delete(String username) {
+        if(!this.userRepository.existsById(username))
             return false;
 
-        this.userRepository.deleteById(userId);
+        this.userRepository.deleteById(username);
         return true;
     }
 }
