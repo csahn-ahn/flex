@@ -7,20 +7,6 @@
 <body layout:fragment="content">
 <div id="app">
 	메인페이지입니다
-	<br /><br />
-	<div v-if="user != null && user != ''">
-		<strong>[회원정보]</strong>
-		ID : <span v-text="user.username"></span><br/>
-		이름 : <span v-text="user.name"></span>
-	</div>
-
-	<br /><br />
-	<div>
-		<a v-if="user == null || user == ''" href="/user/auth/login">로그인 하러 가기</a>
-		<a v-else @click="fnLogout()">로그아웃</a>
-
-	</div>
 </div>
-<script src="/static/user/js/main.js"></script>
 </body>
 </html>

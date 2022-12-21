@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:fragment="gnbFragment">
+    GNB 영역
+    <div id="gnbZone">
+      <div th:if="${user != null && user != ''}">
+        <span th:text="${user.name}"></span>님 환영합니다.
+      </div>
+      <button th:if="${user == null || user == ''}" onClick="_common.fnLogin()">로그인</button>
+      <button th:unless="${user == null || user == ''}" onClick="_common.fnLogout()">로그아웃</button>
+    </div>
+  </th:block>
+</html>

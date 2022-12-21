@@ -23,7 +23,14 @@ var app = new Vue({
 			.then(function(response) {
 				if(response.data.success) {
 					if(response.data.data == null) {
-						document.location.href = '/';
+						var returnUrl = sessionStorage.getItem('returnUrl');
+						if(returnUrl != null && returnUrl != '') {
+							sessionStorage.setItem('returnUrl', null);
+							document.location.href = returnUrl;
+						}else{
+							document.location.href = '/';
+						}
+
 					}else{
 						if(response.data.data.isTempPassword == true) {
 							alert('비밀번호 변경필요. (임시 비밀번호)');
