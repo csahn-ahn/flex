@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.admin.adminGroupMenu.AdminGroupMenuService;
@@ -59,6 +60,8 @@ public class AdminInterceptor implements HandlerInterceptor {
 					auth.getAuthority().equals(BaseConstants.ROLE_USER)
 				).collect(Collectors.toList()).size() > 0){
 				SecurityContextHolder.clearContext();
+				request.getSession().invalidate();
+
 				response.sendRedirect("/admin");
 				return false;
 			}

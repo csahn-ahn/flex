@@ -8,6 +8,8 @@
       </div>
       <button th:if="${user == null || user == ''}" onClick="_common.fnLogin()">로그인</button>
       <button th:unless="${user == null || user == ''}" onClick="_common.fnLogout()">로그아웃</button>
+
+      <button type="button" class="btn btn-primary block full-width m-b" onClick="_common.fnAdmin()">관리자 가기</button>
     </div>
   </th:block>
 </html>

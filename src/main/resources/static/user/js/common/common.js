@@ -18,7 +18,6 @@ var _common = new Vue({
 	},
 
 	fnLogout() {
-		console.log('logout')
 		let me = this;
 		let currUrl = document.location.href;
 
@@ -34,6 +33,12 @@ var _common = new Vue({
 		.catch(function(error) {
 			//modalView.openAlert(error);
 		})
+	},
+
+	// 관리자 이동.
+	fnAdmin() {
+		let me = this;
+		document.location.href = '/admin';
 	}
 
   }
