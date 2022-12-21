@@ -6,7 +6,10 @@ import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.admin.manager.ManagerRepository;
+import me.univ.flex.common.utils.TimestampUtil;
 import me.univ.flex.entity.manager.ManagerEntity;
+import me.univ.flex.entity.user.UserEntity;
+import me.univ.flex.entity.user.UserRepository;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ public class BootStrapService {
 	private final MessageSourceAccessor messageSourceAccessor;
 
 	private final ManagerRepository managerRepository;
+	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	/**
@@ -27,9 +31,8 @@ public class BootStrapService {
 	 */
 	@PostConstruct
 	public void init() {
-		if (!isExistAdminUser()) {
-			initSuperAdminUser();
-		}
+		initSuperAdminUser();
+		initUser();
 	}
 
 	public boolean isExistAdminUser() {
@@ -82,6 +85,31 @@ public class BootStrapService {
 			.build();
 
 		managerRepository.save(manager2Entity);
+	}
+
+	public void initUser() {
+
+		String username = messageSourceAccessor.getMessage("user.username");
+		String ppassword = messageSourceAccessor.getMessage("user.password");
+		String name = messageSourceAccessor.getMessage("user.name");
+		String email = messageSourceAccessor.getMessage("user.email");
+		String hp = messageSourceAccessor.getMessage("user.hp");
+
+		log.info("USER CREATED: [id: {}, pass: {}]", username, ppassword);
+
+		UserEntity userEntity = UserEntity.builder()
+			.username((username))
+			.password(passwordEncoder.encode(ppassword))
+			.name(name)
+			.hp(hp)
+			.email(email)
+			.gender(true)
+			.foreigner(false)
+			.del(false)
+			.registerTime(TimestampUtil.now())
+			.build();
+
+		userRepository.save(userEntity);
 	}
 
 	@Transactional

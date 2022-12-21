@@ -25,8 +25,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.excludePathPatterns("/static/**");
 
 		registry.addInterceptor(new UserInterceptor())
-			.addPathPatterns(BaseConstants.USER_PREFIX)
-			.excludePathPatterns(BaseConstants.ADMIN_PREFIX + "/**")
+			.addPathPatterns(BaseConstants.USER_PREFIX + "/**")
+			.excludePathPatterns(BaseConstants.USER_API_PREFIX + "/**")
 			.excludePathPatterns("/static/**");
 	}
 }

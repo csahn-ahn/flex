@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class UserAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 
         String msg = "Invalid username or password";
@@ -32,7 +32,7 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
             msg = "BadCredentialsException account";
         }
 
-        setDefaultFailureUrl(BaseConstants.ADMIN_PREFIX + "/login?error=true&exception=" + msg);
+        setDefaultFailureUrl(BaseConstants.USER_PREFIX + "/auth/login?error=true&exception=" + msg);
         super.onAuthenticationFailure(request, response, exception);
     }
 
