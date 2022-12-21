@@ -9,6 +9,8 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
+import me.univ.flex.entity.manager.ManagerEntity;
+import me.univ.flex.entity.user.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +22,6 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String username;
-	@JsonIgnore
 	private String password;
 	private String name;
 	private String hp;
@@ -29,12 +30,11 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 	private boolean active;
 	private boolean tempPassword;
 	private Timestamp lastUpdatePasswordTime;
+	private final Collection<? extends GrantedAuthority> authorities;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> collectors = new ArrayList<>();
-		collectors.add(new SimpleGrantedAuthority("ADMIN"));
-		return collectors;
+		return authorities;
 	}
 
 	@Override

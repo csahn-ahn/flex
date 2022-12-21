@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import me.univ.flex.common.constants.BaseConstants;
-import me.univ.flex.common.handler.AuthFailureHandler;
-import me.univ.flex.common.handler.AuthSuccessHandler;
+import me.univ.flex.common.handler.AdminAuthFailureHandler;
+import me.univ.flex.common.handler.AdminAuthSuccessHandler;
+import me.univ.flex.common.handler.UserAuthFailureHandler;
+import me.univ.flex.common.handler.UserAuthSuccessHandler;
 import me.univ.flex.common.properties.FlexProperties;
 import me.univ.flex.common.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,9 +33,22 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final UserDetailsServiceImpl userDetailsService;
-	private final AuthSuccessHandler authSuccessHandler;
-	private final AuthFailureHandler authFailureHandler;
+	private final AdminAuthSuccessHandler authSuccessHandler;
+	private final AdminAuthFailureHandler authFailureHandler;
 	private final FlexProperties flexProperties;
+
+	public static final String[] EXCLUDE_PATTERN = {
+		"/h2-console/**",
+
+		//BaseConstants.USER_PREFIX + "/main",
+		BaseConstants.USER_PREFIX + "/auth/login",
+		//BaseConstants.USER_API_PREFIX + "/**",
+
+		BaseConstants.ADMIN_PREFIX + "/login",
+		BaseConstants.ADMIN_PREFIX + "/otp",
+		BaseConstants.ADMIN_PREFIX + "/auth/**",
+		BaseConstants.ADMIN_API_PREFIX + "/auth/**"
+	};
 
 	@Bean
 	public PasswordEncoder encryptPassword() {
@@ -59,44 +75,87 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		);
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception { // 5
-		http
-			.authorizeRequests()
-			.antMatchers(
-				BaseConstants.ADMIN_PREFIX + "/login",
-				BaseConstants.ADMIN_PREFIX + "/otp",
-				BaseConstants.ADMIN_PREFIX + "/auth/**",
-				BaseConstants.ADMIN_API_PREFIX + "/auth/**",
-				"/h2-console/**"
-			)
-			.permitAll()
-			.antMatchers(BaseConstants.ADMIN_PREFIX + "/**")
-			.authenticated()
-			//.hasRole("ADMIN")
-			.anyRequest()
-			.permitAll()
+	@Order(1)
+	@RequiredArgsConstructor
+	@Configuration
+	public static class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
+
+		private final AdminAuthSuccessHandler adminAuthSuccessHandler;
+		private final AdminAuthFailureHandler adminAuthFailureHandler;
+
+		@Override
+		public void configure(WebSecurity web) {
+			web.ignoring().antMatchers(EXCLUDE_PATTERN);  // 제외 패턴
+		}
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+
+			http
+				.authorizeRequests()
+				.antMatchers(EXCLUDE_PATTERN)
+				.permitAll()
+				.antMatchers(BaseConstants.ADMIN_PREFIX + "/**")
+				.authenticated()
+				.and()
+					.formLogin()
+						.loginPage(BaseConstants.ADMIN_PREFIX + "/login")
+						.loginProcessingUrl(BaseConstants.ADMIN_PREFIX + "/login/action")
+						.successHandler(adminAuthSuccessHandler)
+						.failureHandler(adminAuthFailureHandler)
+						//.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/main")
+						.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/otp")
+
+				.and()
+					.logout()
+						.logoutRequestMatcher(new AntPathRequestMatcher(BaseConstants.ADMIN_PREFIX + "/logout"))
+						.logoutSuccessUrl(BaseConstants.ADMIN_PREFIX + "/login")
+						.invalidateHttpSession(true)
+						.deleteCookies("JSESSIONID", "remember-me")
+				.and()
+					.csrf()
+						.ignoringAntMatchers(
+							"/h2-console/**"
+						).disable()
+			;
+		}
+	}
+
+
+	@Order(2)
+	@RequiredArgsConstructor
+	@Configuration
+	public static class UserSecurityConfig extends WebSecurityConfigurerAdapter {
+		private final UserDetailsServiceImpl userDetailsService;
+		private final UserAuthSuccessHandler userAuthSuccessHandler;
+		private final UserAuthFailureHandler userAuthFailureHandler;
+
+		@Override
+		public void configure(WebSecurity web) {
+			web.ignoring().antMatchers(EXCLUDE_PATTERN);  // 제외 패턴
+		}
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception { // 5
+			http
+				.authorizeRequests()
+				.antMatchers(EXCLUDE_PATTERN).permitAll()
+				.antMatchers(BaseConstants.USER_PREFIX + "/**").authenticated()
+
+			// 인증 필요시 로그인 페이지와 로그인 성공시 리다이랙팅 경로 지정
+			.and()
+				.formLogin()
+				.loginPage(BaseConstants.USER_PREFIX + "/auth/login")
+				.defaultSuccessUrl("/", false)
+				.loginProcessingUrl(BaseConstants.USER_PREFIX + "/loginProcess")
+				.defaultSuccessUrl(BaseConstants.USER_PREFIX + "/main", true)
 
 			.and()
-			.formLogin()
-			.loginPage(BaseConstants.ADMIN_PREFIX + "/login")
-			.loginProcessingUrl(BaseConstants.ADMIN_PREFIX + "/login/action")
-			.successHandler(authSuccessHandler)
-			.failureHandler(authFailureHandler)
-			//.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/main")
-			.defaultSuccessUrl(BaseConstants.ADMIN_PREFIX + "/otp")
+				.logout()
+				.logoutUrl(BaseConstants.USER_PREFIX + "/logout")
+				.logoutSuccessUrl("/");
 
-			.and()
-			.logout()
-			.logoutRequestMatcher(new AntPathRequestMatcher(BaseConstants.ADMIN_PREFIX + "/logout"))
-			.logoutSuccessUrl(BaseConstants.ADMIN_PREFIX + "/login")
-			.invalidateHttpSession(true)
-			.deleteCookies("JSESSIONID", "remember-me")
-			.and()
-			.csrf()
-			.ignoringAntMatchers(
-				"/h2-console/**"
-			).disable()
-		;
+			http.userDetailsService(userDetailsService);
+		}
 	}
 }

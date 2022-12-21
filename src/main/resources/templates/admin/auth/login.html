@@ -19,7 +19,7 @@
 		</div>
 		<h3 th:text="${#messages.msg('admin.login.welcome')}">welcome</h3>
 		<form class="m-t" role="form" method="post" action="/admin/login/action">
-			<input type="hidden" id="admin" name="admin" value="true" />
+			<input type="hidden" id="grant" name="grant" value="admin" />
 			<div class="form-group">
 				<input type="text" name="username" class="form-control" placeholder="아이디"
 					   required=""

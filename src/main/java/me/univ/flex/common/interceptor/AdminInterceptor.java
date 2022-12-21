@@ -1,5 +1,6 @@
 package me.univ.flex.common.interceptor;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +33,14 @@ public class AdminInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String requestURI = request.getRequestURI();
 		// 관리자 시스템 접근일 경우.
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		if(authentication == null){
+			return true;
+		}
+
+		Object principal = authentication.getPrincipal();
 		if(principal == null) {
 			return true;
 		}
@@ -41,8 +51,17 @@ public class AdminInterceptor implements HandlerInterceptor {
 
 		if(principal instanceof UserDetailsImpl) {
 			UserDetailsImpl userDetails = (UserDetailsImpl) principal;
-
 			log.debug("admin : " , userDetails);
+
+			Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+			if(
+				authorities.stream().filter(auth ->
+					auth.getAuthority().equals(BaseConstants.ROLE_USER)
+				).collect(Collectors.toList()).size() > 0){
+				SecurityContextHolder.clearContext();
+				response.sendRedirect("/admin");
+				return false;
+			}
 			request.setAttribute("admin", userDetails);
 
 			// 해당 페이지에 접근권한(isRead)이 있는지 확인
