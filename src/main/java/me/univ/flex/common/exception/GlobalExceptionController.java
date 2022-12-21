@@ -11,11 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Slf4j
@@ -28,6 +25,24 @@ public class GlobalExceptionController implements ErrorController {
 	private final String ERROR_500_PAGE_PATH = "error/500";
 	private final String ERROR_ETC_PAGE_PATH = "error/error";
 
+	@ExceptionHandler({RuntimeException.class})
+	public ResponseEntity<Object> BadRequestException(final RuntimeException ex) {
+		ex.printStackTrace();
+		return ResponseEntity.badRequest().build();
+	}
+
+	@ExceptionHandler({AccessDeniedException.class})
+	public ResponseEntity handleAccessDeniedException(final AccessDeniedException ex) {
+		ex.printStackTrace();
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
+
+	@ExceptionHandler({Exception.class})
+	public ResponseEntity<Object> handleAll(final Exception ex) {
+		ex.printStackTrace();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	}
+
 	@ExceptionHandler({Exception.class})
 	@RequestMapping(name = "에러", value = "/error")
 	public String handlerError(HttpServletRequest request, Model model) {
@@ -39,6 +54,8 @@ public class GlobalExceptionController implements ErrorController {
 		}
 		// 에러 코드에 대한 상태 정보
 		HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
+
+		log.info(request.getRequestURI());
 
 		log.info("에러 코드에 대한 상태 정보 :" + httpStatus);
 		String contentType = request.getContentType();
