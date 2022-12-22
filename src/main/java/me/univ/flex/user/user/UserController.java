@@ -48,4 +48,9 @@ public class UserController {
     public ResponseEntity<UserEntity.Response> logout(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(userService.logout());
     }
+
+    @PostMapping(name = "사용자 회원가입", value = "/join")
+    public ResponseEntity<UserEntity.Response> join(@RequestBody UserEntity.JoinRequest request) {
+        return ResponseEntity.ok(userService.join(request));
+    }
 }

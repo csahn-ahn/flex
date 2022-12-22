@@ -146,4 +146,50 @@ public class UserService {
             .success(true)
             .build();
     }
+
+    public UserEntity.Response join(UserEntity.JoinRequest request) {
+        Optional<UserEntity> optionUser = userRepository.findById(request.getUsername());
+        if(optionUser.isPresent()) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("중복된 아이디입니다.")
+                .build();
+        }
+
+        UserEntity userEntity = UserEntity.builder()
+            .username(request.getUsername())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .name(request.getName())
+            .hp(request.getHp())
+            .email(request.getEmail())
+            .gender(request.isGender())
+            .foreigner(request.isForeigner())
+            .snsType(request.getSnsType())
+            .snsUid(request.getSnsUid())
+            .del(false)
+            .registerId(request.getUsername())
+            .registerTime(TimestampUtil.now())
+            .lastUpdateId(request.getUsername())
+            .lastUpdateTime(TimestampUtil.now())
+            .lastUpdatePasswordTime(TimestampUtil.now())
+            .build();
+
+        userEntity = userRepository.save(userEntity);
+
+        UserEntity.LoginRequest loginRequest = UserEntity.LoginRequest.builder()
+            .grant("user")
+            .username(userEntity.getUsername())
+            .password(userEntity.getPassword())
+            .build();
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userEntity.getUsername());
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
+
+        userEntity.setLastLoginTime(TimestampUtil.now());
+        userRepository.save(userEntity);
+
+        return UserEntity.Response.builder()
+            .success(true)
+            .build();
+    }
 }

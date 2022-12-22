@@ -79,6 +79,7 @@ public class UserEntity {
     }
 
     @Data
+    @Builder
     public static class LoginRequest {
         private String grant;
         private String username;
@@ -98,5 +99,20 @@ public class UserEntity {
         private boolean success;
         private String message;
         private Object data;
+    }
+
+    @Data
+    @Builder
+    public static class JoinRequest {
+        private String username;
+        private String password;
+        private String name;
+        private String hp;
+        private String email;
+        private String birth;
+        private boolean gender;
+        private boolean foreigner;
+        private String snsType;
+        private String snsUid;
     }
 }

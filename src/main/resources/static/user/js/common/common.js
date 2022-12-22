@@ -35,6 +35,10 @@ var _common = new Vue({
 		})
 	},
 
+	fnJoin() {
+		document.location.href = '/user/auth/join';
+	},
+
 	// 관리자 이동.
 	fnAdmin() {
 		let me = this;
