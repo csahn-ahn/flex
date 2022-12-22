@@ -10,9 +10,9 @@ var _common = new Vue({
   computed: {
   },
   methods: {
-	fnLogin() {
+	fnLogin(url) {
 		let me = this;
-		let returnUrl = document.location.href;
+		let returnUrl = url == null ? document.location.href : url;
 		sessionStorage.setItem('returnUrl', returnUrl);
 		document.location.href = '/user/auth/login';
 	},

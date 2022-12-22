@@ -240,6 +240,8 @@ public class UserService {
         userEntity.setName(request.getName());
         userEntity.setHp(request.getHp());
         userEntity.setEmail(request.getEmail());
+        userEntity.setLastUpdateId(userDetails.getUsername());
+        userEntity.setLastUpdateTime(TimestampUtil.now());
         userEntity = userRepository.save(userEntity);
 
         // 로그아웃 처리.
