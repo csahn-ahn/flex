@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout_empty}" xmlns:th="http://thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin | Login</title>
+	<link href="/static/admin/template/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/admin/template/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="/static/admin/template/css/animate.css" rel="stylesheet">
+	<link href="/static/admin/template/css/style.css" rel="stylesheet">
+</head>
+
+<body layout:fragment="content" class="gray-bg">
+<div class="middle-box text-center loginscreen animated fadeInDown" id="app">
+	<div>
+		<div>
+			<h1 class="logo-name">Update</h1>
+		</div>
+		<form class="m-t" role="form">
+			<input type="text" name="name" class="form-control" placeholder="이름" required="" v-model="user.name">
+			<input type="text" name="name" class="form-control" placeholder="휴대폰" required="" v-model="user.hp">
+			<input type="text" name="name" class="form-control" placeholder="이메일" required="" v-model="user.email">
+			<button type="submit" class="btn btn-primary block full-width m-b">변경</button>
+			<button type="button" class="btn btn-default block full-width m-b" @click="fnCancel()">취소</button>
+		</form>
+	</div>
+</div>
+<script src="/static/user/js/mypage/updateUser.js"></script>
+
+</body>
+
+</html>
+

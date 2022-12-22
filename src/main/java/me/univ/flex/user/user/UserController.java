@@ -53,4 +53,14 @@ public class UserController {
     public ResponseEntity<UserEntity.Response> join(@RequestBody UserEntity.JoinRequest request) {
         return ResponseEntity.ok(userService.join(request));
     }
+
+    @PostMapping(name = "사용자 회원탈퇴", value = "/leave")
+    public ResponseEntity<UserEntity.Response> leave(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(userService.leave(userDetails));
+    }
+
+    @PostMapping(name = "사용자 정보변경", value = "/updateUser")
+    public ResponseEntity<UserEntity.Response> updateUser(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody UserEntity.UpdateRequest request) {
+        return ResponseEntity.ok(userService.updateUser(userDetails, request));
+    }
 }

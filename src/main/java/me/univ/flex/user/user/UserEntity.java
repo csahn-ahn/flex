@@ -115,4 +115,12 @@ public class UserEntity {
         private String snsType;
         private String snsUid;
     }
+
+    @Data
+    @Builder
+    public static class UpdateRequest {
+        private String name;
+        private String hp;
+        private String email;
+    }
 }

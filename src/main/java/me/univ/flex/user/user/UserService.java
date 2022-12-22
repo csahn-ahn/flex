@@ -192,4 +192,74 @@ public class UserService {
             .success(true)
             .build();
     }
+
+    public UserEntity.Response leave(UserDetailsImpl userDetails) {
+        Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
+        if(!optionUser.isPresent()) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("잘못된 계정입니다.")
+                .build();
+        }
+
+        UserEntity userEntity = optionUser.get();
+        userEntity.setPassword(null);
+        userEntity.setName(null);
+        userEntity.setHp(null);
+        userEntity.setEmail(null);
+        userEntity.setBirth(null);
+        userEntity.setGender(false);
+        userEntity.setForeigner(false);
+        userEntity.setSnsType(null);
+        userEntity.setSnsUid(null);
+        userEntity.setTempPassword(null);
+        userEntity.setDel(true);
+        userEntity.setDeleteId(userDetails.getUsername());
+        userEntity.setDeleteTime(TimestampUtil.now());
+
+        userRepository.save(userEntity);
+
+        logout();
+
+        return UserEntity.Response.builder()
+            .success(true)
+            .build();
+    }
+
+
+    public UserEntity.Response updateUser(UserDetailsImpl userDetails, UserEntity.UpdateRequest request) {
+        Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
+        if(!optionUser.isPresent()) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("잘못된 계정입니다.")
+                .build();
+        }
+
+        UserEntity userEntity = optionUser.get();
+        userEntity.setName(request.getName());
+        userEntity.setHp(request.getHp());
+        userEntity.setEmail(request.getEmail());
+        userEntity = userRepository.save(userEntity);
+
+        // 로그아웃 처리.
+        //logout();
+
+        UserEntity.LoginRequest loginRequest = UserEntity.LoginRequest.builder()
+            .grant("user")
+            .username(userEntity.getUsername())
+            .password(userEntity.getPassword())
+            .build();
+
+        // 로그인 처리.
+        UserDetails newUserDetails = userDetailsService.loadUserByUsername(userEntity.getUsername());
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(newUserDetails, null, userDetails.getAuthorities()));
+
+        userEntity.setLastLoginTime(TimestampUtil.now());
+        userRepository.save(userEntity);
+
+        return UserEntity.Response.builder()
+            .success(true)
+            .build();
+    }
 }

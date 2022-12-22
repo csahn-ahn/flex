@@ -39,6 +39,10 @@ var _common = new Vue({
 		document.location.href = '/user/auth/join';
 	},
 
+	fnUpdateUser() {
+		document.location.href = '/user/mypage/updateUser';
+	},
+
 	// 관리자 이동.
 	fnAdmin() {
 		let me = this;

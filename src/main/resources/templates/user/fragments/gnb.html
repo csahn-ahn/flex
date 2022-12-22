@@ -4,6 +4,7 @@
     <div id="gnbZone">
       <div th:if="${user != null && user != ''}">
         <span th:text="${user.name}"></span>님 환영합니다.
+        <button onClick="_common.fnUpdateUser()">정보변경</button>
         <button onClick="_common.fnLogout()">로그아웃</button>
       </div>
       <div th:unless="${user != null && user != ''}">
