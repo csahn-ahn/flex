@@ -31,7 +31,7 @@ public class AdminLogLoginEntity {
     private String adminId;
     private String ip;
 
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
     private Timestamp loginTime;
 
     @Transient

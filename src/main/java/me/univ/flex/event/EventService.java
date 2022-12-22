@@ -3,6 +3,7 @@ package me.univ.flex.event;
 import groovy.transform.Synchronized;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.Transient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.security.UserDetailsImpl;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 
 @Slf4j
@@ -147,6 +149,36 @@ public class EventService {
         eventApplyRepository.save(eventApplyEntity);
 
         return EventEntity.Response.builder()
+            .success(true)
+            .build();
+    }
+
+    public Page<EventApplyEntity> findApplyAll(UserDetailsImpl admin, EventApplyEntity.PageRequest request) {
+        PageRequest pageRequest = PageRequest.of(
+            request.getPage() -1,
+            request.getPageSize(),
+            Sort.by(Sort.Direction.DESC, "applyTime")
+        );
+
+        Page<EventApplyEntity> page = eventApplyRepository.findCustomAll(pageRequest, request);
+        return page;
+    }
+
+    @Transactional
+    public EventApplyEntity.Response deleteApply(UserDetailsImpl admin, int eventId, int applyId) {
+        Optional<EventApplyEntity> optionalEventApply = eventApplyRepository.findById(applyId);
+
+        if(!optionalEventApply.isPresent()){
+            return EventApplyEntity.Response.builder()
+                .success(false)
+                .message("삭제할 대상이 존재하지 않습니다.")
+                .build();
+        }
+
+        EventApplyEntity entity = optionalEventApply.get();
+        eventApplyRepository.delete(entity);
+
+        return EventApplyEntity.Response.builder()
             .success(true)
             .build();
     }

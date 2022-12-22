@@ -29,9 +29,9 @@ public class ContentItemEntity {
     private int itemId;
     @Column(nullable = false)
     private String contentId;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss", timezone = "Asia/Seoul")
     private Timestamp serviceStartTime;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss", timezone = "Asia/Seoul")
     private Timestamp serviceEndTime;
     private String title;
     private String body;
@@ -39,11 +39,11 @@ public class ContentItemEntity {
     private boolean preview;
     @Column(nullable = false)
     private boolean del;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
     private Timestamp registerTime;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
     private Timestamp lastUpdateTime;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
     private Timestamp deleteTime;
     private String registerId;
     private String lastUpdateId;

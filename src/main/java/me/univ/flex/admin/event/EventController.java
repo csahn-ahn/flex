@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
+import me.univ.flex.event.EventApplyEntity;
 import me.univ.flex.event.EventEntity;
 import me.univ.flex.event.EventService;
 import org.springframework.data.domain.Page;
@@ -43,5 +44,15 @@ public class EventController {
     @DeleteMapping(name = "이벤트 삭제", value = "/{eventId}")
     public ResponseEntity<EventEntity.Response> delete(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable int eventId){
         return ResponseEntity.ok(eventService.delete(admin, eventId));
+    }
+
+    @GetMapping(name = "이벤트 신청목록 조회", value = "/{eventId}/apply")
+    public ResponseEntity<Page<EventApplyEntity>> findAllApply(@AuthenticationPrincipal UserDetailsImpl admin, EventApplyEntity.PageRequest request){
+        return ResponseEntity.ok(eventService.findApplyAll(admin, request));
+    }
+
+    @DeleteMapping(name = "이벤트 신청취소", value = "/{eventId}/{applyId}")
+    public ResponseEntity<EventApplyEntity.Response> delete(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable int eventId, @PathVariable int applyId) {
+        return ResponseEntity.ok(eventService.deleteApply(admin, eventId, applyId));
     }
 }

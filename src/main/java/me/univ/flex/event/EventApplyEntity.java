@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.common.utils.MaskingUtils;
 
 @Slf4j
 @Entity
@@ -31,20 +32,38 @@ public class EventApplyEntity {
     private int eventId;
     @Column(nullable = false)
     private String username;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
     private Timestamp applyTime;
     private String etc1;
     private String etc2;
     private String etc3;
+
+    @Transient
+    private String name;
+    @Transient
+    private String email;
+    @Transient
+    private String hp;
+
+    public String getMaskedUsername() {
+        return MaskingUtils.getMaskedId(this.username);
+    }
+    public String getMaskedName() {
+        return MaskingUtils.getMaskedName(this.name);
+    }
+    public String getMaskedEmail() {
+        return MaskingUtils.getMaskedEmail(this.email);
+    }
+    public String getMaskedHp() {
+        return MaskingUtils.getMaskedPhone(this.hp);
+    }
 
     @Data
     @Builder
     public static class PageRequest {
         private int page;
         private int pageSize;
-        private int eventId;
-        private int applyId;
-        private String userId;
+        private String username;
         private String name;
     }
 
