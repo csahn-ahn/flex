@@ -87,7 +87,7 @@ var app = new Vue({
 							modalView.openAlert(
 								'삭제 되었습니다.'
 								,function() {
-									document.location.href = '/admin/evemt/events/main';
+									document.location.href = '/admin/event/events/main';
 								}
 							);
 						} else {
