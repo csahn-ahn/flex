@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="me.univ.flex.admin.stats.UserStatsMapper">
-	<select id="findAll" resultType="me.univ.flex.entity.stats.UserStatsEntity">
+	<select id="findAll" resultType="me.univ.flex.admin.stats.UserStatsEntity">
 		SELECT year_month as yearMonth
 			, inactive_count as inactiveCount
 			, leave_count as leaveCount

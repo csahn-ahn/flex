@@ -3,7 +3,7 @@ package me.univ.flex.admin.log.access;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.utils.TimestampUtil;
-import me.univ.flex.entity.logs.AdminLogAccessEntity;
+import me.univ.flex.admin.log.AdminLogAccessEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

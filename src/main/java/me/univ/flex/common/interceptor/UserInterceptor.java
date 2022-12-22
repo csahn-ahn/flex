@@ -1,7 +1,6 @@
 package me.univ.flex.common.interceptor;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
+import me.univ.flex.content.ContentItemEntity;
+import me.univ.flex.content.ContentService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
@@ -22,11 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Configuration
 public class UserInterceptor implements HandlerInterceptor {
 
+	private final ContentService contentService;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		log.debug("UserInterceptor - preHandle");
 
 		String requestURI = request.getRequestURI();
+		setPageContent(request);
 		// 관리자 시스템 접근일 경우.
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -61,6 +65,13 @@ public class UserInterceptor implements HandlerInterceptor {
 		}
 
 		return true;
+	}
+
+	private void setPageContent(HttpServletRequest request) {
+		String url = request.getRequestURI();
+		boolean preview = request.getParameter("preview") != null ? true : false;
+		ContentItemEntity contentItem = contentService.findByUrl(2, url, preview);
+		request.setAttribute("contentItem", contentItem);
 	}
 
 	@Override

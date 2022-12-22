@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.security.UserDetailsImpl;
-import me.univ.flex.entity.adminMenu.AdminMenuEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j

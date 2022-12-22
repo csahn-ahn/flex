@@ -6,11 +6,13 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.admin.manager.ManagerEntity;
+import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.common.utils.TimestampUtil;
-import me.univ.flex.entity.user.UserEntity;
-import me.univ.flex.entity.user.UserRepository;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +30,25 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
+
+    public Page<UserEntity> findAll(UserEntity.PageRequest request) {
+        PageRequest pageRequest = PageRequest.of(
+            request.getPage() -1,
+            request.getPageSize(),
+            Sort.by(Sort.Direction.DESC, "registerTime")
+        );
+
+        Page<UserEntity> page = userRepository.findCustomAll(pageRequest, request);
+        return page;
+    }
+
+    public UserEntity detail(UserDetailsImpl admin, String username) {
+        Optional<UserEntity> optionalUser = userRepository.findById(username);
+        if(optionalUser.isPresent()) {
+            return optionalUser.get();
+        }
+        return UserEntity.builder().build();
+    }
 
     public Optional<UserEntity> findById(String username) {
         return this.userRepository.findById(username);
@@ -88,6 +109,7 @@ public class UserService {
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
 
         user.setLastLoginTime(TimestampUtil.now());
+        userRepository.save(user);
 
         return UserEntity.Response.builder()
             .success(true)

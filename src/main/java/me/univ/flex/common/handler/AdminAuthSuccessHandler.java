@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import me.univ.flex.admin.manager.ManagerRepository;
 import me.univ.flex.common.constants.BaseConstants;
-import me.univ.flex.entity.manager.ManagerEntity;
+import me.univ.flex.admin.manager.ManagerEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;

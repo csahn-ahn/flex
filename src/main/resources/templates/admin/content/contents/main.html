@@ -52,7 +52,9 @@
 								<tr>
 									<th>No.</th>
 									<th>콘텐츠Id</th>
+									<th>콘텐츠유형</th>
 									<th>콘텐츠명</th>
+									<th>URL</th>
 									<th>등록자</th>
 									<th>등록일시</th>
 									<th>관리</th>
@@ -68,8 +70,10 @@
 									<template v-for="(obj, idx) in list">
 										<tr class="gradeX">
 											<td>{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</td>
-											<td><a :href="'/admin/content/contents/view?contentId=' + obj.contentId">{{obj.contentId}}</td>
+											<td><a :href="'/admin/content/contents/view?contentId=' + obj.contentId">{{obj.contentId}}</a></td>
+											<td>{{obj.contentType == 1 ? '아이디 기반' : 'URL 기반'}}</td>
 											<td>{{obj.title}}</td>
+											<td>{{obj.url}}</td>
 											<td>{{obj.maskedRegisterName}}</td>
 											<td>{{obj.registerTime}}</td>
 											<td class="center">

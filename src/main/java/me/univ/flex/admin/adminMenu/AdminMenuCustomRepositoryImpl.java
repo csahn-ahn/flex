@@ -2,7 +2,6 @@ package me.univ.flex.admin.adminMenu;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import me.univ.flex.entity.adminMenu.QAdminMenuEntity;
 
 @RequiredArgsConstructor
 class AdminMenuCustomRepositoryImpl implements AdminMenuCustomRepository {

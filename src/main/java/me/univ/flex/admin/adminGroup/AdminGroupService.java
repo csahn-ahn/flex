@@ -7,12 +7,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.univ.flex.admin.adminGroupMenu.AdminGroupMenuRepository;
 import me.univ.flex.admin.manager.ManagerService;
 import me.univ.flex.common.security.UserDetailsImpl;
-import me.univ.flex.entity.adminGroup.AdminGroupEntity;
-import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
-import me.univ.flex.entity.adminMenu.AdminMenuEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j

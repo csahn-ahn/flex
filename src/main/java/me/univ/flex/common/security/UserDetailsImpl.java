@@ -1,18 +1,11 @@
 package me.univ.flex.common.security;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
-import me.univ.flex.entity.manager.ManagerEntity;
-import me.univ.flex.entity.user.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Data

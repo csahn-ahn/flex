@@ -1,6 +1,5 @@
 package me.univ.flex.admin.manager;
 
-import me.univ.flex.entity.manager.ManagerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

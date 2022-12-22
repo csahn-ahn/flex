@@ -4,9 +4,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import me.univ.flex.entity.adminGroupMenu.AdminGroupMenuEntity;
-import me.univ.flex.entity.adminGroupMenu.QAdminGroupMenuEntity;
-import me.univ.flex.entity.adminMenu.QAdminMenuEntity;
+import me.univ.flex.admin.adminMenu.QAdminMenuEntity;
 
 @RequiredArgsConstructor
 class AdminGroupMenuCustomRepositoryImpl implements AdminGroupMenuCustomRepository {
