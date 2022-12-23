@@ -130,4 +130,13 @@ public class UserEntity {
         private String password;
         private String newPassword;
     }
+
+    @Data
+    @Builder
+    public static class TodayStatsResponse {
+        private long totalCount;
+        private long todayNewCount;
+        private long todayLoginCount;
+        private long todayDeleteCount;
+    }
 }

@@ -1,5 +1,9 @@
 package me.univ.flex.user.user;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -321,5 +325,26 @@ public class UserService {
         return UserEntity.Response.builder()
             .success(true)
             .build();
+    }
+
+    public UserEntity.TodayStatsResponse todayStats() {
+        LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,1));
+        LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
+
+        Timestamp start = Timestamp.valueOf(startDatetime);
+        Timestamp end = Timestamp.valueOf(endDatetime);
+
+        long totalCount = userRepository.countByDel(false);
+        long todayNewCount = userRepository.countByRegisterTimeBetweenAndDel(start, end, false);
+        long todayLoginCount = userRepository.countByLastLoginTimeBetweenAndDel(start, end, false);
+        long todayDeleteCount = userRepository.countByDeleteTimeBetweenAndDel(start, end, true);
+
+        return UserEntity.TodayStatsResponse.builder()
+            .totalCount(totalCount)
+            .todayNewCount(todayNewCount)
+            .todayLoginCount(todayLoginCount)
+            .todayDeleteCount(todayDeleteCount)
+            .build();
+
     }
 }
