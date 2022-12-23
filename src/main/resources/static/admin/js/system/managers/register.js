@@ -128,7 +128,7 @@ var app = new Vue({
 						modalView.openAlert(
 							title + ' 되었습니다.'
 							,function() {
-								document.location.href = '/admin/system/managers/register?username=' + response.data.username;
+								document.location.href = '/admin/system/managers/main';
 							}
 						);
 					})

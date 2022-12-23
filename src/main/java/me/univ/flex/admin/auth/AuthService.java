@@ -10,6 +10,7 @@ import me.univ.flex.common.properties.FlexProperties;
 import me.univ.flex.common.service.email.EmailParameterKey;
 import me.univ.flex.common.service.email.MailService;
 import me.univ.flex.common.utils.FlexGenerator;
+import me.univ.flex.common.utils.FormatUtils;
 import me.univ.flex.common.utils.TimestampUtil;
 import me.univ.flex.admin.manager.ManagerEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -83,7 +84,7 @@ public class AuthService {
             // 파라미터 정보 누락.
             return AuthDTO.Response.builder()
                 .success(false)
-                .message("정보가 올바르지 않습니다.[1]")
+                .message("필수입력 정보가 누락되었습니다.")
                 .build();
         }
 
@@ -92,7 +93,7 @@ public class AuthService {
             // 아이디가 존재하지 않음.
             return AuthDTO.Response.builder()
                 .success(false)
-                .message("정보가 올바르지 않습니다.[2]")
+                .message("아이디가 일치하지 않습니다.")
                 .build();
         }
 
@@ -101,7 +102,14 @@ public class AuthService {
             // 임시 비밀번호가 일치하지 않음.
             return AuthDTO.Response.builder()
                 .success(false)
-                .message("정보가 올바르지 않습니다.[3]")
+                .message("임시 비밀번호가 일치하지 않습니다.")
+                .build();
+        }
+
+        if(!FormatUtils.validPassword(request.getPassword())) {
+            return AuthDTO.Response.builder()
+                .success(false)
+                .message("비밀번호 형식이 맞지않습니다.")
                 .build();
         }
 

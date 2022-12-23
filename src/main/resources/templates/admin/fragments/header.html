@@ -79,12 +79,11 @@
 		<script src="/static/admin/js/common.js"></script>
 
 		<script  th:inline="javascript">
-			var hasRead = '[[${menuAuthority.hasRead}]]';
-			var hasCreate = '[[${menuAuthority.hasCreate}]]';
-			var hasUpdate = '[[${menuAuthority.hasUpdate}]]';
-			var hasDelete = '[[${menuAuthority.hasDelete}]]';
-			var hasDownload = '[[${menuAuthority.hasDownload}]]';
-
+			var hasRead = '[[${menuAuthority == null} ? false : ${menuAuthority.hasRead}]]';
+			var hasCreate = '[[${menuAuthority == null} ? false : ${menuAuthority.hasCreate}]]';
+			var hasUpdate = '[[${menuAuthority == null} ? false : ${menuAuthority.hasUpdate}]]';
+			var hasDelete = '[[${menuAuthority == null} ? false : ${menuAuthority.hasDelete}]]';
+			var hasDownload = '[[${menuAuthority == null} ? false : ${menuAuthority.hasDownload}]]';
 		</script>
 	</th:block>
 </html>

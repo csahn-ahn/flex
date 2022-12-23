@@ -87,7 +87,7 @@
 											<td>{{obj.maskedEmail}}</td>
 											<td class="center">{{obj.registerTime}}</td>
 											<td class="center">{{obj.lastLoginTime}}</td>
-											<td class="center">{{obj.active == true ? '정상' : '잠김'}}</td>
+											<td class="center">{{obj.active == true ? '활성' : '비활성'}}</td>
 											<td class="center">
 												<div class="btn-group">
 													<button v-if="isUpdate()" class="btn btn-info" type="button" @click="fnUpdate(obj)">수정</button>

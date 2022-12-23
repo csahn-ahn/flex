@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.properties.FlexProperties;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.common.service.email.EmailParameterKey;
+import me.univ.flex.common.service.email.EmailTemplateEnum;
 import me.univ.flex.common.service.email.MailService;
 import me.univ.flex.common.utils.FlexGenerator;
 import me.univ.flex.common.utils.FormatUtils;
@@ -92,7 +93,7 @@ public class ManagerService {
             params.put(EmailParameterKey.USERNAME, request.getUsername());
             params.put(EmailParameterKey.PASSWORD, tempPassword);
             params.put(EmailParameterKey.BTN_LINK_URL, flexProperties.getEmailProps().getAdminUrl() + "/auth/changeTempPassword");
-            //mailService.send(request.getEmail(), EmailTemplateEnum.MANAGER_REGISTER, params, request.getName());
+            mailService.send(request.getEmail(), EmailTemplateEnum.MANAGER_REGISTER, params, request.getName());
         }
 
         return managerEntity;
