@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<UserEntity, String>, UserCustomRepository {
-	Optional<UserEntity> findBySnsTypeAndSnsUid(String snsType, String snsUid);
+	Optional<UserEntity> findByUsernameAndDel(String username, boolean del);
+	Optional<UserEntity> findBySnsTypeAndSnsUidAndDel(String snsType, String snsUid, boolean del);
 
 	long countByDel(boolean del);
-	long countByRegisterTimeBetweenAndDel(Timestamp start, Timestamp end, boolean del);
-	long countByLastLoginTimeBetweenAndDel(Timestamp start, Timestamp end, boolean del);
+	long countByRegisterTimeBetween(Timestamp start, Timestamp end);
+	long countByLastLoginTimeBetween(Timestamp start, Timestamp end);
 	long countByDeleteTimeBetweenAndDel(Timestamp start, Timestamp end, boolean del);
 }

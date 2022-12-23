@@ -56,7 +56,7 @@ public class UserService {
     }
 
     public Optional<UserEntity> findById(String username) {
-        return this.userRepository.findById(username);
+        return this.userRepository.findByUsernameAndDel(username, false);
     }
 
     public UserEntity save(UserEntity userEntity) {
@@ -73,7 +73,7 @@ public class UserService {
 
     public UserEntity.Response login(UserEntity.LoginRequest request) {
         Map<String, Object> data = new HashMap<>();
-        Optional<UserEntity> optionalUser = userRepository.findById(request.getUsername());
+        Optional<UserEntity> optionalUser = findById(request.getUsername());
 
         if(!optionalUser.isPresent()) {
             return UserEntity.Response.builder()
@@ -122,7 +122,7 @@ public class UserService {
     }
 
     public UserEntity.Response loginSns(UserEntity.LoginSnsRequest request) {
-        Optional<UserEntity> optionalUser = userRepository.findBySnsTypeAndSnsUid(request.getSnsType(), request.getSnsUid());
+        Optional<UserEntity> optionalUser = userRepository.findBySnsTypeAndSnsUidAndDel(request.getSnsType(), request.getSnsUid(), false);
         if(!optionalUser.isPresent()) {
             return UserEntity.Response.builder()
                 .success(false)
@@ -208,8 +208,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserEntity.Response leave(UserDetailsImpl userDetails) {
-        Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
+    public UserEntity.Response leave(UserDetailsImpl userDetails, UserEntity.LeaveRequest request) {
+        Optional<UserEntity> optionUser = findById(userDetails.getUsername());
         if(!optionUser.isPresent()) {
             return UserEntity.Response.builder()
                 .success(false)
@@ -218,6 +218,14 @@ public class UserService {
         }
 
         UserEntity userEntity = optionUser.get();
+
+        if (!passwordEncoder.matches(request.getPassword(), userEntity.getPassword())) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("비밀번호가 일치하지 않습니다.")
+                .build();
+        }
+
         userEntity.setPassword(null);
         userEntity.setName(null);
         userEntity.setHp(null);
@@ -243,7 +251,7 @@ public class UserService {
 
     @Transactional
     public UserEntity.Response updateUser(UserDetailsImpl userDetails, UserEntity.UpdateRequest request) {
-        Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
+        Optional<UserEntity> optionUser = findById(userDetails.getUsername());
         if(!optionUser.isPresent()) {
             return UserEntity.Response.builder()
                 .success(false)
@@ -282,7 +290,7 @@ public class UserService {
 
     @Transactional
     public UserEntity.Response password(UserDetailsImpl userDetails, UserEntity.UpdatePasswordRequest request) {
-        Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
+        Optional<UserEntity> optionUser = findById(userDetails.getUsername());
         if(!optionUser.isPresent()) {
             return UserEntity.Response.builder()
                 .success(false)
@@ -335,8 +343,8 @@ public class UserService {
         Timestamp end = Timestamp.valueOf(endDatetime);
 
         long totalCount = userRepository.countByDel(false);
-        long todayNewCount = userRepository.countByRegisterTimeBetweenAndDel(start, end, false);
-        long todayLoginCount = userRepository.countByLastLoginTimeBetweenAndDel(start, end, false);
+        long todayNewCount = userRepository.countByRegisterTimeBetween(start, end);
+        long todayLoginCount = userRepository.countByLastLoginTimeBetween(start, end);
         long todayDeleteCount = userRepository.countByDeleteTimeBetweenAndDel(start, end, true);
 
         return UserEntity.TodayStatsResponse.builder()

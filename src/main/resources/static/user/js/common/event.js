@@ -17,7 +17,7 @@ var _event = new Vue({
 	},
 	methods: {
 		fnApplyEvent(eventId) {
-			if(_user.username == '') {
+			if(!_isLogin) {
 				if(!confirm('로그인 후 신청하실 수 있습니다.\n신청 페이지로 이동하시겠습니까?')){
 					return false;
 				}

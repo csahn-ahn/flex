@@ -46,6 +46,10 @@ var app = new Vue({
 
 			return false;
 		},
+
+		fnCancel() {
+			document.location.href = '/';
+		},
 	}
 });
 

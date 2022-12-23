@@ -56,8 +56,8 @@ public class UserController {
     }
 
     @PostMapping(name = "회원탈퇴", value = "/leave")
-    public ResponseEntity<UserEntity.Response> leave(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.ok(userService.leave(userDetails));
+    public ResponseEntity<UserEntity.Response> leave(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody UserEntity.LeaveRequest request) {
+        return ResponseEntity.ok(userService.leave(userDetails, request));
     }
 
     @PutMapping(name = "정보변경", value = "/updateUser")

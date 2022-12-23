@@ -6,6 +6,7 @@
         <span th:text="${user.name}"></span>님 환영합니다.
         <button onClick="_common.fnUpdateUser()">정보변경</button>
         <button onClick="_common.fnUpdatePassword()">비밀번호 변경</button>
+        <button onClick="_common.fnLeave()">회원탈퇴</button>
         <button onClick="_common.fnLogout()">로그아웃</button>
       </div>
       <div th:unless="${user != null && user != ''}">

@@ -133,6 +133,13 @@ public class UserEntity {
 
     @Data
     @Builder
+    public static class LeaveRequest {
+        private String password;
+        private String temp;
+    }
+
+    @Data
+    @Builder
     public static class TodayStatsResponse {
         private long totalCount;
         private long todayNewCount;

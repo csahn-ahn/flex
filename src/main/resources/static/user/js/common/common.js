@@ -48,6 +48,10 @@ var _common = new Vue({
 		document.location.href = '/user/myPage/updatePassword';
 	},
 
+	fnLeave() {
+		document.location.href = '/user/myPage/leave';
+	},
+
 	// 관리자 이동.
 	fnAdmin() {
 		let me = this;
