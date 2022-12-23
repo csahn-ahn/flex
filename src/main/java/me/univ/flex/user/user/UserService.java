@@ -6,8 +6,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.univ.flex.admin.manager.ManagerEntity;
 import me.univ.flex.common.security.UserDetailsImpl;
+import me.univ.flex.common.utils.FormatUtils;
 import me.univ.flex.common.utils.TimestampUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -136,6 +137,7 @@ public class UserService {
             .build();
     }
 
+    @Transactional
     public UserEntity.Response logout() {
         SecurityContextHolder.clearContext();
 
@@ -147,12 +149,20 @@ public class UserService {
             .build();
     }
 
+    @Transactional
     public UserEntity.Response join(UserEntity.JoinRequest request) {
         Optional<UserEntity> optionUser = userRepository.findById(request.getUsername());
         if(optionUser.isPresent()) {
             return UserEntity.Response.builder()
                 .success(false)
                 .message("중복된 아이디입니다.")
+                .build();
+        }
+
+        if(!FormatUtils.validPassword(request.getPassword())) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("비밀번호 형식이 맞지않습니다.")
                 .build();
         }
 
@@ -193,6 +203,7 @@ public class UserService {
             .build();
     }
 
+    @Transactional
     public UserEntity.Response leave(UserDetailsImpl userDetails) {
         Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
         if(!optionUser.isPresent()) {
@@ -226,7 +237,7 @@ public class UserService {
             .build();
     }
 
-
+    @Transactional
     public UserEntity.Response updateUser(UserDetailsImpl userDetails, UserEntity.UpdateRequest request) {
         Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
         if(!optionUser.isPresent()) {
@@ -259,6 +270,53 @@ public class UserService {
 
         userEntity.setLastLoginTime(TimestampUtil.now());
         userRepository.save(userEntity);
+
+        return UserEntity.Response.builder()
+            .success(true)
+            .build();
+    }
+
+    @Transactional
+    public UserEntity.Response password(UserDetailsImpl userDetails, UserEntity.UpdatePasswordRequest request) {
+        Optional<UserEntity> optionUser = userRepository.findById(userDetails.getUsername());
+        if(!optionUser.isPresent()) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("잘못된 계정입니다.")
+                .build();
+        }
+
+        UserEntity userEntity = optionUser.get();
+
+        if (!passwordEncoder.matches(request.getPassword(), userEntity.getPassword())) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("비밀번호가 일치하지 않습니다.")
+                .build();
+        }
+
+        if(!FormatUtils.validPassword(request.getNewPassword())) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("비밀번호 형식이 맞지않습니다.")
+                .build();
+        }
+
+        if(request.getPassword().equals(request.getNewPassword())) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("이전 비밀번호와 같은 비밀번호는 사용할 수 없습니다.")
+                .build();
+        }
+
+        userEntity.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userEntity.setLastUpdatePasswordTime(TimestampUtil.now());
+        userEntity.setLastUpdateId(userDetails.getUsername());
+        userEntity.setLastUpdateTime(TimestampUtil.now());
+        userEntity = userRepository.save(userEntity);
+
+        // 로그아웃 처리.
+        logout();
 
         return UserEntity.Response.builder()
             .success(true)

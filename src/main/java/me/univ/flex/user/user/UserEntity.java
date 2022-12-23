@@ -123,4 +123,11 @@ public class UserEntity {
         private String hp;
         private String email;
     }
+
+    @Data
+    @Builder
+    public static class UpdatePasswordRequest {
+        private String password;
+        private String newPassword;
+    }
 }

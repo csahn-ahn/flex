@@ -30,6 +30,8 @@ public class UserInterceptor implements HandlerInterceptor {
 		log.debug("UserInterceptor - preHandle");
 
 		String requestURI = request.getRequestURI();
+		log.debug("requestURI : " + requestURI);
+
 		setPageContent(request);
 		// 관리자 시스템 접근일 경우.
 

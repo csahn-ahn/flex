@@ -30,7 +30,7 @@ var app = new Vue({
 
 		fnSave() {
 			let me = this;
-			axios.post(
+			axios.put(
 				'/user/api/v1/users/updateUser',
 				me.user
 			)

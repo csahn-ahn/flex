@@ -27,6 +27,7 @@ var _common = new Vue({
 			if(res.success) {
 				document.location.href = currUrl;
 			}else{
+
 				alert(res.message);
 			}
 		})
@@ -40,7 +41,11 @@ var _common = new Vue({
 	},
 
 	fnUpdateUser() {
-		document.location.href = '/user/mypage/updateUser';
+		document.location.href = '/user/myPage/updateUser';
+	},
+
+	fnUpdatePassword() {
+		document.location.href = '/user/myPage/updatePassword';
 	},
 
 	// 관리자 이동.
