@@ -12,7 +12,9 @@ import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.common.service.email.EmailParameterKey;
 import me.univ.flex.common.service.email.MailService;
 import me.univ.flex.common.utils.FlexGenerator;
+import me.univ.flex.common.utils.FormatUtils;
 import me.univ.flex.common.utils.TimestampUtil;
+import me.univ.flex.user.user.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -135,6 +137,20 @@ public class ManagerService {
             return ManagerEntity.Response.builder()
                 .success(false)
                 .message("현재 비밀번호와 일치하지 않습니다.")
+                .build();
+        }
+
+        if(!FormatUtils.validPassword(request.getNewPassword())) {
+            return ManagerEntity.Response.builder()
+                .success(false)
+                .message("비밀번호 형식이 맞지않습니다.")
+                .build();
+        }
+
+        if(request.getPassword().equals(request.getNewPassword())) {
+            return ManagerEntity.Response.builder()
+                .success(false)
+                .message("이전 비밀번호와 같은 비밀번호는 사용할 수 없습니다.")
                 .build();
         }
 

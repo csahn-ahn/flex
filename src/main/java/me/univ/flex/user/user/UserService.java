@@ -313,7 +313,7 @@ public class UserService {
         userEntity.setLastUpdatePasswordTime(TimestampUtil.now());
         userEntity.setLastUpdateId(userDetails.getUsername());
         userEntity.setLastUpdateTime(TimestampUtil.now());
-        userEntity = userRepository.save(userEntity);
+        userRepository.save(userEntity);
 
         // 로그아웃 처리.
         logout();
