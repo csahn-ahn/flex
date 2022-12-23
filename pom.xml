@@ -195,7 +195,6 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
-		<!--
 		<dependency>
 			<groupId>com.andwise.tm6.api.jars</groupId>
 			<artifactId>AutomailAPI</artifactId>
@@ -203,7 +202,6 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/automailAPI.jar</systemPath>
 		</dependency>
-		-->
 	</dependencies>
 
 	<build>
