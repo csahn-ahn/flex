@@ -1,0 +1,525 @@
+.mypage-status-section {
+  padding: rem(40px) 0 rem(22px);
+  background-color: #f6f6f6;
+  .section-inner {
+    width: rem(1200px);
+    @media (max-width: 1240px) {
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
+  .status-list {
+    display: flex;
+    flex-wrap: wrap;
+    &.membership {
+      .status-list-item {
+        &.user-box {
+          flex-direction: row;
+          width: 37.5%;
+          .user-info {
+            flex-grow: 1;
+            margin-top: 0;
+            margin-left: rem(40px);
+          }
+        }
+        &.status-box {
+          width: 20%;
+        }
+      }
+    }
+  }
+  .status-list-item {
+    height: rem(220px);
+    background-color: #fff;
+    &.user-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 25%;
+      padding: 0 rem(40px);
+      box-sizing: border-box;
+      .icon-rank {
+        flex-shrink: 0;
+        @include size(rem(100px));
+        img {
+          display: block;
+          @include size(100%);
+        }
+      }
+      .user-info {
+        margin-top: rem(16px);
+      }
+      .name {
+        line-height: 1.41;
+        font-size: rem(24px);
+      }
+      .rank {
+        margin-top: rem(5px);
+        font-size: rem(18px);
+      }
+      .btn-more-small {
+        margin-top: rem(5px);
+      }
+      .upgrade-area {
+        margin-top: rem(10px);
+      }
+      .progress-bar {
+        position: relative;
+        height: rem(20px);
+        .bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          height: 100%;
+          background-color: $primary;
+        }
+        .empty {
+          @include size(100%);
+          background-color: #cdcdcd;
+        }
+      }
+      .price-area {
+        margin-top: rem(8px);
+        .price {
+          font-size: rem(14px);
+          color: $primary;
+        }
+        .next-price {
+          margin-top: rem(3px);
+          font-size: rem(14px);
+          color: #8a8a8a;
+        }
+      }
+    }
+    &.status-box {
+      width: 24.1666666%;
+      margin-left: 0.8333333%;
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(70px);
+        text-align: center;
+        font-weight: 700;
+        font-size: rem(18px);
+        border-bottom: 2px solid #f6f6f6;
+      }
+      .value {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: calc(100% - #{rem(70px)});
+        font-weight: 700;
+        font-size: rem(36px);
+        color: $primary;
+      }
+    }
+  }
+  .guide-text {
+    margin-top: rem(14px);
+    text-align: right;
+    font-size: rem(14px);
+    color: #8a8a8a;
+  }
+  @media (max-width: $tb-s) {
+    .status-list-item {
+      height: 180px;
+      background-color: #fff;
+      &.user-box {
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+        .icon-rank {
+          @include size(150px);
+        }
+        .user-info {
+          width: 100%;
+          margin-left: 0 !important;
+          margin-top: 30px !important;
+        }
+        .name,
+        .rank {
+          text-align: center;
+        }
+        .rank {
+          margin-top: 3px;
+        }
+        .btn-more-small {
+          justify-content: center;
+        }
+        .price-area {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .price {
+            font-size: rem(14px);
+            color: $primary;
+          }
+          .next-price {
+            margin-top: 0;
+            font-size: rem(14px);
+            color: #8a8a8a;
+          }
+        }
+      }
+      &.status-box {
+        width: calc(33.333% - 6px) !important;
+        margin-left: 0;
+        margin-top: 30px;
+        + .status-box {
+          margin-left: 8px;
+        }
+        .title {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: rem(70px);
+          text-align: center;
+          font-weight: 700;
+          font-size: rem(18px);
+          border-bottom: 2px solid #f6f6f6;
+        }
+        .value {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          height: calc(100% - #{rem(70px)});
+          font-weight: 700;
+          font-size: rem(36px);
+          color: $primary;
+        }
+      }
+    }
+    .guide-text {
+      margin-top: rem(14px);
+      text-align: right;
+      font-size: rem(14px);
+      color: #8a8a8a;
+    }
+  }
+  @media (max-width: $mo-l) {
+    padding: 25px 0;
+    .status-list-item {
+      height: 100px;
+      &.user-box {
+        .icon-rank {
+          @include size(150px);
+        }
+        .user-info {
+          margin-top: 15px !important;
+        }
+        .name {
+          font-size: 20px;
+        }
+        .rank {
+          margin-top: 3px;
+          font-size: 14px;
+        }
+        .btn-more-small {
+          margin-top: 3px;
+        }
+        .upgrade-area {
+          margin-top: 15px;
+        }
+        .progress-bar {
+          height: 15px;
+        }
+        .price-area {
+          margin-top: 10px;
+          .price {
+            font-size: 12px;
+          }
+          .next-price {
+            font-size: 12px;
+          }
+        }
+      }
+      &.status-box {
+        width: calc(33.333% - 4px) !important;
+        + .status-box {
+          margin-left: 6px;
+        }
+        .title {
+          height: 40px;
+          font-size: 14px;
+        }
+        .value {
+          height: calc(100% - #{40px});
+          font-size: 24px;
+        }
+      }
+    }
+    .guide-text {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
+.mypage-common-tab {
+  display: flex;
+  flex-wrap: wrap;
+  .tab-item {
+    width: 33%;
+    height: rem(70px);
+    margin-right: 0.5%;
+    border-radius: 20px;
+    border: 1px solid #8a8a8a;
+    &.active {
+      a {
+        color: $primary;
+      }
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    &:nth-child(n + 4) {
+      margin-top: 0.5%;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include size(100%);
+      text-align: center;
+      font-weight: 700;
+      font-size: rem(20px);
+    }
+  }
+  @media (max-width: $mo-l) {
+    .tab-item {
+      width: calc(33.3333% - 2px);
+      height: 45px;
+      margin-right: 3px;
+      border-radius: 10px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+      &:nth-child(n + 4) {
+        margin-top: 3px;
+      }
+      a {
+        font-size: 13px;
+      }
+    }
+  }
+}
+.mypage-body-section {
+  padding: rem(80px) 0 rem(200px);
+  .section-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: rem(20px);
+    border-bottom: 1px solid $dark;
+    .title {
+      font-size: rem(28px);
+    }
+  }
+  .mypage-body-content {
+    margin-top: rem(80px);
+    .order-history-detail {
+      .summary-box {
+        margin-top: 0;
+        border-top: 0;
+      }
+    }
+  }
+  @media (max-width: $mo-l) {
+    padding: 40px 0 100px;
+    .section-title {
+      padding-bottom: 10px;
+      .title {
+        font-size: 16px;
+      }
+    }
+    .mypage-body-content {
+      margin-top: 40px;
+    }
+  }
+}
+.mypage-coupon-content {
+  .common-table-layout {
+    margin-top: rem(20px);
+  }
+  .coupon-add-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: rem(200px);
+    background-color: #f6f6f6;
+    .form-label {
+      font-size: rem(24px);
+    }
+    .form-field {
+      display: flex;
+      align-items: center;
+      margin-left: rem(20px);
+      .form-input {
+        width: rem(400px);
+      }
+      .btn {
+        padding: 0 rem(22px);
+        margin-left: rem(10px);
+        font-weight: 500;
+        font-size: rem(16px);
+      }
+    }
+  }
+  .coupon-history-container {
+    margin-top: rem(80px);
+    .content-title {
+      font-size: rem(24px);
+    }
+  }
+  @media (max-width: $mo-l) {
+    .common-table-layout {
+      margin-top: 10px;
+    }
+    .coupon-add-container {
+      flex-direction: column;
+      height: 120px;
+      .form-label {
+        font-size: 14px;
+      }
+      .form-field {
+        margin-left: 0;
+        margin-top: 10px;
+        .form-input {
+          width: 200px;
+        }
+        .btn {
+          padding: 0 12px;
+          margin-left: 5px;
+          font-size: 12px;
+        }
+      }
+    }
+    .coupon-history-container {
+      margin-top: 40px;
+      .content-title {
+        font-size: 16px;
+      }
+    }
+  }
+}
+.mypage-inquiry-content {
+  .common-table-layout {
+    border-top: 0;
+  }
+}
+.mypage-review-content {
+  .common-review-container {
+    .common-review-content {
+      border-top: 0;
+      margin-top: 0;
+    }
+  }
+  .section-title {
+    padding-bottom: 0;
+    position: relative;
+    z-index: 2;
+    .title {
+      width: 100%;
+    }
+    .tab-row {
+      display: flex;
+      align-items: center;
+      position: relative;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: rem(20px);
+    }
+    .tab-wrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+      bottom: -1px;
+      z-index: 2;
+    }
+    .tab-item {
+      a {
+        display: flex;
+        align-items: center;
+        height: rem(60px);
+        padding: 0 rem(34px);
+        border-radius: 10px 10px 0 0;
+        border: 1px solid #1b1b1b;
+        font-weight: 700;
+        font-size: rem(20px);
+        background-color: #f6f6f6;
+        color: #8a8a8a;
+      }
+      &:first-child {
+        a {
+          border-right: 0;
+        }
+      }
+      &.active {
+        a {
+          color: $primary;
+          border-bottom: 0;
+          background-color: #fff;
+        }
+      }
+    }
+    @media (max-width: $mo-l) {
+      .tab-item {
+        a {
+          height: 36px;
+          padding: 0 14px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .common-review-container {
+    position: relative;
+    z-index: 1;
+  }
+}
+.mypage-edit-form {
+  margin-top: rem(80px);
+  .form-title {
+    margin-bottom: rem(30px);
+    text-align: center;
+    font-size: rem(20px);
+  }
+  .common-btn-group {
+    margin-top: rem(26px);
+  }
+  @media (max-width: $mo-l) {
+    margin-top: 40px;
+    .form-title {
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    .common-btn-group {
+      margin-top: 15px;
+    }
+  }
+}
+.mypage-edit-content {
+  .btn-more-small {
+    margin-top: rem(15px);
+    justify-content: flex-end;
+  }
+  .common-btn-group {
+    margin-left: rem(148px);
+  }
+  @media (max-width: $mo-l) {
+    .btn-more-small {
+      margin-top: 8px;
+    }
+    .common-btn-group {
+      margin-left: 0;
+    }
+  }
+}

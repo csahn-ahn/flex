@@ -1,0 +1,70 @@
+$paging-size: 20px;
+$btn-size: 24px;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: rem(40px);
+  button {
+    display: block;
+  }
+  .paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include size(rem($paging-size));
+    margin: 0 rem(4px);
+    font-size: rem(18px);
+    &.current {
+      font-weight: 700;
+    }
+  }
+  .controller {
+    @include size(rem($btn-size));
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    &.prev {
+      background-image: url('../images/components/icon-pagination-prev.svg');
+    }
+    &.next {
+      background-image: url('../images/components/icon-pagination-next.svg');
+    }
+    &.prev-10 {
+      @include size(rem($btn-size - 2px));
+      margin-right: rem(2px);
+      background-image: url('../images/components/icon-pagination-prev-10.svg');
+    }
+    &.next-10 {
+      @include size(rem($btn-size - 2px));
+      margin-left: rem(2px);
+      background-image: url('../images/components/icon-pagination-next-10.svg');
+    }
+    &.disabled {
+      opacity: 0.4;
+      cursor: auto;
+    }
+  }
+  @media (max-width: $mo-l) {
+    $btn-size: 16px;
+    $paging-size: 16px;
+    margin-top: 20px;
+    .paging {
+      @include size($paging-size);
+      margin: 0 2px;
+      font-size: 12px;
+    }
+    .controller {
+      @include size($btn-size);
+      &.prev-10 {
+        @include size($btn-size - 2px);
+      }
+      &.next-10 {
+        @include size($btn-size - 2px);
+      }
+    }
+  }
+}

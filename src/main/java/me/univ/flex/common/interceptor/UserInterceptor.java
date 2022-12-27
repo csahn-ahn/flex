@@ -29,8 +29,8 @@ public class UserInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		log.debug("UserInterceptor - preHandle");
 
-		String requestURI = request.getRequestURI();
-		log.debug("requestURI : " + requestURI);
+		String currentUrl = request.getRequestURI();
+		request.setAttribute("currentUrl", currentUrl);
 
 		setPageContent(request);
 		// 관리자 시스템 접근일 경우.

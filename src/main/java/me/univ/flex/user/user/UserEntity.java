@@ -36,6 +36,9 @@ public class UserEntity {
     private String birth;
     private boolean gender;
     private boolean foreigner;
+    private String zipcode;
+    private String address1;
+    private String address2;
     private String snsType;
     private String snsUid;
     @JsonIgnore private String tempPassword;
@@ -112,6 +115,9 @@ public class UserEntity {
         private String birth;
         private boolean gender;
         private boolean foreigner;
+        private String zipcode;
+        private String address1;
+        private String address2;
         private String snsType;
         private String snsUid;
     }

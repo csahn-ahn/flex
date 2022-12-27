@@ -1,0 +1,23 @@
+// clearfix
+//
+// *1. display: block; 보다 display: table;을 씀
+//     자식요소가 상단여백을 포함하는 경우 간섭을 막음
+//     The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+
+$old-ie : true !default;
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		content: "";
+		display: table; // *1
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin cf {
+	@include clearfix;
+}

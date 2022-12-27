@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <th:block th:fragment="footerFragment">
-    Footer 영역
+    <footer id="footer">
+    <div class="section-inner">
+      <div class="footer-logo">
+        <img src="/static/user/images/logo-black.svg" alt="레시피평창" />
+        <div class="footer-menu mobile">
+          <a href="../공지사항/리스트.html" class="btn-hover-el black"><span class="text">공지사항</span></a>
+          <a href="../일대일문의/문의하기_FORM.html" class="btn-hover-el black"><span class="text">1:1 문의</span></a>
+        </div>
+      </div>
+      <div class="customer-info">
+        <div class="number">고객센터 1588-1004</div>
+        <ul class="info-area">
+          <li><strong>운영시간 |</strong> 오전 9시 ~ 오후 6시</li>
+          <li><strong>점심시간 |</strong> 오후 12시 ~ 오후 1시</li>
+          <li><strong>주말 및 공휴일 휴무</strong></li>
+        </ul>
+      </div>
+      <div class="company-info">
+        <div class="info-menu">
+          <a href="javascript:void(0);">사업자정보 확인</a>
+          <a href="javascript:void(0);">개인정보 처리방침</a>
+        </div>
+        <div class="info-area">
+          상호명 : 레시피평창 ㅣ 대표자 : 홍길동 ㅣ사업자등록번호 : 101-12-345678<br />
+          통신판매업신고번호 : 2022-강원평창-1531 ㅣ 개인정보보호책임자 : 윤동주<br />
+          주소 : 강원도 평창군 평창대로 1447 서울대학교 평창캠퍼스 산학협력(500동) 209호
+          <div class="mobile-copyright">Copyright &copy; Recipe Pyeongchang. All rights reserved.</div>
+        </div>
+      </div>
+      <div class="footer-etc">
+        <div class="footer-menu">
+          <a href="../공지사항/리스트.html" class="btn-hover-el black"><span class="text">공지사항</span></a>
+          <a href="../일대일문의/문의하기_FORM.html" class="btn-hover-el black"><span class="text">1:1 문의</span></a>
+        </div>
+        <div class="copyright">Copyright &copy; Recipe Pyeongchang. All rights reserved.</div>
+      </div>
+    </div>
+    </footer>
   </th:block>
 </html>

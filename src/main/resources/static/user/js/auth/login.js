@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		user: {
-			username: 'user01',
+			username: 'csahn@univ.me',
 			password: '1234',
 		}
 	},

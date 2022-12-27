@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="gnbMobileFragment">
+  <div class="mobile-menu-container">
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <a href="../메인/메인.html"><img src="/static/user/images/logo-black.svg" alt="레시피평창" /></a>
+      </div>
+      <button type="button" class="btn-close">닫기</button>
+    </div>
+    <div class="mobile-menu-body">
+      <ul class="mobile-menu-gnb">
+        <li class="menu-list">
+          <a href="../스토리/스토리메인.html">STORY</a>
+        </li>
+        <li class="menu-list">
+          <a href="../샵/리스트.html">SHOP</a>
+        </li>
+        <li class="menu-list">
+          <a href="../이벤트/리스트.html">EVENT</a>
+        </li>
+        <li class="menu-list">
+          <a href="../마이페이지/주문내역리스트.html">MYPAGE</a>
+        </li>
+        <li class="menu-list">
+          <a href="../장바구니/비회원케이스.html">CART</a>
+        </li>
+        <li class="menu-list">
+          <a href="../공지사항/리스트.html">공지사항</a>
+        </li>
+        <li class="menu-list">
+          <a href="../일대일문의/문의하기_FORM.html">1:1 문의</a>
+        </li>
+      </ul>
+    </div>
+    <!-- 로그인 후에는 로그아웃 버튼만 보여주시면 됩니다. -->
+    <div class="mobile-menu-footer">
+      <a href="../로그인/기본.html" class="btn medium primary round">Login</a>
+      <a href="../회원가입/메일SNS인증.html" class="btn medium primary round">Join</a>
+      <!-- <a href="javascript:void(0);" class="btn medium primary round wide">Logout</a> -->
+    </div>
+  </div>
+  <div class="mobile-menu-dim"></div>
+  <div class="fixed-mobile-bottom-menu">
+    <div class="menu-item">
+      <a href="javascript:void(0);" class="mobile-menu-btn"><i class="icon"><img src="/static/user/images/icon/icon-fixed-mobile-menu-linemenu.png" alt="" /></i><span class="text">MENU</span></a>
+    </div>
+    <div class="menu-item">
+      <a href="../메인/메인.html"><i class="icon"><img src="/static/user/images/icon/icon-fixed-mobile-menu-home.svg" alt="" /></i><span class="text">HOME</span></a>
+    </div>
+    <div class="menu-item">
+      <a href="../스토리/스토리메인.html"><i class="icon"><img src="/static/user/images/icon/icon-fixed-mobile-menu-story.svg" alt="" /></i><span class="text">STORY</span></a>
+    </div>
+    <div class="menu-item">
+      <a href="../샵/리스트.html"><i class="icon"><img src="/static/user/images/icon/icon-fixed-mobile-menu-shop.svg" alt="" /></i><span class="text">SHOP</span></a>
+    </div>
+    <div class="menu-item">
+      <a href="../마이페이지/주문내역리스트.html"><i class="icon"><img src="/static/user/images/icon/icon-fixed-mobile-menu-mypage.svg" alt="" /></i><span class="text">MYPAGE</span></a>
+    </div>
+  </div>
+</th:block>
+</html>

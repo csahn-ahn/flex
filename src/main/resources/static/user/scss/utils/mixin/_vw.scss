@@ -1,0 +1,4 @@
+// vw 사용을 위함
+@mixin _vw($property, $value, $break-point: 750px) {
+  #{$property}: vw($value, $break-point);
+}

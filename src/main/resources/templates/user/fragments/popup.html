@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="popupFragment">
+  <div id="_popup">
+    <!-- alert 팝업 -->
+    <div class="layer-popup system-alert-popup" id="systemAlertPopup">
+      <div class="popup-container small">
+        <div class="popup-content">
+          <button type="button" class="btn-popup-close popup-close" @click="fnAlertCallback()">닫기</button>
+          <div class="popup-inner">
+            <div class="content-text" v-text="alert.message">시스템 팝업</div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="btn-area">
+            <button type="button" class="btn btn-ok popup-close" @click="fnAlertCallback()">완료</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- confirm 팝업 -->
+    <div class="layer-popup system-confirm-popup" id="systemConfirmPopup">
+      <div class="popup-container small">
+        <div class="popup-content">
+          <button type="button" class="btn-popup-close popup-close" @click="fnConfirmCancelCallback()">닫기</button>
+          <div class="popup-inner">
+            <div class="content-text" v-text="confirm.message">컨펌 팝업</div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="btn-area half">
+            <button type="button" class="btn btn-close popup-close" @click="fnConfirmCancelCallback()">취소</button>
+            <button type="button" class="btn btn-ok" @click="fnConfirmCallback()">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 안내 공통 팝업 -->
+    <div class="layer-popup common-info-popup" id="commonInfoPopup">
+      <div class="popup-container medium">
+        <div class="popup-content">
+          <button type="button" class="btn-popup-close popup-close">닫기</button>
+          <div class="popup-inner">
+            <div class="content-title">
+              <div class="title">타이틀 영역입니다.</div>
+            </div>
+            <div class="content-body">
+              <div class="content-text">
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.<br />
+                세부 내용 영역입니다. 세부 내용 영역입니다.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="btn-area">
+            <button type="button" class="btn btn-ok popup-close">완료</button>
+          </div>
+          <!-- 221020 퍼블수정 - 오늘하루보지않기 추가 -->
+          <div class="today-area">
+            <div class="selector-cover checkbox square">
+              <input type="checkbox" name="todayClose" id="todayClose" />
+              <label for="todayClose">오늘 하루 보지 않기</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/user/js/common/popup.js"></script>
+</th:block>
+</html>

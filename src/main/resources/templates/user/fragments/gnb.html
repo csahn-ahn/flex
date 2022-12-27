@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <th:block th:fragment="gnbFragment">
-    <div id="gnbZone">
-      <div th:if="${user != null && user != ''}">
-        <span th:text="${user.name}"></span>님 환영합니다.
-        <button onClick="_common.fnUpdateUser()">정보변경</button>
-        <button onClick="_common.fnUpdatePassword()">비밀번호 변경</button>
-        <button onClick="_common.fnLeave()">회원탈퇴</button>
-        <button onClick="_common.fnLogout()">로그아웃</button>
+    <header id="header" th:class="${#strings.contains(#httpServletRequest.requestURI, '/user/main')} ? '' : 'line'">
+      <div class="header-wrapper">
+        <div class="header-inner">
+          <h1 class="header-logo">
+            <a href="/">
+              <!-- 221020 퍼블수정 - 이미지명 수정 -->
+              <img src="/static/user/images/logo-white-new.svg" alt="레시피평창" class="logo-white" />
+              <img src="/static/user/images/logo-black-new.svg" alt="레시피평창" class="logo-black" />
+            </a>
+          </h1>
+          <nav class="header-gnb">
+            <div class="header-gnb-item"><a href="../스토리/스토리메인.html">STORY</a></div>
+            <div class="header-gnb-item"><a href="../샵/리스트.html">SHOP</a></div>
+            <div class="header-gnb-item"><a href="../이벤트/리스트.html">EVENT</a></div>
+          </nav>
+          <div class="header-etc">
+            <div class="header-etc-menu">
+              <!--
+              <div class="header-etc-item search">
+                <a href="javascript:void(0);" class="icon-search">검색</a>
+                <div class="search-popup">
+                  <input type="text" placeholder="검색어를 입력해주세요." />
+                  <button type="button" class="btn-search">검색</button>
+                </div>
+              </div>
+              -->
+              <div th:if="${user != null && user != ''}" class="header-etc-item mypage">
+                <a href="../마이페이지/주문내역리스트.html" class="icon-mypage">마이페이지</a>
+              </div>
+              <!--
+              <div class="header-etc-item cart">
+                <a href="../장바구니/비회원케이스.html" class="icon-cart">장바구니</a>
+                <div class="count">99</div>
+              </div>
+              -->
+            </div>
+            <div class="header-etc-btn">
+              <a th:if="${user == null || user == ''}" href="javascript:void(0);" onClick="_common.fnLogin()">LOGIN</a>
+              <a th:unless="${user == null || user == ''}" href="javascript:void(0);" onClick="_common.fnLogout()">LOGOUT</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div th:unless="${user != null && user != ''}">
-        <button onClick="_common.fnLogin()">로그인</button>
-        <button onClick="_common.fnJoin()">회원가입</button>
-      </div>
-      <button type="button" class="btn btn-primary block full-width m-b" onClick="_common.fnAdmin()">관리자 가기</button>
-    </div>
+    </header>
+    <div th:if="${!#strings.contains(#httpServletRequest.requestURI, '/user/main')}" class="header-space"></div>
   </th:block>
 </html>

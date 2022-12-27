@@ -55,7 +55,7 @@ public class GlobalExceptionController implements ErrorController {
 		// 에러 코드에 대한 상태 정보
 		HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
 
-		log.info(request.getRequestURI());
+		log.info(request.getHeader("Referer"));
 
 		log.info("에러 코드에 대한 상태 정보 :" + httpStatus);
 		String contentType = request.getContentType();

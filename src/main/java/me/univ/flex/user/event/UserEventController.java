@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(name = "이벤트 신청", value = BaseConstants.USER_API_PREFIX + "/events/apply")
-public class EventApplyController {
+@RequestMapping(name = "이벤트 신청", value = BaseConstants.USER_API_PREFIX + "/events")
+public class UserEventController {
 
     private final EventService eventService;
 
-    @PostMapping(name = "이벤트 신청")
+    @PostMapping(name = "이벤트 신청", value = "/apply")
     public ResponseEntity<EventEntity.Response> apply(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @RequestBody EventEntity.ApplyRequest request){
         return ResponseEntity.ok(eventService.apply(userDetailsImpl, request));
     }

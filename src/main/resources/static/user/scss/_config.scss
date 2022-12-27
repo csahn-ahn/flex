@@ -1,0 +1,30 @@
+// 기본 셋팅
+$body-base-font: 'Pretendard', arial, sans-serif, Arial, dotum, '돋움';
+$pyeongchang-font: 'pyeongchang', arial, sans-serif, Arial, dotum, '돋움';
+$body-font-color: #1b1b1b;
+$base-font-size: 20px;
+$line-height: 1.4;
+
+// base color
+$primary: #00917c;
+$dark: #1b1b1b;
+$warning: #ff9582;
+$slightly: #8a8a8a;
+$lightSlightly: #999;
+$danger: #e0012b;
+
+// point color
+$blue: #009bd5;
+
+// 미디어쿼리 사이즈
+$tb-l: 1320px;
+$tb-s: 1100px;
+$mo-xl: 900px;
+$mo-l: 720px;
+$mo-s: 400px;
+
+// 이미지 url
+$baseUrl: '../images/';
+
+// 공통레이아웃 사이즈
+$layoutSize: 1600px;

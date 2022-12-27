@@ -1,0 +1,7 @@
+@mixin _background-image($imageUrl) {
+  background-image: url($baseUrl + $imageUrl);
+}
+
+@mixin _background($imageUrl, $x: 0, $y: 0) {
+  background: url($baseUrl + $imageUrl) no-repeat $x $y;
+}

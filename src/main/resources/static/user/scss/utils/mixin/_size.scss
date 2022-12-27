@@ -1,0 +1,8 @@
+// width / height 를 편하게....
+// width, height를 같게 하려면 @include size(100px);
+//                 다르게 하려면 @include size(100px, 1em);
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}

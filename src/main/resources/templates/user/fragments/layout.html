@@ -1,17 +1,70 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-       <meta charset="utf-8" />
         <th:block th:replace="/user/fragments/header::headerFragment"></th:block>
     </head>
-    <nav>
+    <body>
+    <!--
+    <div class="fixed-top-banner">
+        <div class="banner-item">
+            <a href="javascript:void(0);">
+                <div class="text">레시피평창이 처음이라면?! 지금 바로 가입하고 인기상품 100원에 구매하기</div>
+            </a>
+            <button type="button" class="btn-close">닫기</button>
+        </div>
+        <div class="banner-item">
+            <a href="javascript:void(0);">
+                <div class="text">두번째 배너입니다</div>
+            </a>
+            <button type="button" class="btn-close">닫기</button>
+        </div>
+    </div>
+    -->
+    <!-- //상단 배너 영역 -->
+    <div id="container">
+        <!-- 팝업 -->
+        <th:block th:replace="/user/fragments/popup::popupFragment"></th:block>
+
+        <!-- 헤더 -->
         <th:block th:replace="/user/fragments/gnb::gnbFragment"></th:block>
-    </nav>
-    <body layout:fragment="content">
-    </body>
-    <footer>
+
+        <!-- 모바일 메뉴 -->
+        <th:block th:replace="/user/fragments/gnbMobile::gnbMobileFragment"></th:block>
+
+        <!-- 로그인 알림 팝업 -->
+        <div class="layer-popup system-alert-popup" id="loginPopup">
+            <div class="popup-container small">
+                <div class="popup-content">
+                    <button type="button" class="btn-popup-close popup-close">닫기</button>
+                    <div class="popup-inner">
+                        <div class="content-text">
+                            로그인 후 이용 가능합니다.<br />
+                            로그인 해주세요.
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="btn-area">
+                        <a href="../로그인/기본.html" class="btn btn-ok">확인</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // 헤더 -->
+
+        <!-- 컨텐츠 -->
+        <main id="content" class="main" layout:fragment="content"></main>
+        <!-- //컨텐츠 -->
+
+        <!-- 푸터 -->
         <th:block th:replace="/user/fragments/footer::footerFragment"></th:block>
-    </footer>
+
+        <div class="float-top-btn">
+            <a href="javascript:void(0);"><img src="/static/user/images/icon/icon-btn-top.svg" alt="최상단으로가기" /></a>
+        </div>
+        <!-- // 푸터 -->
+    </div>
+    </body>
     <th:block th:replace="/user/fragments/etc::etcFragment"></th:block>
 </body>
 </html>

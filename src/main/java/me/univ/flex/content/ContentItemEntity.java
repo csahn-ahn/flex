@@ -2,6 +2,7 @@ package me.univ.flex.content;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +35,8 @@ public class ContentItemEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss", timezone = "Asia/Seoul")
     private Timestamp serviceEndTime;
     private String title;
+
+    @Column(columnDefinition = "nvarchar(max)", nullable = false)
     private String body;
     private boolean live;
     private boolean preview;
@@ -77,5 +80,12 @@ public class ContentItemEntity {
     public static class Response {
         private boolean success;
         private String message;
+    }
+
+    @Data
+    @Builder
+    public static class ServiceRequest {
+        private List<String> contentId;
+        private Boolean isPreview;
     }
 }

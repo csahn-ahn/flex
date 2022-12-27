@@ -1,0 +1,14 @@
+// 단위 제거 함수 - px없이 rem함수 사용시
+@function deUnit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+// px -> rem 계산
+@function rem($px, $base: $base-font-size) {
+  @return (deUnit($px) / deUnit($base)) + rem;
+}
+
+// vw 계산
+@function vw($value, $base-vw: 720px) {
+  @return ($value * 100vw) / $base-vw;
+}

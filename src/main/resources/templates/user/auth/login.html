@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/user/fragments/layout_empty}" xmlns:th="http://thymeleaf.org">
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin | Login</title>
-	<link href="/static/admin/template/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/admin/template/font-awesome/css/font-awesome.css" rel="stylesheet">
-	<link href="/static/admin/template/css/animate.css" rel="stylesheet">
-	<link href="/static/admin/template/css/style.css" rel="stylesheet">
-</head>
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
 
 <body layout:fragment="content" class="gray-bg">
-<div class="middle-box text-center loginscreen animated fadeInDown" id="app">
-	<div>
-		<div>
-			<h1 class="logo-name">Flex</h1>
+	<main class="sub-content member-total-content login-gate-content" id="app">
+		<div class="section-inner xsmall">
+			<div class="section-title">로그인</div>
+			<form>
+				<div class="form-layout-container">
+					<div class="form-item">
+						<div class="form-field">
+							<div class="input-cover"><input type="text" class="form-input" placeholder="이메일" title="이메일" v-model="user.username" /></div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-field">
+							<div class="input-cover"><input type="password" class="form-input" placeholder="비밀번호 (영문, 숫자, 특수문자 조합)" title="비밀번호" v-model="user.password" /></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="btn-more-small">
+					<a href="./아이디비밀번호찾기.html">아이디 / 비밀번호 찾기 <i class="icon"></i></a>
+				</div>
+				<div class="common-btn-group">
+					<a href="javascript:void(0);" class="btn large primary" @click="fnLogin()">로그인 하기</a>
+					<a href="javascript:void(0);" class="btn large border primary" onClick="_common.fnJoin()">회원가입하기</a>
+				</div>
+			</form>
+			<div class="login-type-btn">
+				<div class="btn-row">
+					<a href="javascript:void(0);" class="btn large btn-sns btn-kakao">
+						<i class="icon"></i>
+						카카오로 로그인하기
+					</a>
+					<a href="javascript:void(0);" class="btn large btn-sns btn-naver">
+						<i class="icon"></i>
+						네이버로 로그인하기
+					</a>
+				</div>
+				<div class="btn-wide"><a href="javascript:void(0);" class="btn large" @click="fnCancel()">취소</a></div>
+			</div>
 		</div>
-		<h3 th:text="${#messages.msg('user.login.welcome')}">welcome</h3>
-		<form class="m-t" role="form">
-			<div class="form-group">
-				<input type="text" name="username" class="form-control" placeholder="아이디"
-					   required=""
-					   v-model="user.username">
-			</div>
-			<div class="form-group">
-				<input type="password" name="password" class="form-control" placeholder="비밀번호"
-					   required=""
-					   v-model="user.password">
-			</div>
-			<button type="submit" class="btn btn-primary block full-width m-b">로그인</button>
-			<button type="button" class="btn btn-default block full-width m-b" @click="fnCancel()">취소</button>
-		</form>
-	</div>
-</div>
-<script src="/static/user/js/auth/login.js"></script>
-
+		<script src="/static/user/js/auth/login.js"></script>
+	</main>
 </body>
-
 </html>
 

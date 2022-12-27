@@ -1,0 +1,31 @@
+// data-table
+.data-table {
+  table {
+    table-layout: fixed;
+    width: 100%;
+    border-top: 1px solid #ddd;
+  }
+  th,
+  td {
+    padding: rem(10px) rem(15px);
+    text-align: left;
+    font-size: 14px;
+    @media (max-width: $mo-l) {
+      padding: 10px 8px;
+      font-size: 12px;
+    }
+    &.left {
+      text-align: left;
+    }
+    &.center {
+      text-align: center;
+    }
+  }
+  th {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+  }
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+}

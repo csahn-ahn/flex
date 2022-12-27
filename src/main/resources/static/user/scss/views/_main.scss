@@ -1,0 +1,403 @@
+// 메인 scss
+.fixed-top-banner {
+  position: relative;
+  z-index: 10;
+  .banner-item {
+    position: relative;
+    height: rem(80px);
+    padding: 0 rem(70px);
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include size(100%);
+      position: relative;
+      z-index: 1;
+    }
+    .text {
+      font-size: rem(20px);
+      position: relative;
+      @include ellipsis;
+      &:after {
+        display: inline-block;
+        content: '';
+        vertical-align: middle;
+        margin-top: rem(-2px);
+        margin-left: rem(5px);
+        @include size(rem(24px));
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: rem(9px) rem(16px);
+      }
+    }
+    .btn-close {
+      transform: translateY(-50%);
+      position: absolute;
+      top: 50%;
+      right: rem(35px);
+      z-index: 2;
+      @include size(rem(20px));
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      text-indent: -9999px;
+    }
+    &:nth-child(1) {
+      background-color: #363636;
+      a {
+        color: #c3967d;
+      }
+      .btn-close {
+        @include _background-image('icon/icon-close-br-20x20.png');
+      }
+      .text {
+        &:after {
+          @include _background-image('icon/icon-arrow-br-9x16.png');
+        }
+      }
+    }
+    &:nth-child(2) {
+      background-color: #c3967d;
+      a {
+        color: #363636;
+      }
+      .btn-close {
+        @include _background-image('icon/icon-close-bk-20x20.png');
+      }
+      .text {
+        &:after {
+          @include _background-image('icon/icon-arrow-bk-9x16.png');
+        }
+      }
+    }
+  }
+  @media (max-width: $mo-l) {
+    .banner-item {
+      height: 40px;
+      padding: 0 35px;
+      .text {
+        font-size: 14px;
+        &:after {
+          @include size(16px);
+          background-size: 6px 12px;
+        }
+      }
+      .btn-close {
+        right: 10px;
+        @include size(20px);
+        background-size: 15px 15px;
+        background-position: 50% 50%;
+      }
+    }
+  }
+}
+.main-keyvisual-section {
+  .swiper-container {
+    overflow: hidden;
+  }
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    height: rem(870px);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    @include _background-image('main-keyvisual.jpg');
+    .title-area {
+      padding-right: rem(80px);
+    }
+    .title {
+      transition: 0.2s;
+      line-height: 1.29;
+      font-size: rem(70px);
+    }
+    .sub-text {
+      transition: 0.2s;
+      margin-top: rem(10px);
+      line-height: 1.38;
+      font-size: rem(32px);
+    }
+    .btn-more {
+      transition: 0.2s;
+      display: inline-block;
+      padding: rem(15px) rem(40px);
+      margin-top: rem(30px);
+      border: 1px solid #fff;
+      border-radius: 5px;
+      font-size: rem(20px);
+    }
+    .white-theme & {
+      .title,
+      .sub-text {
+        color: #fff;
+      }
+      .btn-more {
+        border-color: #fff;
+        color: #fff;
+      }
+      .btn-hover-el {
+        &:hover {
+          border-color: #fff !important;
+          &:before {
+            background-color: #fff;
+          }
+          .text {
+            color: $dark;
+          }
+        }
+      }
+    }
+    .black-theme & {
+      .title,
+      .sub-text {
+        color: $dark;
+      }
+      .btn-more {
+        border-color: $dark;
+        color: $dark;
+      }
+      .btn-hover-el {
+        &:hover {
+          border-color: $dark !important;
+          &:before {
+            background-color: $dark;
+          }
+          .text {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: $layoutSize + 40px) {
+    .section-inner {
+      width: 100%;
+    }
+  }
+  @media (max-width: $tb-s) {
+    .swiper-slide {
+      height: 780px;
+      .title-area {
+        padding-right: 0;
+      }
+      .title {
+        font-size: 56px;
+      }
+      .sub-text {
+        font-size: 28px;
+      }
+    }
+  }
+  @media (max-width: $mo-l) {
+    .swiper-slide {
+      height: 480px;
+      .title {
+        font-size: 30px;
+      }
+      .sub-text {
+        font-size: 16px;
+      }
+      .btn-more {
+        padding: 8px 20px;
+        margin-top: 15px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+.main-event-section {
+  .section-inner {
+    padding: rem(160px) rem(30px) rem(400px);
+  }
+  .section-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .image {
+    position: absolute;
+    top: rem(-40px);
+    left: 0;
+    z-index: 1;
+  }
+  .text-area {
+    position: relative;
+    z-index: 2;
+    @media (min-width: 1281px) {
+      min-height: rem(395px);
+    }
+    &:hover {
+      .date-area {
+        .icon-arrow {
+          transform: translateX(12px) translateY(-50%);
+        }
+      }
+    }
+    a {
+      display: block;
+    }
+    .type-title {
+      display: block;
+      line-height: 1.34;
+      font-size: rem(36px);
+      color: #98664a;
+    }
+    .title {
+      margin-top: rem(30px);
+      line-height: 1.3;
+      font-size: rem(48px);
+      color: $primary;
+      strong {
+        display: block;
+        font-size: rem(50px);
+        color: #174d46;
+      }
+    }
+    .description {
+      margin-top: rem(32px);
+      line-height: 1.42;
+      font-size: rem(28px);
+    }
+    .date-area {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      margin-top: rem(10px);
+      .text {
+        font-size: rem(20px);
+      }
+      .date {
+        position: relative;
+        padding-left: rem(15px);
+        margin-left: rem(15px);
+        font-weight: 700;
+        font-size: rem(20px);
+        &:before {
+          transform: translateY(-50%);
+          display: block;
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 1px;
+          height: rem(16px);
+          background-color: $dark;
+        }
+      }
+      .icon-arrow {
+        transition: 0.3s;
+        display: block;
+        transform: translateY(-50%);
+        position: absolute;
+        top: 50%;
+        right: rem(-110px);
+        width: 70px;
+        height: 59px;
+        @include _background('icon/icon-arrow-bk-70x59.svg');
+        background-size: cover;
+      }
+    }
+  }
+  @media (max-width: 1280px) {
+    .section-inner {
+      padding: 80px 30px 0;
+    }
+    .section-wrapper {
+      display: block;
+    }
+    .image {
+      position: static;
+      max-width: 60%;
+      margin-top: 40px;
+    }
+    .text-area {
+      padding: 0 30px;
+    }
+  }
+  @media (max-width: $mo-l) {
+    .section-inner {
+      padding: 40px 15px 0;
+    }
+    .image {
+      max-width: 100%;
+      margin-top: 20px;
+    }
+    .text-area {
+      padding: 0 15px;
+      .type-title {
+        font-size: 18px;
+      }
+      .title {
+        margin-top: 5px;
+        font-size: 24px;
+        strong {
+          font-size: 25px;
+        }
+      }
+      .description {
+        margin-top: 8px;
+        font-size: 16px;
+      }
+      .date-area {
+        margin-top: 8px;
+        .text {
+          font-size: 12px;
+        }
+        .date {
+          padding-left: 8px;
+          margin-left: 8px;
+          font-size: 12px;
+          &:before {
+            height: 8px;
+          }
+        }
+        .icon-arrow {
+          right: -55px;
+          width: 35px;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+.main-product-section {
+  .section-inner {
+    padding-top: rem(140px);
+  }
+  .product-list-container {
+    margin-top: rem(70px);
+  }
+  @media (max-width: 1280px) {
+  }
+  @media (max-width: $mo-l) {
+    .section-inner {
+      padding-top: 50px;
+    }
+    .product-list-container {
+      margin-top: 30px;
+    }
+  }
+}
+.main-banner-section {
+  margin-top: rem(200px);
+  overflow: hidden;
+  &:hover {
+    img {
+      transform: scale(1.02);
+    }
+  }
+  a,
+  img {
+    display: block;
+  }
+  img {
+    transition: 0.7s;
+    margin: 0 auto;
+  }
+  @media (max-width: $tb-s) {
+    margin-top: 100px;
+  }
+  @media (max-width: $mo-l) {
+    margin-top: 50px;
+  }
+}

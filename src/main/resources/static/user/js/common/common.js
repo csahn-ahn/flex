@@ -56,7 +56,7 @@ var _common = new Vue({
 	fnAdmin() {
 		let me = this;
 		document.location.href = '/admin';
-	}
+	},
 
   }
 });

@@ -1,6 +1,7 @@
 package me.univ.flex.content;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -180,5 +181,66 @@ public class ContentItemService {
             .success(true)
             .build();
 
+    }
+
+    public List<ContentItemEntity> serviceItem(ContentItemEntity.ServiceRequest request) {
+
+        List<ContentItemEntity> list = new ArrayList<>();
+
+        List<String> contentIdArray = request.getContentId();
+        boolean isPreview = request.getIsPreview() == null ? false : request.getIsPreview().booleanValue();
+        String contentId = "";
+        for(int i=0; i<contentIdArray.size(); i++) {
+            ContentItemEntity itemEntity = null;
+            contentId = contentIdArray.get(i);
+            List<ContentItemEntity> itemList = contentItemRepository.findByContentIdAndDelOrderByItemIdDesc(contentId, false);
+            if (itemList != null && !itemList.isEmpty()) {
+                for (int j = 0; j < itemList.size(); j++) {
+                    ContentItemEntity entity = itemList.get(j);
+                    if (isPreview) {
+                        // 미리보기
+                        if (itemEntity == null && entity.isPreview() == true
+                            && entity.getServiceStatus() == true) {
+                            itemEntity = entity;
+                        }
+
+                    } else {
+                        if (itemEntity == null && entity.isLive() == true
+                            && entity.getServiceStatus() == true) {
+                            itemEntity = entity;
+                        }
+                    }
+                }
+            }
+            list.add(itemEntity);
+        }
+        return list;
+    }
+
+    public ContentItemEntity serviceItem(String contentId, boolean isPreview) {
+
+        ContentItemEntity itemEntity = null;
+        List<ContentItemEntity> itemList = contentItemRepository.findByContentIdAndDelOrderByItemIdDesc(
+            contentId, false);
+        if (itemList != null && !itemList.isEmpty()) {
+            for (int i = 0; i < itemList.size(); i++) {
+                ContentItemEntity entity = itemList.get(i);
+                if (isPreview) {
+                    // 미리보기
+                    if (itemEntity == null && entity.isPreview() == true
+                        && entity.getServiceStatus() == true) {
+                        itemEntity = entity;
+                    }
+
+                } else {
+                    if (itemEntity == null && entity.isLive() == true
+                        && entity.getServiceStatus() == true) {
+                        itemEntity = entity;
+                    }
+                }
+            }
+        }
+
+        return itemEntity;
     }
 }

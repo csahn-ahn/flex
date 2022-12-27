@@ -1,0 +1,83 @@
+.event-content {
+  padding: rem(100px) 0 rem(190px);
+  .section-title {
+    .title {
+      line-height: 1.34;
+      font-size: rem(36px);
+      word-break: break-all;
+      &.bold {
+        font-weight: 700;
+      }
+    }
+    .sub-text {
+      margin-top: rem(10px);
+      font-size: rem(16px);
+      color: #8a8a8a;
+    }
+  }
+  .event-list-container {
+    margin-top: rem(40px);
+    .list-item {
+      overflow: hidden;
+      + .list-item {
+        margin-top: rem(20px);
+      }
+      &:hover {
+        img {
+          transform: scale(1.01);
+        }
+      }
+      a,
+      img {
+        display: block;
+      }
+      img {
+        transition: 0.7s;
+      }
+    }
+  }
+  @media (max-width: $mo-l) {
+    padding: 80px 0 100px;
+    .section-title {
+      .title {
+        font-size: 18px;
+      }
+      .sub-text {
+        margin-top: 5px;
+        font-size: 12px;
+      }
+    }
+    .event-list-container {
+      margin-top: 20px;
+      .list-item {
+        + .list-item {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+.event-detail-content {
+  .event-detail-container {
+    padding: rem(60px) 0;
+    margin-top: rem(25px);
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+  .btn-prev-arrow {
+    margin-top: rem(30px);
+  }
+  @media (max-width: $mo-l) {
+    .event-detail-container {
+      margin-top: 15px;
+      font-size: 14px;
+      p,
+      div {
+        font-size: 14px;
+      }
+    }
+    .btn-prev-arrow {
+      margin-top: 15px;
+    }
+  }
+}

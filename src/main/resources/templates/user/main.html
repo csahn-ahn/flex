@@ -4,13 +4,62 @@
 <head>
 	<title>Main page</title>
 </head>
-<body layout:fragment="content">
-<div id="app">
-	메인페이지입니다
-
-	<div th:utext="${contentItem.body}"></div>
-
-	<button type="button" onClick="_event.fnApplyEvent(1)">이벤트 신청</button>
-</div>
+<body >
+	<main class="main" layout:fragment="content" id="app">
+		<section class="main-section main-keyvisual-section">
+			<div class="main-keyvisual-slider swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" data-theme="black" style="background-image: url('/static/user/images/main-keyvisual-w.png')">
+						<div class="section-inner">
+							<div class="title-area">
+								<h2 class="title pyeongchang-font">
+									평창 600마지기<br />
+									청옥산 데이지를 담아!111
+								</h2>
+								<div class="sub-text">평창 약콩 디저트 <strong>데이지 티라미수</strong></div>
+								<a href="../샵/상세-상품상세설명.html" class="btn-more btn-hover-el">
+									<span class="text">평창 데이지 티라미수 보러가기</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide" data-theme="white" style="background-image: url('/static/user/images/main-keyvisual.jpg')">
+						<div class="section-inner">
+							<div class="title-area">
+								<h2 class="title pyeongchang-font">
+									평창 600마지기<br />
+									청옥산 데이지를 담아!222
+								</h2>
+								<div class="sub-text">평창 약콩 디저트 <strong>데이지 티라미수</strong></div>
+								<a href="../샵/상세-상품상세설명.html" class="btn-more btn-hover-el">
+									<span class="text">평창 데이지 티라미수 보러가기</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide" data-theme="white" style="background-image: url('/static/user/images/main-keyvisual.jpg')">
+						<div class="section-inner">
+							<div class="title-area">
+								<h2 class="title pyeongchang-font">
+									평창 600마지기<br />
+									청옥산 데이지를 담아!333
+								</h2>
+								<div class="sub-text">평창 약콩 디저트 <strong>데이지 티라미수</strong></div>
+								<a href="../샵/상세-상품상세설명.html" class="btn-more btn-hover-el">
+									<span class="text">평창 데이지 티라미수 보러가기</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="vertical-pagination-conatiner">
+					<div class="slider-pagination"></div>
+				</div>
+			</div>
+		</section>
+		<div v-html="flexContents[0].body"></div>
+		<script src="/static/user/js/main.js"></script>
+	</main>
+	<!-- //컨텐츠 -->
 </body>
 </html>

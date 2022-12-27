@@ -1,0 +1,219 @@
+// selectric 셀렉트박스
+.selectric-container {
+  position: relative;
+  &.active {
+    .select-label {
+      transform: translate3d(0, -20px, 0) scale(0.8);
+    }
+  }
+  .selectric-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+  .selectric {
+    border: 0;
+    border-bottom: 1px solid #dedede;
+    background-color: #fff;
+    .button {
+      width: rem(30px);
+      height: rem(30px);
+      line-height: rem(30px);
+      text-indent: -9999px;
+      background-color: #fff;
+      &:after {
+        width: rem(13px);
+        height: rem(8px);
+        border: 0;
+        @include _background('components/icon-selectbox-arrow.svg');
+        background-size: cover;
+        @media (max-width: $mo-l) {
+          width: 10px;
+          height: 6px;
+        }
+      }
+    }
+    .label {
+      margin: 0 0 rem(6px) 0;
+    }
+  }
+  .selectric-above {
+    .selectric-items {
+      margin-bottom: rem(7px);
+    }
+  }
+  .required {
+    display: inline-block;
+    margin-left: rem(6px);
+    font-weight: 700;
+    font-size: rem(16px);
+    color: $primary;
+    vertical-align: middle;
+  }
+  .selectric-open {
+    z-index: 100;
+    .button {
+      overflow: hidden;
+      &:after {
+        transform: rotate(180deg);
+      }
+    }
+    .label {
+      .required {
+        color: $warning;
+      }
+    }
+  }
+  .selectric-first-show {
+    .selectric-scroll {
+      li {
+        &:first-child {
+          display: block;
+        }
+      }
+    }
+  }
+  .selectric-scroll {
+    li {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+  .select-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-origin: left top;
+    font-size: rem(16px);
+    color: #666;
+    @include ellipsis;
+  }
+  .selectric-items {
+    max-height: rem(225px);
+    overflow: auto;
+    margin-top: rem(7px);
+    border-radius: 5px;
+    border: 0;
+    background-color: #fff;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.15);
+    li {
+      &.selected {
+        background-color: $primary !important;
+        color: #fff !important;
+      }
+      &:hover {
+        background-color: #f1f1f1;
+        color: $primary;
+      }
+    }
+  }
+  .selectric-medium {
+    .label {
+      height: rem(41px);
+      line-height: rem(41px);
+      font-size: rem(16px);
+      @media (max-width: $mo-l) {
+        font-size: rem(14px);
+      }
+    }
+    .selectric-items {
+      li {
+        padding: rem(18px) rem(20px);
+        font-weight: 300;
+        font-size: rem(16px);
+        @media (max-width: $mo-l) {
+          padding: rem(12px) rem(16px);
+          font-size: rem(13px);
+        }
+      }
+    }
+  }
+  .selectric-small {
+    .label {
+      height: rem(30px);
+      line-height: rem(30px);
+      font-size: rem(14px);
+      @media (max-width: $mo-l) {
+        font-size: rem(12px);
+      }
+    }
+    .selectric-items {
+      li {
+        padding: rem(12px) rem(15px);
+        font-weight: 300;
+        font-size: rem(14px);
+        @media (max-width: $mo-l) {
+          padding: rem(10px) rem(12px);
+          font-size: rem(12px);
+        }
+      }
+    }
+  }
+}
+
+// 일반 셀렉트박스
+$selectbox-medium: 40px;
+$selectbox-large: 50px;
+.select-box-container {
+  .form-select {
+    width: 100%;
+    padding-right: rem(40px);
+    border: 1px solid #8a8a8a;
+    color: $dark;
+    @include _background('components/icon-selectbox-arrow.svg');
+    background-position: calc(100% - 8px) center;
+    background-size: rem(24px) rem(24px);
+    background-color: #fff;
+    appearance: none;
+    &.medium {
+      padding-left: rem(15px);
+      height: rem($selectbox-medium);
+      line-height: rem($selectbox-medium);
+      font-size: rem(16px);
+      option {
+        font-size: rem(16px);
+      }
+    }
+    &.large {
+      padding-left: rem(20px);
+      height: rem($selectbox-large);
+      line-height: rem($selectbox-large);
+      font-size: rem(16px);
+      option {
+        font-size: rem(16px);
+      }
+    }
+  }
+  @media (max-width: $mo-l) {
+    $selectbox-medium: 40px;
+    $selectbox-large: 40px;
+    .form-select {
+      padding-right: 20px;
+      background-position: calc(100% - 4px) center;
+      background-size: 12px 12px;
+      &.medium {
+        padding-left: 12px;
+        height: $selectbox-medium;
+        line-height: $selectbox-medium;
+        font-size: 13px;
+        option {
+          font-size: 13px;
+        }
+      }
+      &.large {
+        padding-left: 12px;
+        height: $selectbox-large;
+        line-height: $selectbox-large;
+        font-size: 13px;
+        option {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

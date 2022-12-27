@@ -1,0 +1,26 @@
+// 한줄 말줄임
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+// 여러말 말줄임
+@mixin multi-ellipsis($line: 2, $line-height: 1.5, $height-fixed: false) {
+  display: block;
+  display: -webkit-box;
+  @if $height-fixed == true {
+    // 유동적인 경우 사용
+    height: ($line * $line-height) * 1em;
+    max-height: ($line * $line-height) * 1em;
+  } @else {
+    max-height: ($line * $line-height) * 1em;
+  }
+  text-overflow: ellipsis;
+  line-height: $line-height * 1em;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  overflow: hidden;
+}

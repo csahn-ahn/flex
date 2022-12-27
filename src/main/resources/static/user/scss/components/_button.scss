@@ -1,0 +1,370 @@
+// buttons
+.btn {
+  display: inline-block;
+  border: 1px solid #ddd;
+  text-align: center;
+  cursor: pointer;
+  &.small {
+    height: rem(38px);
+    line-height: rem(36px);
+    padding: 0 rem(14px);
+    font-size: rem(16px);
+    border-radius: 2px;
+  }
+  &.medium {
+    height: rem(50px);
+    line-height: rem(48px);
+    padding: 0 rem(13px);
+    font-weight: 500;
+    font-size: rem(18px);
+    border-radius: 2px;
+  }
+  &.large {
+    height: rem(60px);
+    line-height: rem(58px);
+    padding: 0 rem(16px);
+    font-weight: 700;
+    font-size: rem(20px);
+  }
+  &.xlarge {
+    height: rem(88px);
+    line-height: rem(86px);
+    padding: 0 rem(20px);
+    font-weight: 700;
+    font-size: rem(22px);
+  }
+  @media (max-width: $mo-l) {
+    &.small {
+      height: 30px;
+      line-height: 28px;
+      padding: 0 8px;
+      font-size: 12px;
+    }
+    &.medium {
+      height: 40px;
+      line-height: 38px;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    &.large {
+      height: 50px;
+      line-height: 48px;
+      padding: 0 12px;
+      font-size: 15px;
+    }
+  }
+  &.primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+  &.slightly {
+    background-color: #666;
+    border-color: #666;
+    color: #fff;
+  }
+  &.lightSlightly {
+    background-color: #b3b3b3;
+    border-color: #b3b3b3;
+    color: #fff;
+  }
+  &.dark {
+    background-color: #363636;
+    border-color: #363636;
+    color: #fff;
+  }
+  &.danger {
+    background-color: $danger;
+    border-color: $danger;
+    color: #fff;
+  }
+  &.warning {
+    background-color: $warning;
+    border-color: $warning;
+    color: #fff;
+  }
+  &.round {
+    &.small {
+      border-radius: 50px;
+    }
+    &.medium {
+      border-radius: 40px;
+    }
+    &.large {
+      border-radius: 50px;
+    }
+    &.xlarge {
+      border-radius: 40px;
+    }
+  }
+  &.border {
+    border: 1px solid #363636;
+    &.primary {
+      color: $primary;
+      border-color: $primary;
+      background-color: transparent;
+    }
+    &.slightly {
+      border-color: $slightly;
+      color: $slightly;
+      background-color: transparent;
+    }
+    &.lightSlightly {
+      border-color: $lightSlightly;
+      color: $lightSlightly;
+      background-color: transparent;
+    }
+    &.dark {
+      border-color: #363636;
+      color: #363636;
+      background-color: transparent;
+    }
+    &.warning {
+      border-color: $warning;
+      color: $warning;
+      background-color: transparent;
+    }
+    &.danger {
+      border-color: $danger;
+      color: $danger;
+      background-color: transparent;
+    }
+  }
+}
+
+.btn-hover-el {
+  transition: border 0.2s;
+  position: relative;
+  overflow: hidden;
+  .text {
+    transition: 0.2s;
+    position: relative;
+    z-index: 2;
+  }
+  &:before {
+    transform: scaleX(0);
+    transform-origin: left top;
+    transition: 0.2s;
+    display: block;
+    content: '';
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  &.white {
+    &:before {
+      background-color: #fff;
+    }
+  }
+  &.black {
+    &:before {
+      background-color: #1b1b1b;
+    }
+  }
+  &:hover {
+    &.white {
+      border-color: #fff !important;
+      .text {
+        color: #1b1b1b;
+      }
+    }
+    &.black {
+      border-color: #1b1b1b !important;
+      .text {
+        color: #fff;
+      }
+    }
+    &:before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// 좋아요 버튼
+.btn-like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include size(rem(60px));
+  position: relative;
+  background-color: #cdcdcd;
+  text-indent: -9999px;
+  color: transparent;
+  &:before {
+    display: block;
+    content: '';
+    @include centerMode();
+    @include size(rem(30px));
+    @include _background('icon/icon-like-off.svg');
+    background-size: cover;
+  }
+  &.active {
+    &:before {
+      @include _background-image('icon/icon-like-on.svg');
+    }
+  }
+  @media (max-width: $mo-l) {
+    @include size(50px);
+    &:before {
+      @include size(24px);
+    }
+  }
+}
+// 공유하기 버튼
+.btn-share {
+  display: block;
+  @include size(rem(50px));
+  @include _background('icon/icon-share.svg');
+  background-size: cover;
+  text-indent: -9999px;
+  @media (max-width: $mo-l) {
+    @include size(35px);
+  }
+}
+// 목록 버튼
+.btn-prev-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    display: inline-flex;
+    align-items: center;
+    font-size: rem(28px);
+  }
+  .icon {
+    display: block;
+    @include size(rem(30px));
+    @include _background('icon/icon-arrow-bk-30x30.svg');
+    background-size: cover;
+  }
+  @media (max-width: $mo-l) {
+    a {
+      font-size: 14px;
+    }
+    .icon {
+      @include size(15px);
+    }
+  }
+}
+.common-btn-group {
+  .btn {
+    width: 100%;
+    + .btn {
+      margin-top: rem(14px);
+    }
+  }
+  &.row {
+    display: flex;
+    align-items: center;
+    .btn {
+      width: calc(50% - 2px);
+      + .btn {
+        margin-left: 4px;
+        margin-top: 0;
+      }
+    }
+  }
+  @media (max-width: $mo-l) {
+    .btn {
+      + .btn {
+        margin-top: 8px;
+      }
+    }
+  }
+}
+.btn {
+  &.btn-sns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: rem(18px);
+    .icon {
+      @include size(rem(36px));
+      margin-right: rem(10px);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: cover;
+    }
+    .text {
+      width: rem(143px);
+      text-align: left;
+    }
+  }
+  &.btn-email {
+    border-color: #00917c;
+    background-color: #00917c;
+    color: #fff;
+    .icon {
+      @include _background-image('icon/icon-sns-email.png');
+    }
+  }
+  &.btn-kakao {
+    border-color: #ffe500;
+    background-color: #ffe500;
+    .icon {
+      @include _background-image('icon/icon-sns-kakao.png');
+    }
+  }
+  &.btn-naver {
+    border-color: #5bb63d;
+    background-color: #5bb63d;
+    .icon {
+      @include _background-image('icon/icon-sns-naver.png');
+    }
+  }
+  @media (max-width: $mo-l) {
+    &.btn-sns {
+      font-size: 12px;
+      .icon {
+        @include size(20px);
+        margin-right: 5px;
+      }
+      .text {
+        width: 95px;
+      }
+    }
+    &.btn-kakao {
+      .icon {
+        background-size: 20px 18px;
+      }
+    }
+  }
+}
+.btn-more-small {
+  display: flex;
+  a {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    font-size: rem(16px);
+    &:hover {
+      .icon {
+        transform: translateX(5px);
+      }
+    }
+  }
+  .icon {
+    transition: 0.2s;
+    display: block;
+    @include size(rem(22px));
+    margin-left: rem(6px);
+    @include _background('icon/icon-arrow-circle-22x22.svg');
+    background-size: cover;
+  }
+  @media (max-width: $mo-l) {
+    a {
+      font-size: 13px;
+      &:hover {
+        .icon {
+          transform: translateX(3px);
+        }
+      }
+    }
+    .icon {
+      @include size(14px);
+      margin-left: 3px;
+    }
+  }
+}

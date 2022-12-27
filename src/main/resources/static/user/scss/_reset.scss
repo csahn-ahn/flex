@@ -1,0 +1,215 @@
+/* reset */
+
+/* rem 설정을 위한 폰트 */
+html {
+  font-size: $base-font-size;
+  // @media (max-width: 1600px) {
+  //   font-size: $base-font-size - 2px;
+  // }
+  // @media (max-width: 1200px) {
+  //   font-size: $base-font-size - 3px;
+  // }
+  // @media (max-width: 900px) {
+  //   font-size: $base-font-size - 4px;
+  // }
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+select,
+pre {
+  -webkit-text-size-adjust: none;
+  letter-spacing: -0.01em;
+  line-height: $line-height;
+  font-weight: 400;
+  color: $body-font-color;
+  font-family: $body-base-font;
+  font-size: $base-font-size;
+  word-break: keep-all;
+  outline: none;
+}
+
+/*-webkit-text-size-adjust: none(글자크기 자동조정 방지) , auto (화면의 폭에 맞추어서 텍스트의 크기를 자동으로 조절 , 100%(폰트크기를 지정된사이즈로 변경);*/
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+table,
+tr,
+td,
+dl,
+dt,
+dd,
+a,
+img,
+input,
+button,
+select,
+textarea {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+input {
+  -webkit-border-radius: 0;
+}
+textarea {
+  resize: none;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+
+code,
+kbd,
+samp {
+  font-family: dotum, '돋움', courier new, courier, monospace;
+}
+
+header,
+hgroup,
+article,
+nav,
+footer,
+figure,
+figcaption,
+canvas,
+section,
+main,
+menu {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* 모바일에서 꾹 눌렀을때 텍스트 복사 막기 */
+// p,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// ul,
+// ol,
+// li,
+// dl,
+// dt,
+// dd,
+// a,
+// img,
+// button,
+// legend {
+//   -webkit-touch-callout: none; /* iOS Safari */
+//   -webkit-user-select: none; /* Safari */
+//   -khtml-user-select: none; /* Konqueror HTML */
+//   -moz-user-select: none; /* Old versions of Firefox */
+//   -ms-user-select: none; /* Internet Explorer/Edge */
+//   user-select: none; /* Non-prefixed version, currently */
+// }
+
+body,
+div,
+p,
+ul,
+li,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+a,
+select,
+textarea {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: $body-font-color;
+}
+
+img,
+fieldset,
+iframe {
+  border: 0 none;
+}
+
+fieldset {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  @include blind;
+}
+
+img {
+  max-width: 100%;
+  border: 0px;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+  }
+}
+
+/* reset */

@@ -1,23 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>INSPINIA | 404 Error</title>
-	<link href="/static/admin/template/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/admin/template/font-awesome/css/font-awesome.css" rel="stylesheet">
-	<link href="/static/admin/template/css/animate.css" rel="stylesheet">
-	<link href="/static/admin/template/css/style.css" rel="stylesheet">
-</head>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
 <body class="gray-bg">
-<div class="middle-box text-center animated fadeInDown">
-	<h1>404</h1>
-	<h3 class="font-bold">Page Not Found</h3>
-
-	<div class="error-desc">
-		죄송합니다. 페이지를 찾을 수 없습니다.<br />
-		<a type="button" href="/" class="btn btn-primary">메인 페이지로 이동</a>
-	</div>
-</div>
+	<main id="content" class="sub-content error-page-content" layout:fragment="content">
+		<div class="section-inner">
+			<div class="img"><img src="/static/user/images/img-error-page.png" alt="" /></div>
+			<div class="text">앗, 죄송하지만 페이지를 찾을 수 없습니다.</div>
+			<div class="btn-more-small">
+				<a href="/">메인으로<i class="icon"></i></a>
+			</div>
+		</div>
+	</main>
 </body>
 </html>

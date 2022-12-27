@@ -1,18 +1,161 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/user/fragments/layout_empty}" xmlns:th="http://thymeleaf.org">
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin | Login</title>
-	<link href="/static/admin/template/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/admin/template/font-awesome/css/font-awesome.css" rel="stylesheet">
-	<link href="/static/admin/template/css/animate.css" rel="stylesheet">
-	<link href="/static/admin/template/css/style.css" rel="stylesheet">
-</head>
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
 
 <body layout:fragment="content" class="gray-bg">
+<div id="app">
+	<main v-if="step == 1" class="sub-content member-total-content join-gate-content">
+		<div class="section-inner xsmall">
+			<div class="section-title">JOIN</div>
+			<div class="common-btn-group">
+				<a href="javascript:void(0);" class="btn large btn-sns btn-email" @click="fnSetJoinType(1)"><i class="icon"></i><span class="text">이메일로 가입</span></a>
+				<a href="javascript:void(0);" class="btn large btn-sns btn-kakao" @click="fnSetJoinType(2)"><i class="icon"></i><span class="text">카카오로 가입</span></a>
+				<a href="javascript:void(0);" class="btn large btn-sns btn-naver" @click="fnSetJoinType(3)"><i class="icon"></i><span class="text">네이버로 가입</span></a>
+			</div>
+		</div>
+	</main>
+	<main v-if="step == 2" class="sub-content member-total-content terms-agree-content">
+		<div class="section-inner medium">
+			<div class="section-title">JOIN</div>
+			<div class="terms-agree-container">
+				<div class="all-check-area">
+					<div class="selector-cover checkbox square">
+						<input type="checkbox" name="allCheck" id="allCheck" v-model="agreeCheckAll" />
+						<label for="allCheck">전체 항목에 동의합니다.</label>
+					</div>
+				</div>
+				<div class="terms-agree-wrapper">
+					<div class="terms-agree-item">
+						<div class="title">개인정보 수집 및 이용 동의 (필수)</div>
+						<div class="terms-box" v-text="flexContents[0].body"></div>
+						<div class="check-area">
+							<div class="selector-cover checkbox square">
+								<input type="checkbox" name="agree01" id="agree01" v-model="agree.agree1" />
+								<label for="agree01">개인정보 수집 및 이용에 동의합니다.</label>
+							</div>
+						</div>
+					</div>
+					<div class="terms-agree-item">
+						<div class="title">개인정보 제 3자 제공 동의 (필수)</div>
+						<div class="terms-box" v-text="flexContents[1].body"></div>
+						<div class="check-area">
+							<div class="selector-cover checkbox square">
+								<input type="checkbox" name="agree02" id="agree02" v-model="agree.agree2" />
+								<label for="agree02">개인정보 제 3자 제공에 동의합니다.</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="common-btn-group row">
+					<a href="javascript:void(0);" class="btn large primary" @click="fnNextStep()">다음</a>
+					<a href="javascript:void(0);" class="btn large lightSlightly" @click="fnCancel()">취소</a>
+				</div>
+			</div>
+		</div>
+	</main>
+	<main v-if="step == 3" class="sub-content member-total-content join-form-content">
+		<div class="section-inner medium">
+			<div class="section-title">JOIN</div>
+			<div class="form-layout-container row">
+				<div class="section-inner small">
+					<div class="form-item">
+						<div class="form-label">
+							<label for="idEmail">아이디(이메일)<span class="required">*</span></label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover btn-with medium">
+								<input type="text" id="idEmail" name="" class="form-input" title="이메일(아이디)" />
+								<a href="javascript:void(0);" class="btn medium border primary">중복 확인</a>
+							</div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-label">
+							<label for="password">비밀번호<span class="required">*</span></label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover"><input type="password" id="password" name="" class="form-input" placeholder="10~15자 이내로 영문, 숫자, 특수문자가 모두 포함되어야 합니다." title="비밀번호" /></div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-label">
+							<label for="passwordChk">비밀번호 확인<span class="required">*</span></label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover">
+								<input type="password" id="passwordChk" name="" class="form-input" placeholder="" title="비밀번호 확인" />
+							</div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-label">
+							<label for="username">이름<span class="required">*</span></label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover"><input type="text" id="username" name="" class="form-input" title="이름" value="홍길동" readonly /></div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-label">
+							<label for="phone">휴대폰<span class="required">*</span></label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover"><input type="tel" id="phone" name="" class="form-input" title="휴대폰" value="010-1234-1234" readonly /></div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-label">
+							<label for="email">이메일</label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover">
+								<input type="email" id="email" name="" class="form-input" placeholder="" title="이메일" />
+							</div>
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="form-label">
+							<label for="address01">주소</label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover btn-with medium">
+								<input type="text" id="address01" name="" class="form-input" placeholder="" title="주소1" />
+								<a href="javascript:void(0);" class="btn medium lightSlightly">주소 검색</a>
+							</div>
+							<div class="input-cover">
+								<input type="text" id="address02" name="" class="form-input" placeholder="" title="주소2" />
+							</div>
+							<div class="input-cover">
+								<input type="text" id="address03" name="" class="form-input" placeholder="상세 주소를 입력해주세요." title="상세주소" />
+							</div>
+						</div>
+					</div>
+					<div class="common-btn-group row">
+						<a href="javascript:void(0);" class="btn large primary">가입 완료하기</a>
+						<a href="javascript:void(0);" class="btn large border primary" @click="fnCancel()">취소</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<main v-if="step == 4" class="sub-content member-total-content join-complete-content">
+		<div class="section-inner">
+			<div class="img-complete"><img src="/static/user/images/img-join-complete.png" alt="" /></div>
+			<div class="text-area">
+				<div class="title">가입이 완료되었습니다.</div>
+				<div class="sub-text">
+					레시피평창에 오신 것을 환영합니다.<br />
+					무해한 일상을 응원합니다.
+				</div>
+			</div>
+			<div class="btn-more-small">
+				<a href="/" class="font primary">메인으로 <i class="icon"></i></a>
+			</div>
+		</div>
+	</main>
+	<script src="/static/user/js/auth/join.js"></script>
+</div>
+<!--
 <div class="middle-box text-center loginscreen animated fadeInDown" id="app">
 	<div>
 		<div>
@@ -30,7 +173,8 @@
 		</form>
 	</div>
 </div>
-<script src="/static/user/js/auth/join.js"></script>
+-->
+
 
 </body>
 

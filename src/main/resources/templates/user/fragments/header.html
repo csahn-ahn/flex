@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="headerFragment">
-	<script src="/static/admin/template/js/jquery-3.1.1.min.js"></script>
-	<script src="/static/admin/js/vue.min.js"></script>
-	<script src="/static/admin/js/axios.min.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content_old="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no" content="width=device-width, initial-scale=1.0, user-scalable=no, height=device-height, maximum-scale=1.0" />
+	<meta name="title" content="레시피 평창" />
+	<meta name="description" content="평화로운 일상을 특별한 레시피로 만나보세요." />
+	<meta name="keywords" content="레시피평창, 평창레시피, 평창군, 평창굿즈, 평창음식, 평창상품, 평창여행, 강원도여행, 평창신활력추진단" />
+	<meta property="og:title" content="레시피 평창" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="" />
+	<meta property="og:image" content="/static/user/images/img-og.png" />
+	<link rel="icon" href="/static/user/images/favicon.png" />
+	<link rel="stylesheet" href="/static/user/css/style.css" />
+	<link rel="stylesheet" href="/static/user/plugins/swiper/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="/static/user/plugins/jquery-rateyo/jquery.rateyo.min.css" />
+	<!--<script src="/static/user/plugins/froala/froala_editor_pkgd.min.css"></script>-->
+	<script src="/static/user/plugins/jquery-2.2.4.min.js"></script>
+	<script src="/static/user/plugins/swiper/swiper-bundle.min.js"></script>
+	<script src="/static/user/plugins/jquery-rateyo/jquery.rateyo.min.js"></script>
+	<!-- 221020 퍼블수정 - froala_editor_pkgd.min.css 추가 -->
+	<script src="/static/user/js/common-ui.js"></script>
+	<title>레시피평창</title>
+	<script src="/static/common/js/vue.min.js"></script>
+	<script src="/static/common/js/axios.min.js"></script>
 	<script src="/static/user/js/common/common.js"></script>
 	<script src="/static/user/js/common/event.js"></script>
+	<script src="/static/user/js/common/content.js"></script>
 	<script th:inline="javascript">
         let _isLogin = [[${user == null ? false : true}]];      // 로그인여부
         let _user = {
           username: [[${user == null ? '' : user.username}]],   // 아이디
           name: [[${user == null ? '' : user.name}]],           // 이름
         }
-
 	</script>
 </th:block>
 </html>
