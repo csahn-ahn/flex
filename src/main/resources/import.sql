@@ -79,21 +79,15 @@ insert into code(code_id, code_group_id, code_value, code_name, display, del, re
 insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_01', 1, '테스트 콘텐츠-1', null, false, '2022-12-01 00:00:00');
 insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_02', 2, '테스트 콘텐츠-1', '/user/main', false, '2022-12-02 00:00:00');
 insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_03', 1, '테스트 콘텐츠-1', null, false, '2022-12-03 00:00:00');
-
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('TEST_CONTENT_02', '2022-12-01 00:00:00', '2022-12-30 00:00:00', '아이템 1', '아이템 1의 내용입니다.', true, true, false, '2022-12-01 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('TEST_CONTENT_02', '2022-12-02 00:00:00', '2023-12-30 00:00:00', '아이템 2', '아이템 2의 내용입니다.', true, true, false, '2022-12-02 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('TEST_CONTENT_02', '2022-12-03 00:00:00', '2023-05-03 00:00:00', '아이템 3', '아이템 3의 내용입니다.', true, true, false, '2022-12-03 00:00:00');
-
-
 insert into content(content_id, content_type, title, url, del, register_time) values ('JOIN_AGREE_1', 1, '회원가입 > 개인정보 수집 이용 동의(필수)', null, false, '2022-12-01 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('JOIN_AGREE_1', '2022-12-01 00:00:00', '2023-12-30 00:00:00', '동의 내용', '개인정보 수집에 동의하셔야 회원가입이 가능합니다.', true, true, false, '2022-12-01 00:00:00');
-
 insert into content(content_id, content_type, title, url, del, register_time) values ('JOIN_AGREE_2', 1, '회원가입 > 개인정보 제 3자 제공 동의(필수)', null, false, '2022-12-01 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('JOIN_AGREE_2', '2022-12-01 00:00:00', '2023-12-30 00:00:00', '동의 내용', '개인정보 제 3자 제공에 동의하셔야 회원가입이 가능합니다.', true, true, false, '2022-12-01 00:00:00');
-
 insert into content(content_id, content_type, title, url, del, register_time) values ('MAIN_CONTENT', 1, '메인 > 콘텐츠', null, false, '2022-12-01 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('MAIN_CONTENT', '2022-12-01 00:00:00', '2023-12-30 00:00:00', '메인 콘텐츠', '', true, true, false, '2022-12-01 00:00:00');
-
 
 insert into event(title, description, del, register_time) values ('이벤트 신청1', '기본 이벤트', false, '2022-12-22 00:00:00');
 
