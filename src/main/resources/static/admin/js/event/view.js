@@ -56,6 +56,7 @@ var app = new Vue({
 		},
 
 		fnSetPage(page) {
+			console.log('page : ' + page);
 			let me = this;
 			me.search.page = page;
 			me.fnGetList();
@@ -72,8 +73,6 @@ var app = new Vue({
 			.then(function(response) {
 				me.totalCount = response.data.totalElements;
 				me.list = response.data.content;
-
-				console.log('size : ' + me.list.length);
 
 				$('#pagination').twbsPagination({
 					totalPages: response.data.totalPages,

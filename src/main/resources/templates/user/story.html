@@ -3,8 +3,108 @@
 	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
 
 <body layout:fragment="content" class="gray-bg">
-	<main class="sub-content member-total-content login-gate-content" id="app">
-		<div v-html="flexContents[0].body"></div>
+	<main class="sub-content story-main-content" id="app">
+		<section class="story-keyvisual-section" style="background-image: url('/static/user/images/img-story-keyvisual.jpg')">
+			<div class="section-inner">
+				<div class="logo scroll-animate" data-animation="fade-in-top"><img src="/static/user/images/logo-story-keyvisual.svg" alt="레시피 평창" /></div>
+				<div class="line scroll-animate" data-delay="0.3"></div>
+				<div class="text">
+					<span class="scroll-animate" data-delay="0.6">오늘도 평화로운 평창<br /></span>
+					<strong class="scroll-animate" data-delay="0.8">레시피 평창에서 평화로움을 선물합니다. </strong>
+				</div>
+			</div>
+		</section>
+		<section class="story-content-section">
+			<div class="section-inner">
+				<div class="element-box element-box-01">
+					<div class="text-container scroll-animate" data-delay="0.1" data-animation="fade-in-left">
+						<div class="box-title">PYEONGCHANG</div>
+						<div class="text-box">
+							<div class="title">
+								평창에서 나고 자란 산물들로<br />
+								일상 속 평창의 레시피를 <br />
+								전합니다.
+							</div>
+							<div class="sub-text">
+								농부의 땀방울, 푸르른 초원의 빛까지 평창엔 있습니다.<br />
+								봄, 여름, 가을, 겨울 평창의 사계절을 언제 어디서든 <br />
+								함께하세요.
+							</div>
+						</div>
+					</div>
+					<div class="main-image scroll-animate" data-delay="0.6" data-animation="fade-in-right"><img src="/static/user/images/img-story-element-01-main.png" alt="" /></div>
+					<div class="img-been scroll-animate"><img src="/static/user/images/img-story-element-01-been.png" alt="" /></div>
+					<div class="img-rain scroll-animate"><img src="/static/user/images/img-story-element-01-rain.png" alt="" /></div>
+				</div>
+				<div class="element-box element-box-02">
+					<div class="main-image scroll-animate" data-delay="0.2" data-animation="fade-in-left"><img src="/static/user/images/img-story-element-02-main.png" alt="" /></div>
+					<div class="text-container scroll-animate" data-delay="0.4" data-animation="fade-in-right">
+						<div class="box-title">RECIPE</div>
+						<div class="title">평창을 배송해드립니다.</div>
+						<div class="sub-text">
+							평창의 특산품으로 만든 시그니처 디저트 레시피,<br />
+							한 입에 하늘, 두 입에 바람, 세 입에 햇살이 느껴집니다.<br />
+							평창을 둘러 싼 자연을 디저트로 만나보세요.
+						</div>
+					</div>
+					<div class="img-madeleine scroll-animate" data-delay="0.2" data-animation="fade-in-bottom"><img src="/static/user/images/img-story-element-01-madeleine.png" alt="" /></div>
+				</div>
+				<div class="element-box element-box-03">
+					<div class="main-image scroll-animate" data-delay="0.1" data-animation="fade-in-right"><img src="/static/user/images/img-story-element-03-main.png" alt="" /></div>
+					<div class="text-container scroll-animate" data-delay="0.4" data-animation="fade-in-left">
+						<div class="box-title">TRAVEL</div>
+						<div class="title">
+							보다 새롭게 평창을<br />
+							만날 수 있어요.
+						</div>
+						<div class="sub-text">
+							로컬푸드와 함께하는 건강한 여행 레시피,<br />
+							에코프렌들리한 감수성으로 평창을 따뜻하게 즐겨보세요.<br />
+							나도, 평창도, 자연도 모두 행복한 시간이 될거에요!
+						</div>
+					</div>
+					<div class="img-leaf"><img src="/static/user/images/img-story-element-03-leaf.png" alt="" /></div>
+				</div>
+				<div class="element-box element-box-04">
+					<div class="text-box scroll-animate" data-delay="0.2" data-animation="fade-in-left">
+						어디서든 지금!<br />
+						레시피평창으로<br />
+						무해한 일상을<br class="tb-show" />
+						즐겨보세요.
+					</div>
+					<div class="main-image scroll-animate" data-delay="0.4" data-animation="fade-in-bottom">
+						<img src="/static/user/images/img-story-element-04-main.png" alt="" />
+					</div>
+					<div class="img-flower scroll-animate" data-animation="fade-in-bottom"><img src="/static/user/images/img-story-element-04-flower.png" alt="" /></div>
+				</div>
+			</div>
+		</section>
+		<section class="story-bi-section">
+			<div class="section-inner">
+				<div class="title-area">
+					<div class="title scroll-animate" data-animation="fade-in-bottom">레시피평창 BI</div>
+					<div class="sub-text scroll-animate" data-delay="0.2" data-animation="fade-in-bottom">
+						레시피 평창의 플랫폼 BI입니다.<br />
+						청록색 컬러를 기반으로 다양한 에너지를 가진 밝은 포인트 컬러와 함께 조합합니다.<br />
+						나무, 꽃, 커피와 같이 우리의 일상을 보다 더 평화롭게 만들어주는 아이콘과 함께 브랜드 아이덴티티를 구성하였습니다.
+					</div>
+				</div>
+				<div class="story-bi-container">
+					<div class="list-item scroll-animate" data-delay="0.2" data-animation="fade-in-left">
+						<div class="title">Basic Type</div>
+						<div class="box-item">
+							<div class="logo"><img src="/static/user/images/logo-bi-basic.svg" alt="레시피평창" /></div>
+						</div>
+					</div>
+					<div class="list-item scroll-animate" data-delay="0.4" data-animation="fade-in-right">
+						<div class="title">Variation Type</div>
+						<div class="box-item">
+							<div class="logo"><img src="/static/user/images/logo-bi-variation.svg" alt="레시피평창" /></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 		<script src="/static/user/js/story.js"></script>
 	</main>
 </body>
