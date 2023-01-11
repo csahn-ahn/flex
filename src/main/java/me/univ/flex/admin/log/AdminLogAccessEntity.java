@@ -33,7 +33,7 @@ public class AdminLogAccessEntity {
     private String menuName;
     private String accessUrl;
 
-    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp accessTime;
 
     @Transient

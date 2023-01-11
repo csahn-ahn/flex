@@ -32,7 +32,7 @@ public class EventApplyEntity {
     private int eventId;
     @Column(nullable = false)
     private String username;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp applyTime;
     private String etc1;
     private String etc2;

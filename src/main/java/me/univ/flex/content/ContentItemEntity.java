@@ -42,11 +42,11 @@ public class ContentItemEntity {
     private boolean preview;
     @Column(nullable = false)
     private boolean del;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp registerTime;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp lastUpdateTime;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:MM", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp deleteTime;
     private String registerId;
     private String lastUpdateId;

@@ -36,6 +36,6 @@ public class ErrorEntity {
     private String info5;
     @Column(columnDefinition = "nvarchar(max)")
     private String trace;
-    @JsonFormat(pattern = "yyyy/MM/dd hh:mm", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp errorTime;
 }
