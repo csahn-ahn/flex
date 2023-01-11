@@ -2,29 +2,36 @@ INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('슈퍼관리�
 INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('대학내일', 0, '2022-12-02 00:00:00');
 INSERT INTO ADMIN_GROUP (group_name, del, register_time) values ('운영자', 0, '2022-12-03 00:00:00');
 
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '회원', 1, '/admin/user', 'fa-user', 2, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (1, '회원 관리', 1, '/admin/user/users/main', null, 1, 0, '2022-12-05 00:00:00')
-
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '참여', 1, '/admin/event', 'fa-gift', 5, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (3, '이벤트관리', 1, '/admin/event/events/main', null, 1, 0, '2022-12-05 00:00:00')
-
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '코드', 1, '/admin/code', 'fa-barcode', 4, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (5, '공통코드 관리', 1, '/admin/code/common/main', null, 1, 0, '2022-12-05 00:00:00')
-
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '시스템', 1, '/admin/system', 'fa-cog', 1, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (7, '운영자 관리', 1, '/admin/system/managers/main', null, 1, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (7, '메뉴 관리', 1, '/admin/system/adminMenus/main', null, 2, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (7, '그룹 관리', 1, '/admin/system/adminGroups/main', null, 3, 0, '2022-12-05 00:00:00')
-
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '이력', 1, '/admin/log', 'fa-file-text', 6, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (11, '로그인 이력', 1, '/admin/log/login/main', null, 1, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (11, '접근 이력', 1, '/admin/log/access/main', null, 2, 0, '2022-12-05 00:00:00')
-
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '회원', 1, '/admin/user', 'fa-user', 2, 0, '2022-12-05 00:00:00')
 INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '콘텐츠', 1, '/admin/content', 'fa-folder-open', 3, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (14, '콘텐츠 관리', 1, '/admin/content/contents/main', null, 1, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '게시판', 1, '/admin/board', 'fa-folder-open', 4, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '참여', 1, '/admin/event', 'fa-gift', 5, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '코드', 1, '/admin/code', 'fa-barcode', 6, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '이력', 1, '/admin/log', 'fa-file-text', 7, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '외부링크', 1, '/admin/external', 'fa-external-link', 8, 0, '2022-12-05 00:00:00')
 
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (0, '외부링크', 1, '/admin/external', 'fa-external-link', 7, 0, '2022-12-05 00:00:00')
-INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (16, 'inspinia', 2, 'http://webapplayers.com/inspinia_admin-v2.9.4/', null, 1, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (1, '운영자 관리', 1, '/admin/system/managers/main', null, 1, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (1, '메뉴 관리', 1, '/admin/system/adminMenus/main', null, 2, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (1, '그룹 관리', 1, '/admin/system/adminGroups/main', null, 3, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (2, '회원 관리', 1, '/admin/user/users/main', null, 1, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (3, '콘텐츠 관리', 1, '/admin/content/contents/main', null, 1, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (4, '게시판 관리', 1, '/admin/board/boards/main', null, 1, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (5, '이벤트관리', 1, '/admin/event/events/main', null, 1, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (6, '공통코드 관리', 1, '/admin/code/common/main', null, 1, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (7, '로그인 이력', 1, '/admin/log/login/main', null, 1, 0, '2022-12-05 00:00:00')
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (7, '접근 이력', 1, '/admin/log/access/main', null, 2, 0, '2022-12-05 00:00:00')
+
+INSERT INTO ADMIN_MENU (upper_menu_id, menu_name, link_type, link_url, icon, sort, del, register_time) values (8, 'inspinia', 2, 'http://webapplayers.com/inspinia_admin-v2.9.4/', null, 1, 0, '2022-12-05 00:00:00')
+
+
+
 
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 1);
 insert into admin_group_menu (has_create, has_delete, has_download, has_read, has_update, group_id, menu_id) values (1, 1, 1, 1, 1, 1, 2);
@@ -102,7 +109,8 @@ insert into content_item(content_id, service_start_time, service_end_time, title
 
 insert into event(title, description, del, register_time) values ('이벤트 신청1', '기본 이벤트', false, '2022-12-22 00:00:00');
 
-
+insert into board(board_type, title, description, del, register_time) values (1, '공지사항', '공지사항 게시판입니다.', false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요', '반가워요~', true, false, '2022-12-22 00:00:00');
 
 
 
