@@ -1,7 +1,7 @@
 # 서버 설정
 server:
   shutdown: graceful
-  port: ${PORT:8080}
+  port: ${PORT:8088}
   compression:
     enabled: true
     mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json

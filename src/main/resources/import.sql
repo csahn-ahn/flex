@@ -86,8 +86,19 @@ insert into content(content_id, content_type, title, url, del, register_time) va
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('JOIN_AGREE_1', '2022-12-01 00:00:00', '2023-12-30 00:00:00', '동의 내용', '개인정보 수집에 동의하셔야 회원가입이 가능합니다.', true, true, false, '2022-12-01 00:00:00');
 insert into content(content_id, content_type, title, url, del, register_time) values ('JOIN_AGREE_2', 1, '회원가입 > 개인정보 제 3자 제공 동의(필수)', null, false, '2022-12-01 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('JOIN_AGREE_2', '2022-12-01 00:00:00', '2023-12-30 00:00:00', '동의 내용', '개인정보 제 3자 제공에 동의하셔야 회원가입이 가능합니다.', true, true, false, '2022-12-01 00:00:00');
+
+
 insert into content(content_id, content_type, title, url, del, register_time) values ('MAIN_CONTENT', 1, '메인 > 콘텐츠', null, false, '2022-12-01 00:00:00');
 insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('MAIN_CONTENT', '2022-12-01 00:00:00', '2023-12-30 00:00:00', '메인 콘텐츠', '', true, true, false, '2022-12-01 00:00:00');
+
+insert into content(content_id, content_type, title, url, del, register_time) values ('STORY_MAIN_CONTENT', 1, '메인 > STORY', null, false, '2022-12-01 00:00:00');
+insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('STORY_MAIN_CONTENT', '2022-12-01 00:00:00', '2023-12-30 00:00:00', 'STORY 콘텐츠', 'STORY 콘텐츠', true, true, false, '2022-12-01 00:00:00');
+
+insert into content(content_id, content_type, title, url, del, register_time) values ('SHOP_MAIN_CONTENT', 1, '메인 > SHOP', null, false, '2022-12-01 00:00:00');
+insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('SHOP_MAIN_CONTENT', '2022-12-01 00:00:00', '2023-12-30 00:00:00', 'SHOP 콘텐츠', 'SHOP 콘텐츠', true, true, false, '2022-12-01 00:00:00');
+
+insert into content(content_id, content_type, title, url, del, register_time) values ('STORY_MAIN_CONTENT', 1, '메인 > EVENT', null, false, '2022-12-01 00:00:00');
+insert into content_item(content_id, service_start_time, service_end_time, title, body, live, preview, del, register_time) values ('EVENT_MAIN_CONTENT', '2022-12-01 00:00:00', '2023-12-30 00:00:00', 'EVENT 콘텐츠', 'EVENT 콘텐츠', true, true, false, '2022-12-01 00:00:00');
 
 insert into event(title, description, del, register_time) values ('이벤트 신청1', '기본 이벤트', false, '2022-12-22 00:00:00');
 

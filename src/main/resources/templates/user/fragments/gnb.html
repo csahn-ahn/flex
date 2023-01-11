@@ -12,9 +12,9 @@
             </a>
           </h1>
           <nav class="header-gnb">
-            <div class="header-gnb-item"><a href="../스토리/스토리메인.html">STORY</a></div>
-            <div class="header-gnb-item"><a href="../샵/리스트.html">SHOP</a></div>
-            <div class="header-gnb-item"><a href="../이벤트/리스트.html">EVENT</a></div>
+            <div class="header-gnb-item"><a href="/user/story">STORY</a></div>
+            <div class="header-gnb-item"><a href="/user/shop">SHOP</a></div>
+            <div class="header-gnb-item"><a href="/user/event">EVENT</a></div>
           </nav>
           <div class="header-etc">
             <div class="header-etc-menu">
@@ -28,7 +28,7 @@
               </div>
               -->
               <div th:if="${user != null && user != ''}" class="header-etc-item mypage">
-                <a href="../마이페이지/주문내역리스트.html" class="icon-mypage">마이페이지</a>
+                <a href="/user/myPage/edit" class="icon-mypage">마이페이지</a>
               </div>
               <!--
               <div class="header-etc-item cart">

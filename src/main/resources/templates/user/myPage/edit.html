@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Main page</title>
+</head>
+<body>
+	<main layout:fragment="content" class="sub-content mypage-content mypage-edit-content" id="app">
+		<section class="mypage-body-section">
+			<div class="section-inner medium">
+				<div class="mypage-body-content">
+					<div class="section-title">
+						<div class="title">개인정보 수정</div>
+					</div>
+					<div class="mypage-edit-form">
+						<div class="form-layout-container row">
+							<div class="section-inner small">
+								<div class="form-item">
+									<div class="form-label">
+										<label for="username">아이디(이메일)<span class="required">*</span></label>
+									</div>
+									<div class="form-field">
+										<div class="input-cover">
+											<input type="text" id="username" name="" class="form-input" title="이메일(아이디)" v-model="user.username" disabled />
+										</div>
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="form-label">
+										<label for="username">이름<span class="required">*</span></label>
+									</div>
+									<div class="form-field">
+										<div class="input-cover"><input type="text" id="name" name="" class="form-input" title="이름" v-model="user.name" disabled /></div>
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="form-label">
+										<label for="phone">휴대폰<span class="required">*</span></label>
+									</div>
+									<div class="form-field">
+										<div class="input-cover"><input type="tel" id="phone" name="" class="form-input" title="휴대폰" v-model="user.hp" /></div>
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="form-label">
+										<label for="email">이메일</label>
+									</div>
+									<div class="form-field">
+										<div class="input-cover">
+											<input type="email" id="email" name="" class="form-input" placeholder="" title="이메일" v-model="user.email" />
+										</div>
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="form-label">
+										<label for="password">비밀번호 확인<span class="required">*</span></label>
+									</div>
+									<div class="form-field">
+										<div class="input-cover"><input type="password" id="password" name="" class="form-input" placeholder="" title="비밀번호 확인" v-model="user.password" /></div>
+									</div>
+								</div>
+								<!--
+								<div class="form-item">
+									<div class="form-label">
+										<label for="address01">주소</label>
+									</div>
+									<div class="form-field">
+										<div class="input-cover btn-with medium">
+											<input type="text" id="address01" name="" class="form-input" placeholder="" title="주소1" />
+											<a href="javascript:void(0);" class="btn medium lightSlightly">주소 검색</a>
+										</div>
+										<div class="input-cover">
+											<input type="text" id="address02" name="" class="form-input" placeholder="" title="주소2" />
+										</div>
+										<div class="input-cover">
+											<input type="text" id="address03" name="" class="form-input" placeholder="상세 주소를 입력해주세요." title="상세주소" />
+										</div>
+									</div>
+								</div>
+								-->
+								<div class="btn-more-small">
+									<a href="/user/myPage/editPassword">비밀번호 변경하기<i class="icon"></i></a>
+								</div>
+								<div class="common-btn-group row">
+									<a href="javascript:void(0);" class="btn large primary" @click="fnSave()">수정 완료하기</a>
+									<a href="javascript:void(0);" class="btn large lightSlightly" @click="fnCancel()">취소</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script src="/static/user/js/myPage/edit.js"></script>
+	</main>
+</body>
+</html>
+

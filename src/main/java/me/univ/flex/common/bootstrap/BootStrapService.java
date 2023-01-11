@@ -105,6 +105,8 @@ public class BootStrapService {
 			.email(email)
 			.gender(true)
 			.foreigner(false)
+			.snsUid("2124922568")
+			.snsType("KAKAO")
 			.del(false)
 			.registerTime(TimestampUtil.now())
 			.build();

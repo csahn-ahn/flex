@@ -15,15 +15,16 @@ var app = new Vue({
 	computed: {
 	},
 	methods: {
+
 		fnSave() {
 			let me = this;
 			if(me.user.password == '' || me.user.newPassword == '' || me.user.confirmPassword == '') {
-				alert('비밀번호를 입력해주세요.');
+				_popup.fnOpenAlert('비밀번호를 입력해주세요.');
 				return false;
 			}
 
 			if(me.user.newPassword !== me.user.confirmPassword) {
-				alert('새로운 비밀번호가 일치하지 않습니다.');
+				_popup.fnOpenAlert('새로운 비밀번호가 일치하지 않습니다.');
 				return false;
 			}
 
@@ -33,19 +34,20 @@ var app = new Vue({
 			)
 			.then(function(response) {
 				if(response.data.success) {
-					alert('비밀번호가 변경되었습니다.\n변경 된 비밀번호로 다시 로그인하여 주십시오.');
-					_common.fnLogin('/');
+					_popup.fnOpenAlert('비밀번호가 변경되었습니다.<br />변경 된 비밀번호로 다시 로그인하여 주십시오.', function(){
+						_common.fnLogin('/');
+					});
 				}else{
 					me.user= {
 						password: '',
 						newPassword: '',
 						confirmPassword: ''
 					}
-					alert(response.data.message);
+					_popup.fnOpenAlert(response.data.message);
 				}
 			})
 			.catch(function(error) {
-				alert('error : ' + error);
+				_popup.fnOpenAlert('error : ' + error);
 			})
 
 			return false;

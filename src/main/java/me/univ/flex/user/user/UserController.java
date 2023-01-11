@@ -1,6 +1,7 @@
 package me.univ.flex.user.user;
 
 import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.univ.flex.common.constants.BaseConstants;
@@ -40,9 +41,8 @@ public class UserController {
     }
 
     @PostMapping(name = "sns로그인", value = "/loginSns")
-    public ResponseEntity<UserEntity.Response> loginSns(UserEntity.LoginSnsRequest request) {
-        userService.loginSns(request);
-        return ResponseEntity.ok(userService.loginSns(request));
+    public ResponseEntity<UserEntity.Response> loginSns(@RequestBody UserEntity.LoginSnsRequest request) {
+    return ResponseEntity.ok(userService.loginSns(request));
     }
 
     @GetMapping(name = "로그아웃", value = "/logout")

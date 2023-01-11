@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
+
+<body layout:fragment="content" class="gray-bg">
+	<main class="sub-content member-total-content login-gate-content" id="app">
+		<div v-html="flexContents[0].body"></div>
+		<script src="/static/user/js/shop.js"></script>
+	</main>
+</body>
+</html>
+

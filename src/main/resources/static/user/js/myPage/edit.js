@@ -1,7 +1,9 @@
 var app = new Vue({
 	el: '#app',
 	data: {
-		user: {}
+		user: {
+
+		}
 	},
 	created() {
 	},
@@ -24,25 +26,41 @@ var app = new Vue({
 				me.user = response.data;
 			})
 			.catch(function(error) {
-				alert(error);
+				_popup.fnOpenAlert(error);
 			})
+		},
+
+		fnValidate() {
+			let me = this;
+			if(me.user.password == null || me.user.password == '') {
+				_popup.fnOpenAlert('비밀번호를 입력하십시오.');
+				return false;
+			}
+			return true;
 		},
 
 		fnSave() {
 			let me = this;
+
+			if(!me.fnValidate()) {
+				return false;
+			}
+
 			axios.put(
 				'/user/api/v1/users/updateUser',
 				me.user
 			)
 			.then(function(response) {
 				if(response.data.success) {
-					document.location.href = '/';
+					_popup.fnOpenAlert('개인정보가 수정되었습니다.', function() {
+						document.location.href = '/';
+					})
 				}else{
-					alert(response.data.message);
+					_popup.fnOpenAlert(response.data.message);
 				}
 			})
 			.catch(function(error) {
-				alert('error : ' + error);
+				_popup.fnOpenAlert('error : ' + error);
 			})
 
 			return false;

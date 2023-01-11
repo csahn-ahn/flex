@@ -9,8 +9,8 @@
 			<div class="section-title">JOIN</div>
 			<div class="common-btn-group">
 				<a href="javascript:void(0);" class="btn large btn-sns btn-email" @click="fnSetJoinType(1)"><i class="icon"></i><span class="text">이메일로 가입</span></a>
-				<a href="javascript:void(0);" class="btn large btn-sns btn-kakao" @click="fnSetJoinType(2)"><i class="icon"></i><span class="text">카카오로 가입</span></a>
-				<a href="javascript:void(0);" class="btn large btn-sns btn-naver" @click="fnSetJoinType(3)"><i class="icon"></i><span class="text">네이버로 가입</span></a>
+				<a href="javascript:void(0);" class="btn large btn-sns btn-kakao" @click="fnSocialJoin('kakao')"><i class="icon"></i><span class="text">카카오로 가입</span></a>
+				<a href="javascript:void(0);" class="btn large btn-sns btn-naver" @click="fnSocialJoin('naver')"><i class="icon"></i><span class="text">네이버로 가입</span></a>
 			</div>
 		</div>
 	</main>
@@ -64,7 +64,7 @@
 						</div>
 						<div class="form-field">
 							<div class="input-cover btn-with medium">
-								<input type="text" id="idEmail" name="" class="form-input" title="이메일(아이디)" />
+								<input type="text" id="idEmail" name="" class="form-input" title="이메일(아이디)" v-model="user.username" />
 								<a href="javascript:void(0);" class="btn medium border primary">중복 확인</a>
 							</div>
 						</div>
@@ -74,16 +74,16 @@
 							<label for="password">비밀번호<span class="required">*</span></label>
 						</div>
 						<div class="form-field">
-							<div class="input-cover"><input type="password" id="password" name="" class="form-input" placeholder="10~15자 이내로 영문, 숫자, 특수문자가 모두 포함되어야 합니다." title="비밀번호" /></div>
+							<div class="input-cover"><input type="password" id="password" name="" class="form-input" placeholder="10~15자 이내로 영문, 숫자, 특수문자가 모두 포함되어야 합니다." title="비밀번호" v-model="user.password" /></div>
 						</div>
 					</div>
 					<div class="form-item">
 						<div class="form-label">
-							<label for="passwordChk">비밀번호 확인<span class="required">*</span></label>
+							<label for="confirmPassword">비밀번호 확인<span class="required">*</span></label>
 						</div>
 						<div class="form-field">
 							<div class="input-cover">
-								<input type="password" id="passwordChk" name="" class="form-input" placeholder="" title="비밀번호 확인" />
+								<input type="password" id="confirmPassword" name="" class="form-input" placeholder="" title="비밀번호 확인" v-model="user.confirmPassword" />
 							</div>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 							<label for="username">이름<span class="required">*</span></label>
 						</div>
 						<div class="form-field">
-							<div class="input-cover"><input type="text" id="username" name="" class="form-input" title="이름" value="홍길동" readonly /></div>
+							<div class="input-cover"><input type="text" id="username" name="" class="form-input" title="이름" v-model="user.name" /></div>
 						</div>
 					</div>
 					<div class="form-item">
@@ -100,7 +100,7 @@
 							<label for="phone">휴대폰<span class="required">*</span></label>
 						</div>
 						<div class="form-field">
-							<div class="input-cover"><input type="tel" id="phone" name="" class="form-input" title="휴대폰" value="010-1234-1234" readonly /></div>
+							<div class="input-cover"><input type="tel" id="phone" name="" class="form-input" title="휴대폰" value="010-1234-1234" v-model="user.hp" /></div>
 						</div>
 					</div>
 					<div class="form-item">
@@ -109,29 +109,31 @@
 						</div>
 						<div class="form-field">
 							<div class="input-cover">
-								<input type="email" id="email" name="" class="form-input" placeholder="" title="이메일" />
+								<input type="email" id="email" name="" class="form-input" placeholder="" title="이메일" v-model="user.email" />
 							</div>
 						</div>
 					</div>
+					<!--
 					<div class="form-item">
 						<div class="form-label">
 							<label for="address01">주소</label>
 						</div>
 						<div class="form-field">
 							<div class="input-cover btn-with medium">
-								<input type="text" id="address01" name="" class="form-input" placeholder="" title="주소1" />
+								<input type="text" id="address01" name="" class="form-input" placeholder="" title="주소1" v-model="user.address1" />
 								<a href="javascript:void(0);" class="btn medium lightSlightly">주소 검색</a>
 							</div>
 							<div class="input-cover">
 								<input type="text" id="address02" name="" class="form-input" placeholder="" title="주소2" />
 							</div>
 							<div class="input-cover">
-								<input type="text" id="address03" name="" class="form-input" placeholder="상세 주소를 입력해주세요." title="상세주소" />
+								<input type="text" id="address03" name="" class="form-input" placeholder="상세 주소를 입력해주세요." title="상세주소" v-model="user.address2" />
 							</div>
 						</div>
 					</div>
+					-->
 					<div class="common-btn-group row">
-						<a href="javascript:void(0);" class="btn large primary">가입 완료하기</a>
+						<a href="javascript:void(0);" class="btn large primary" @click="fnSave()">가입 완료하기</a>
 						<a href="javascript:void(0);" class="btn large border primary" @click="fnCancel()">취소</a>
 					</div>
 				</div>

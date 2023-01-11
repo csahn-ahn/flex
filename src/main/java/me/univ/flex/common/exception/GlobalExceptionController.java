@@ -47,7 +47,8 @@ public class GlobalExceptionController implements ErrorController {
 			null,
 			null,
 			null,
-			trace.toString()
+			//trace.toString()
+			e.getMessage()
 		);
 
 		if (status != null) {
@@ -59,6 +60,8 @@ public class GlobalExceptionController implements ErrorController {
 				return ERROR_500_PAGE_PATH;
 			}
 		}
+
+		e.printStackTrace();
 
 		return ERROR_ETC_PAGE_PATH;
 	}

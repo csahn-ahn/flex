@@ -128,6 +128,7 @@ public class UserEntity {
         private String name;
         private String hp;
         private String email;
+        private String password;
     }
 
     @Data

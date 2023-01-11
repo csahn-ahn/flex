@@ -28,3 +28,23 @@ flex:
     user-url: http://localhost
     user-sender-name: 대학내일
     user-sender-email: csahn@univ.me
+
+  social: # SNS 연동정보.
+    end-point-url: /univ/crtfSocialEndPoint
+
+    # GOOGLE
+    google-app-id: 694345883578-vl0re9thlrktitkg0ck9o6gih59b8pa0.apps.googleusercontent.com
+    google-app-secret: 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
+    google-callback-url: http://localhost:8088/user/google/callback
+    google-api-key: AIzaSyCjQiUR9vxLz2A1dOMSpREUpoBs60WQR9M
+
+    # KAKAO
+    kakao-app-id: 2810712a1d743737ffeb034c2c86dd3f
+    kakao-rest-key: 90646c3acda0fc09099ff13803148b4d
+    kakao-js-key: bb6732e300b8fdf406f5d4c9dcbb95b4
+    kakao-callback-url: http://localhost:8088/user/kakao/callback
+
+    # NAVER
+    naver-app-id: CV9X9ieO3MiPZCu6pFxc
+    naver-app-secret: OGx2EoYPhv
+    naver-callback-url: http://localhost:8088/user/naver/callback

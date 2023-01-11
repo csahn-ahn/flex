@@ -16,10 +16,14 @@ var app = new Vue({
 		user: {
 			username: 'ahnstar83@gmail.com',
 			name: '테스트-01',
-			password: '1234',
-			confirmPassword: '1234',
+			password: 'faith83!',
+			confirmPassword: 'faith83!',
 			hp: '01012345678',
-			email: 'test01@gmail.com'
+			email: 'test01@gmail.com',
+			address1: '',
+			address2: '',
+			snsType: '',
+			snsUid: '',
 		},
 
 	},
@@ -45,6 +49,45 @@ var app = new Vue({
 	},
 	methods: {
 
+		fnSocialJoin(channel) {
+			var url = '/user/' + channel + '/login';
+			var name = 'sociallogin';
+			var spec = '';
+
+			switch (channel) {
+			  case 'naver':
+				spec = 'width=445,height=510,scrollbars=yes';
+				break;
+			  case 'facebook':
+				spec = 'width=620,height=600';
+				break;
+			  case 'google':
+				spec = 'width=620,height=600';
+				break;
+			  case 'kakao':
+				spec = 'width=620,height=600';
+				break;
+			  default:
+				break;
+			}
+
+			if(channel != 'kakao') {
+				_popup.fnOpenAlert('준비중입니다.');
+				return false;
+			}else{
+				var socialLoginWindow = window.open(url, name, spec);
+			}
+		},
+
+		fnSocialSuccess(snsType, snsUid) {
+			let me = this;
+			me.snsType = snsType;
+			me.snsUid = snsType;
+
+			me.fnSetJoinType(1);
+		},
+
+
 		fnSetJoinType(type) {
 			let me = this;
 
@@ -52,6 +95,7 @@ var app = new Vue({
 				me.step = 2;
 
 			} else if(type == 2) {
+
 
 			} else if(type == 3) {
 
@@ -79,13 +123,15 @@ var app = new Vue({
 			)
 			.then(function(response) {
 				if(response.data.success) {
-					document.location.href = '/';
+					//document.location.href = '/';
+					me.step++;
+
 				}else{
-					alert(response.data.message);
+					_popup.fnOpenAlert(response.data.message);
 				}
 			})
 			.catch(function(error) {
-				alert('error : ' + error);
+				_popup.fnOpenAlert('error : ' + error);
 			})
 
 			return false;

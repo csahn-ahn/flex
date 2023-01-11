@@ -10,6 +10,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.univ.flex.common.constants.SocialConstants;
 import me.univ.flex.common.security.UserDetailsImpl;
 import me.univ.flex.common.utils.FormatUtils;
 import me.univ.flex.common.utils.TimestampUtil;
@@ -122,6 +123,7 @@ public class UserService {
     }
 
     public UserEntity.Response loginSns(UserEntity.LoginSnsRequest request) {
+
         Optional<UserEntity> optionalUser = userRepository.findBySnsTypeAndSnsUidAndDel(request.getSnsType(), request.getSnsUid(), false);
         if(!optionalUser.isPresent()) {
             return UserEntity.Response.builder()
@@ -132,7 +134,7 @@ public class UserService {
 
         UserEntity user = optionalUser.get();
 
-        request.setGrant("user");
+        //request.setGrant("user");
         UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
 
@@ -178,6 +180,9 @@ public class UserService {
             .email(request.getEmail())
             .gender(request.isGender())
             .foreigner(request.isForeigner())
+            .zipcode(request.getZipcode())
+            .address1(request.getAddress1())
+            .address2(request.getAddress2())
             .snsType(request.getSnsType())
             .snsUid(request.getSnsUid())
             .del(false)
@@ -260,6 +265,14 @@ public class UserService {
         }
 
         UserEntity userEntity = optionUser.get();
+
+        if (!passwordEncoder.matches(request.getPassword(), userEntity.getPassword())) {
+            return UserEntity.Response.builder()
+                .success(false)
+                .message("비밀번호가 일치하지 않습니다.")
+                .build();
+        }
+
         userEntity.setName(request.getName());
         userEntity.setHp(request.getHp());
         userEntity.setEmail(request.getEmail());
