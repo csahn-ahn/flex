@@ -18,6 +18,7 @@
 	<script src="/static/user/plugins/jquery-2.2.4.min.js"></script>
 	<script src="/static/user/plugins/swiper/swiper-bundle.min.js"></script>
 	<script src="/static/user/plugins/jquery-rateyo/jquery.rateyo.min.js"></script>
+	<script type="text/javascript" src="/static/admin/js/jquery.twbsPagination.js"></script>
 	<!-- 221020 퍼블수정 - froala_editor_pkgd.min.css 추가 -->
 	<script src="/static/user/js/common-ui.js"></script>
 	<title>레시피평창</title>
@@ -26,6 +27,7 @@
 	<script src="/static/user/js/common/common.js"></script>
 	<script src="/static/user/js/common/event.js"></script>
 	<script src="/static/user/js/common/content.js"></script>
+
 	<script th:inline="javascript">
         let _isLogin = [[${user == null ? false : true}]];      // 로그인여부
         let _user = {

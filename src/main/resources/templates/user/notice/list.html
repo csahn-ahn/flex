@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Main page</title>
+</head>
+<body>
+	<main class="sub-content customer-total-content notice-list-content" layout:fragment="content" id="app">
+		<section class="customer-total-section">
+			<div class="section-inner medium">
+				<div class="section-title">공지사항</div>
+				<div class="notice-list-container">
+					<div class="common-table-layout notice">
+						<div class="table-header">
+							<div class="list-item">NO</div>
+							<div class="list-item">제목</div>
+							<div class="list-item">작성일</div>
+						</div>
+						<div class="table-body">
+							<template v-if="list.length == 0">
+								<div class="list-row">
+									<div class="list-header">
+										<div class="list-item center">
+											<div class="text"></div>
+										</div>
+										<div class="list-item">
+											데이터가 존재하지 없습니다.
+										</div>
+										<div class="list-item center">
+											<div class="date">0</div>
+										</div>
+									</div>
+								</div>
+							</template>
+							<template v-else>
+								<template v-for="(obj, idx) in list">
+									<div class="list-row">
+										<div class="list-header">
+											<div class="list-item center">
+												<div class="text">{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</div>
+											</div>
+											<div class="list-item">
+												<a href="javascript:void(0)" class="text" @click="fnView(obj, search.page)">{{obj.title}}</a>
+											</div>
+											<div class="list-item center">
+												<div class="date">{{obj.registerTime}}</div>
+											</div>
+										</div>
+									</div>
+								</template>
+							</template>
+						</div>
+					</div>
+				</div>
+				<div class="pagination" id="pagination"></div>
+				<!--
+				<div class="pagination">
+					<a type="button" class="controller prev-10 disabled">이전 10개</a>
+					<a type="button" class="controller prev">이전으로</a>
+					<a type="button" class="paging current">1</a>
+					<a type="button" class="paging">2</a>
+					<a type="button" class="paging">3</a>
+					<a type="button" class="controller next">다음으로</a>
+					<a type="button" class="controller next-10">다음 10개</a>
+				</div>
+				-->
+			</div>
+		</section>
+		<script src="/static/user/js/notice/list.js"></script>
+	</main>
+</body>
+</html>

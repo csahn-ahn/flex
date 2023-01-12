@@ -19,7 +19,7 @@ public class BoardService {
     private final BoardRepository repository;
 
 
-    public Page<BoardEntity> findAll(UserDetailsImpl admin, BoardEntity.PageRequest request) {
+    public Page<BoardEntity> findAll(BoardEntity.PageRequest request) {
         PageRequest pageRequest = PageRequest.of(
             request.getPage() -1,
             request.getPageSize(),
@@ -30,7 +30,7 @@ public class BoardService {
         return page;
     }
 
-    public BoardEntity detail(UserDetailsImpl admin, int boardId) {
+    public BoardEntity detail(int boardId) {
         Optional<BoardEntity> optionalBoard = repository.findById(boardId);
         if(!optionalBoard.isPresent()) {
             return null;

@@ -63,7 +63,7 @@ var app = new Vue({
 			me.fnGetList();
 		},
 
-		// 신청 목록 조회
+		// 목록 조회
 		fnGetList() {
 			let me = this;
 			axios({

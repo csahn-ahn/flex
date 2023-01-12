@@ -1,4 +1,4 @@
-package me.univ.flex.admin.board;
+package me.univ.flex.user.board;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,30 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(name = "게시판 관리", value = BaseConstants.ADMIN_API_PREFIX + "/boards")
-public class BoardController {
+@RequestMapping(name = "게시물", value = BaseConstants.USER_API_PREFIX + "/boards")
+public class UserBoardController {
 
     private final BoardService service;
     private final BoardContentService boardContentService;
 
-    @GetMapping(name = "게시판 목록 조회")
-    public ResponseEntity<Page<BoardEntity>> findAll(@AuthenticationPrincipal UserDetailsImpl admin, BoardEntity.PageRequest request){
-        return ResponseEntity.ok(service.findAll(request));
-    }
-
     @GetMapping(name = "게시판 상세 조회", value = "/{boardId}")
-    public ResponseEntity<BoardEntity> detail(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable int boardId){
+    public ResponseEntity<BoardEntity> detail(@PathVariable int boardId){
         return ResponseEntity.ok(service.detail(boardId));
-    }
-
-    @PostMapping(name = "게시판 저장")
-    public ResponseEntity<BoardEntity.Response> save(@AuthenticationPrincipal UserDetailsImpl admin, @RequestBody BoardEntity.SaveRequest request){
-        return ResponseEntity.ok(service.save(admin, request));
-    }
-
-    @DeleteMapping(name = "게시판 삭제", value = "/{boardId}")
-    public ResponseEntity<BoardEntity.Response> delete(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable int boardId){
-        return ResponseEntity.ok(service.delete(admin, boardId));
     }
 
     @GetMapping(name = "게시물 목록 조회", value = "/{boardId}/contents")
@@ -59,13 +44,8 @@ public class BoardController {
         return ResponseEntity.ok(boardContentService.detail(boardId, contentId));
     }
 
-    @PutMapping(name = "게시물 노출변경", value = "/{boardId}/contents/{contentId}/{visible}")
-    public ResponseEntity<BoardContentEntity.Response> visible(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable int boardId, @PathVariable int contentId, @PathVariable boolean visible){
-        return ResponseEntity.ok(boardContentService.visible(boardId, contentId, visible));
-    }
-
     @DeleteMapping(name = "게시물 삭제", value = "/{boardId}/contents/{contentId}")
-    public ResponseEntity<BoardContentEntity.Response> delete(@AuthenticationPrincipal UserDetailsImpl admin, @PathVariable int boardId, @PathVariable int contentId){
-        return ResponseEntity.ok(boardContentService.delete(admin, boardId, contentId));
+    public ResponseEntity<BoardContentEntity.Response> delete(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable int boardId, @PathVariable int contentId){
+        return ResponseEntity.ok(boardContentService.delete(userDetails, boardId, contentId));
     }
 }

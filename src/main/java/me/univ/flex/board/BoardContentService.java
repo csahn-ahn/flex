@@ -19,7 +19,7 @@ public class BoardContentService {
     private final BoardContentRepository repository;
 
 
-    public Page<BoardContentEntity> findAll(UserDetailsImpl admin, BoardContentEntity.PageRequest request, int boardId) {
+    public Page<BoardContentEntity> findAll(BoardContentEntity.PageRequest request, int boardId) {
         PageRequest pageRequest = PageRequest.of(
             request.getPage() -1,
             request.getPageSize(),
@@ -30,7 +30,7 @@ public class BoardContentService {
         return page;
     }
 
-    public BoardContentEntity detail(UserDetailsImpl admin, int boardId, int contentId) {
+    public BoardContentEntity detail(int boardId, int contentId) {
         Optional<BoardContentEntity> optionalBoard = repository.findById(contentId);
         if(!optionalBoard.isPresent()) {
             return null;
@@ -38,7 +38,7 @@ public class BoardContentService {
         return optionalBoard.get();
     }
 
-    public BoardContentEntity.Response visible(UserDetailsImpl admin, int boardId, int contentId, boolean visible) {
+    public BoardContentEntity.Response visible(int boardId, int contentId, boolean visible) {
         Optional<BoardContentEntity> optionalContent = repository.findById(contentId);
 
         if(!optionalContent.isPresent()){
@@ -59,7 +59,7 @@ public class BoardContentService {
 
     }
 
-    public BoardContentEntity.Response delete(UserDetailsImpl admin, int boardId, int contentId) {
+    public BoardContentEntity.Response delete(UserDetailsImpl userDetails, int boardId, int contentId) {
         Optional<BoardContentEntity> optionalContent = repository.findById(contentId);
 
         if(!optionalContent.isPresent()){
@@ -72,7 +72,7 @@ public class BoardContentService {
         BoardContentEntity entity = optionalContent.get();
         entity.setDel(true);
         entity.setDeleteTime(TimestampUtil.now());
-        entity.setDeleteId(admin.getUsername());
+        entity.setDeleteId(userDetails.getUsername());
 
         repository.save(entity);
 

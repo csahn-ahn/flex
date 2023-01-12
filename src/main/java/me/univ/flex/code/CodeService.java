@@ -16,13 +16,13 @@ public class CodeService {
 
     private final CodeRepository codeRepository;
 
-    public List<CodeEntity> findAll(UserDetailsImpl admin, String codeGroupId) {
+    public List<CodeEntity> findAll(String codeGroupId) {
         List<CodeEntity> list = codeRepository.findByCodeGroupIdAndDisplayAndDelOrderByRegisterTimeDesc(codeGroupId, true, false);
 
         return list;
     }
 
-    public CodeEntity detail(UserDetailsImpl admin, String codeGroupId, String codeId) {
+    public CodeEntity detail(String codeGroupId, String codeId) {
         Optional<CodeEntity> optionalCode = codeRepository.findByCodeGroupIdAndCodeId(codeGroupId, codeId);
         if(!optionalCode.isPresent()) {
             return null;
@@ -30,7 +30,7 @@ public class CodeService {
         return optionalCode.get();
     }
 
-    public CodeEntity.Response save(UserDetailsImpl admin, String codeGroupId, CodeEntity.SaveRequest request) {
+    public CodeEntity.Response save(UserDetailsImpl userDetails, String codeGroupId, CodeEntity.SaveRequest request) {
         Optional<CodeEntity> optionalCode = codeRepository.findByCodeGroupIdAndCodeId(codeGroupId, request.getCodeId());
         CodeEntity entity = null;
 
@@ -55,7 +55,7 @@ public class CodeService {
                 .display(true)
                 .del(false)
                 .registerTime(TimestampUtil.now())
-                .registerId(admin.getUsername())
+                .registerId(userDetails.getUsername())
                 .build();
 
         }else{
@@ -68,7 +68,7 @@ public class CodeService {
             entity.setEtc2(request.getEtc2());
             entity.setEtc3(request.getEtc3());
             entity.setLastUpdateTime(TimestampUtil.now());
-            entity.setLastUpdateId(admin.getUsername());
+            entity.setLastUpdateId(userDetails.getUsername());
         }
         codeRepository.save(entity);
 
@@ -77,7 +77,7 @@ public class CodeService {
             .build();
     }
 
-    public CodeEntity.Response display(UserDetailsImpl admin, String codeGroupId, String codeId, boolean display) {
+    public CodeEntity.Response display(UserDetailsImpl userDetails, String codeGroupId, String codeId, boolean display) {
         Optional<CodeEntity> optionalCode = codeRepository.findByCodeGroupIdAndCodeId(codeGroupId, codeId);
 
         if(!optionalCode.isPresent()){
@@ -90,7 +90,7 @@ public class CodeService {
         CodeEntity entity = optionalCode.get();
         entity.setDisplay(display);
         entity.setLastUpdateTime(TimestampUtil.now());
-        entity.setLastUpdateId(admin.getUsername());
+        entity.setLastUpdateId(userDetails.getUsername());
 
         codeRepository.save(entity);
 
@@ -100,7 +100,7 @@ public class CodeService {
 
     }
 
-    public CodeEntity.Response delete(UserDetailsImpl admin, String codeGroupId, String codeId) {
+    public CodeEntity.Response delete(UserDetailsImpl userDetails, String codeGroupId, String codeId) {
         Optional<CodeEntity> optionalCode = codeRepository.findByCodeGroupIdAndCodeId(codeGroupId, codeId);
 
         if(!optionalCode.isPresent()){
@@ -120,7 +120,7 @@ public class CodeService {
 
         entity.setDel(true);
         entity.setDeleteTime(TimestampUtil.now());
-        entity.setDeleteId(admin.getUsername());
+        entity.setDeleteId(userDetails.getUsername());
 
         codeRepository.save(entity);
 

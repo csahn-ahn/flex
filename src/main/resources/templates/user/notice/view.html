@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Main page</title>
+</head>
+<body>
+	<main class="sub-content customer-total-content notice-list-content" layout:fragment="content" id="app">
+	<main id="content" class="sub-content customer-total-content notice-view-content">
+		<section class="customer-total-section">
+			<div class="section-inner medium">
+				<div class="section-title">공지사항</div>
+				<div class="notice-view-container">
+					<div class="view-header">
+						<div class="title-area">
+							<h3 class="title" v-text="content.title"></h3>
+							<div class="date" v-text="content.registerTime"></div>
+						</div>
+					</div>
+					<div class="view-content" v-html="content.body"></div>
+					<div class="view-footer">
+						<a href="javascript:void(0);" class="file-name">첨부한파일명.jpg</a>
+					</div>
+				</div>
+				<a href="javascript:void(0)" class="btn-prev-arrow" @click="fnList()">목록 <i class="icon"></i></a>
+			</div>
+		</section>
+		<script src="/static/user/js/notice/view.js"></script>
+	</main>
+</body>
+</html>
