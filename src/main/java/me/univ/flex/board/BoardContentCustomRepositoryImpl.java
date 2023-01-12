@@ -38,7 +38,8 @@ public class BoardContentCustomRepositoryImpl implements BoardContentCustomRepos
 			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qBoardContentEntity.registerId))
 			.where(
 				conditionTitle(request.getTitle()),
-				qBoardContentEntity.del.eq(false)
+				qBoardContentEntity.del.eq(false),
+				qBoardContentEntity.boardId.eq(request.getBoardId())
 			)
 			.offset(pageable.getOffset())
 			.limit(pageable.getPageSize())
@@ -52,7 +53,8 @@ public class BoardContentCustomRepositoryImpl implements BoardContentCustomRepos
 			.leftJoin(qManagerEntity).on(qManagerEntity.username.eq(qBoardContentEntity.registerId))
 			.where(
 				conditionTitle(request.getTitle()),
-				qBoardContentEntity.del.eq(false)
+				qBoardContentEntity.del.eq(false),
+				qBoardContentEntity.boardId.eq(request.getBoardId())
 			)
 			.fetchOne();
 

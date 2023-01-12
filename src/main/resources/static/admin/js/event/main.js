@@ -43,10 +43,15 @@ var app = new Vue({
 				me.totalCount = response.data.totalElements;
 				me.list = response.data.content;
 
-                $('#pagination').twbsPagination({
-					totalPages: response.data.totalPages,
-					visiblePages: response.data.size,
-					startPage: 1,
+				totalPages = response.data.totalPages;
+				totalPages = totalPages == 0 ? 1 : totalPages;
+				visiblePages = response.data.size;
+				visiblePages = visiblePages == 0 ? 1 : visiblePages;
+
+				$('#pagination').twbsPagination({
+					totalPages: totalPages,
+					visiblePages: visiblePages,
+                	startPage: 1,
 					//first : "첫 페이지",	// 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
 					//prev : "이전 페이지",	// 이전 페이지 버튼에 쓰여있는 텍스트
 					//next : "다음 페이지",	// 다음 페이지 버튼에 쓰여있는 텍스트

@@ -75,9 +75,14 @@ var app = new Vue({
 				me.totalCount = response.data.totalElements;
 				me.list = response.data.content;
 
+				totalPages = response.data.totalPages;
+				totalPages = totalPages == 0 ? 1 : totalPages;
+				visiblePages = response.data.size;
+				visiblePages = visiblePages == 0 ? 1 : visiblePages;
+
 				$('#pagination').twbsPagination({
-					totalPages: response.data.totalPages,
-					visiblePages: response.data.size,
+					totalPages: totalPages,
+					visiblePages: visiblePages,
 					startPage: 1,
 					//first : "첫 페이지",	// 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
 					//prev : "이전 페이지",	// 이전 페이지 버튼에 쓰여있는 텍스트
@@ -101,18 +106,22 @@ var app = new Vue({
 			})
 		},
 
+		fnContentView(obj) {
+			document.location.href = '/admin/board/boards/contentView?boardId=' + obj.boardId + '&contentId=' + obj.contentId;
+		},
+
 		fnDelete(obj) {
 			let me = this;
 			modalView.openConfirm(
 				'삭제 하시겠습니까?',
 				function(){
-					axios.delete('/admin/api/v1/boards/' + me.boardId + '/' + obj.contentId)
+					axios.delete('/admin/api/v1/boards/' + me.boardId + '/contents/' + obj.contentId)
 					.then(function(response) {
 						if(response.data.success == true){
 							modalView.openAlert(
 								'삭제 되었습니다.'
 								,function() {
-									me.fnSetPage(1);
+									me.fnGetList();
 								}
 							);
 						} else {
@@ -122,8 +131,32 @@ var app = new Vue({
 					.catch(function(error) {
 						modalView.openAlert(error.message);
 					})
-				},
+				}
+			);
+		},
+
+		// 노출여부 변경처리.
+		fnEditVisible(obj, visible) {
+			let me = this;
+			modalView.openConfirm(
+				'노출상태를 변경하시겠습니까?',
 				function() {
+					axios.put('/admin/api/v1/boards/' + me.boardId + '/contents/' + obj.contentId + '/' + visible)
+					.then(function(response) {
+						if(response.data.success == true){
+							modalView.openAlert(
+								'노출상태를 변경하였습니다.'
+								,function() {
+									me.fnGetList();
+								}
+							);
+						} else {
+							modalView.openAlert(response.data.message);
+						}
+					})
+					.catch(function(error) {
+						modalView.openAlert(error.message);
+					})
 				}
 			);
 		},

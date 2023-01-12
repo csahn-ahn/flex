@@ -39,7 +39,7 @@
 								</select>
 							</div>
 							<p>
-								<a v-if="isCreate()" type="button" href="/admin/event/register" class="btn btn-outline btn-success">게시판 등록</a>
+								<a v-if="isCreate()" type="button" href="/admin/board/boards/register?boardId=" class="btn btn-outline btn-success">게시판 등록</a>
 							</p>
 						</div>
 						<div class="table-responsive">
@@ -65,7 +65,7 @@
 										<tr class="gradeX">
 											<td>{{totalCount - ((search.page - 1) * search.pageSize) - idx}}</td>
 											<td>{{obj.boardId}}</td>
-											<td><a :href="'/admin/board/boards/view?boardId=' + obj.boardId">{{obj.title}}</a></td>
+											<td><a href="javascript:void(0);" @click="fnDetail(obj)">{{obj.title}}</a></td>
 											<td class="center">{{obj.registerName}}</td>
 											<td class="center">{{obj.registerTime}}</td>
 											<td class="center">

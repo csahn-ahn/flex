@@ -110,7 +110,29 @@ insert into content_item(content_id, service_start_time, service_end_time, title
 insert into event(title, description, del, register_time) values ('이벤트 신청1', '기본 이벤트', false, '2022-12-22 00:00:00');
 
 insert into board(board_type, title, description, del, register_time) values (1, '공지사항', '공지사항 게시판입니다.', false, '2022-12-22 00:00:00');
-insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요1', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요2', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요3', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요4', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요5', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요6', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요7', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요8', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요9', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요10', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요12', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요13', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요14', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요15', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요16', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요17', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요18', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요19', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요20', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요21', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요22', '반가워요~', true, false, '2022-12-22 00:00:00');
+insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요23', '반가워요~', true, false, '2022-12-22 00:00:00');
+
 
 
 
