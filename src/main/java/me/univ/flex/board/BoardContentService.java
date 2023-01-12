@@ -31,11 +31,49 @@ public class BoardContentService {
     }
 
     public BoardContentEntity detail(int boardId, int contentId) {
-        Optional<BoardContentEntity> optionalBoard = repository.findById(contentId);
-        if(!optionalBoard.isPresent()) {
+        Optional<BoardContentEntity> optionalBoardContent = repository.findById(contentId);
+        if(!optionalBoardContent.isPresent()) {
             return null;
         }
-        return optionalBoard.get();
+        return optionalBoardContent.get();
+    }
+
+    public BoardContentEntity.Response save(UserDetailsImpl userDetails, BoardContentEntity.SaveRequest request) {
+        Optional<BoardContentEntity> optionalBoardContent = repository.findById(request.getContentId());
+        BoardContentEntity entity = null;
+
+        if(StringUtils.isEmpty(request.getTitle())) {
+            return BoardContentEntity.Response.builder()
+                .success(false)
+                .message("필수 입력정보가 누락되었습니다.")
+                .build();
+        }
+
+        if(!optionalBoardContent.isPresent()) {
+            // 등록
+            entity = BoardContentEntity.builder()
+                .typeId(request.getTypeId())
+                .title(request.getTitle())
+                .body(request.getBody())
+                .del(false)
+                .registerTime(TimestampUtil.now())
+                .registerId(userDetails.getUsername())
+                .build();
+
+        }else{
+            // 수정
+            entity = optionalBoardContent.get();
+            entity.setTypeId(request.getTypeId());
+            entity.setTitle(request.getTitle());
+            entity.setBody(request.getBody());
+            entity.setLastUpdateTime(TimestampUtil.now());
+            entity.setLastUpdateId(userDetails.getUsername());
+        }
+        repository.save(entity);
+
+        return BoardContentEntity.Response.builder()
+            .success(true)
+            .build();
     }
 
     public BoardContentEntity.Response visible(int boardId, int contentId, boolean visible) {

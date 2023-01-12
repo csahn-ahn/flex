@@ -67,9 +67,10 @@ insert into user_stats(year_month, new_count, total_count, leave_count, inactive
 insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-11', 10, 10, 0, 0);
 insert into user_stats(year_month, new_count, total_count, leave_count, inactive_count) values ('2022-12', 10, 10, 0, 0);
 
+
 insert into code_group(code_group_id, code_group_name, del, register_time) values ('SAMPLE_CODE_01', '샘플 상위코드 01', 0, '2022-12-11 00:00:00');
 insert into code_group(code_group_id, code_group_name, del, register_time) values ('SAMPLE_CODE_02', '샘플 상위코드 02', 0, '2022-12-12 00:00:00');
-insert into code_group(code_group_id, code_group_name, del, register_time) values ('SAMPLE_CODE_03', '샘플 상위코드 03', 0, '2022-12-13 00:00:00');
+insert into code_group(code_group_id, code_group_name, del, register_time) values ('QNA_TYPE', '1:1문의 유형', 0, '2022-12-13 00:00:00');
 
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_01', 'SAMPLE_CODE_01', 'A1', '샘플 하위코드 01', 1, 0, '2022-12-11 00:00:00');
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_02', 'SAMPLE_CODE_01', 'B2', '샘플 하위코드 02', 1, 0, '2022-12-12 00:00:00');
@@ -79,9 +80,9 @@ insert into code(code_id, code_group_id, code_value, code_name, display, del, re
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_05', 'SAMPLE_CODE_02', 'B2', '샘플 하위코드 02', 1, 0, '2022-12-12 00:00:00');
 insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_06', 'SAMPLE_CODE_02', 'A2', '샘플 하위코드 02', 1, 0, '2022-12-13 00:00:00');
 
-insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_07', 'SAMPLE_CODE_03', 'A3', '샘플 하위코드 01', 1, 0, '2022-12-11 00:00:00');
-insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_08', 'SAMPLE_CODE_03', 'A3', '샘플 하위코드 02', 1, 0, '2022-12-12 00:00:00');
-insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('LOWER_CODE_09', 'SAMPLE_CODE_03', 'A3', '샘플 하위코드 02', 1, 0, '2022-12-13 00:00:00');
+insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('TYPE_1', 'QNA_TYPE', '회원문의', '', 1, 0, '2022-12-11 00:00:00');
+insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('TYPE_2', 'QNA_TYPE', '서비스문의', '', 1, 0, '2022-12-12 00:00:00');
+insert into code(code_id, code_group_id, code_value, code_name, display, del, register_time) values ('TYPE_3', 'QNA_TYPE', '기타문의', '', 1, 0, '2022-12-13 00:00:00');
 
 insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_01', 1, '테스트 콘텐츠-1', null, false, '2022-12-01 00:00:00');
 insert into content(content_id, content_type, title, url, del, register_time) values ('TEST_CONTENT_02', 2, '테스트 콘텐츠-1', '/user/main', false, '2022-12-02 00:00:00');
@@ -110,6 +111,8 @@ insert into content_item(content_id, service_start_time, service_end_time, title
 insert into event(title, description, del, register_time) values ('이벤트 신청1', '기본 이벤트', false, '2022-12-22 00:00:00');
 
 insert into board(board_type, title, description, del, register_time) values (1, '공지사항', '공지사항 게시판입니다.', false, '2022-12-22 00:00:00');
+insert into board(board_type, title, description, del, register_time) values (1, '1:1문의', '사용자의 1:1 문의 게시판입니다.', false, '2022-12-22 00:00:00');
+
 insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요1', '반가워요~', true, false, '2022-12-22 00:00:00');
 insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요2', '반가워요~', true, false, '2022-12-22 00:00:00');
 insert into board_content(board_id, title, body, visible, del, register_time) values (1, '플렉스가 준비되고 있어요3', '반가워요~', true, false, '2022-12-22 00:00:00');

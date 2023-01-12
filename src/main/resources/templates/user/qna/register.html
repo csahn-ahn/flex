@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/user/fragments/layout}" xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Main page</title>
+</head>
+<body>
+	<main class="sub-content customer-total-content inquiry-form-content" layout:fragment="content" id="app">
+		<section class="customer-total-section">
+			<div class="section-inner medium">
+				<div class="section-title">1:1 문의</div>
+				<div class="inquiry-form-container">
+					<div class="form-item row">
+						<div class="form-label">
+							<label for="inquiryType">문의 유형</label>
+						</div>
+						<div class="form-field">
+							<div class="select-box-container">
+								<select name="select" id="inquiryType" class="form-select large">
+									<template v-for="(code, idx) in qnaTypeCodes">
+										<option :value="code.codeId">{{code.codeValue}}</option>
+									</template>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-item row">
+						<div class="form-label">
+							<label for="inquiryTitle">제목</label>
+						</div>
+						<div class="form-field">
+							<div class="input-cover length-check-cover">
+								<input type="text" id="inquiryTitle" name="inquiryTitle" class="form-input length-check-item" data-maxLength="100" v-model="obj.title" />
+								<div class="count">0/100</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-item wide">
+						<div class="textarea-cover length-check-cover">
+							<textarea name="" id="" data-maxLength="5000" class="length-check-item" v-model="obj.body"></textarea>
+							<div class="count">0/5,000</div>
+						</div>
+					</div>
+				</div>
+				<div class="common-btn-group row">
+					<a href="javascript:void(0);" class="btn large primary" @click="fnSave()">문의하기</a>
+					<a href="javascript:void(0);" class="btn large lightSlightly" @click="fnCancel()">취소</a>
+				</div>
+			</div>
+		</section>
+		<script src="/static/user/js/qna/register.js"></script>
+	</main>
+</body>
+</html>

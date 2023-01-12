@@ -30,6 +30,7 @@ public class BoardContentEntity {
     private int contentId;
     @Column(nullable = false)
     private int boardId;
+    private String typeId;
     @Column(columnDefinition = "nvarchar(1024)", nullable = false)
     private String title;
     @Column(columnDefinition = "nvarchar(max)")
@@ -63,6 +64,7 @@ public class BoardContentEntity {
         private int page;
         private int pageSize;
         private int boardId;
+        private String typeId;
         private String registerId;
         private String title;
     }
@@ -71,6 +73,7 @@ public class BoardContentEntity {
     @Builder
     public static class SaveRequest {
         private int contentId;
+        private String typeId;
         private String title;
         private String body;
     }

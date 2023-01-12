@@ -39,6 +39,11 @@ public class UserBoardController {
         return ResponseEntity.ok(boardContentService.findAll(request, boardId));
     }
 
+    @PostMapping(name = "게시물 저장", value = "/{boardId}/contents")
+    public ResponseEntity<BoardContentEntity.Response> save(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody BoardContentEntity.SaveRequest request){
+        return ResponseEntity.ok(boardContentService.save(userDetails, request));
+    }
+
     @GetMapping(name = "게시물 상세 조회", value = "/{boardId}/contents/{contentId}")
     public ResponseEntity<BoardContentEntity> detail(@PathVariable int boardId, @PathVariable int contentId){
         return ResponseEntity.ok(boardContentService.detail(boardId, contentId));
